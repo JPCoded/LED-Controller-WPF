@@ -2,14 +2,18 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:WPF_LED_Controller" x:Class="WPF_LED_Controller.MainWindow"
-        Title="MainWindow" Height="434.403" Width="527.985">
+        Title="MainWindow" Height="435.896" Width="527.985">
     <Window.Resources>
-        <Style x:Name="Border" x:Key="labelBorder" TargetType="Label">
+        <Style x:Name="Border" x:Key="BorderPreview" TargetType="Border">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderThickness" Value="1,2,1,2"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="35"/>
         </Style>
+
     </Window.Resources>
-    <Grid Margin="0,0,-8,-30" HorizontalAlignment="Left" VerticalAlignment="Top" Height="415">
+    <Grid Margin="0,0,-5,0" HorizontalAlignment="Left" Height="409" VerticalAlignment="Top">
 
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -17,18 +21,30 @@
                 <GradientStop Color="White" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Menu HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="525" ClipToBounds="True">
+        <Menu x:Name="mnMain" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="525" ClipToBounds="True">
             <MenuItem x:Name="miFile" Width="47" Header="File" Height="32" FontWeight="Bold">
                 <MenuItem x:Name="miSave" Header="Save" Click="miSave_Click"/>
                 <MenuItem x:Name="miOpen" Header="Open" Click="miOpen_Click"/>
             </MenuItem>
+            <MenuItem Header="Settings"/>
         </Menu>
         <local:ColorPicker x:Name="cpColor" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" MouseMove="cpColor_MouseMove" MouseLeftButtonUp="cpColor_MouseLeftButtonUp" MouseDown="cpColor_MouseDown" MouseLeftButtonDown="cpColor_MouseLeftButtonDown" Height="203" Width="203"/>
-        <Label x:Name="lblSaved" Style="{StaticResource labelBorder}" Content="" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.19,-0.385" Height="99" Width="87" ToolTip="Color to be used for LEDs"/>
-        <Label x:Name="lblHover" Style="{StaticResource labelBorder}" Content="" HorizontalAlignment="Left" Margin="126,266,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.19,-0.385" Height="99" Width="87" ToolTip="Current color mouse is over"/>
-        <Label Content="Saved" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top"/>
+
+
+        <StackPanel Margin="10,240,417,107">
+            <Label Content="Saved"/>
+            <Border Style="{StaticResource BorderPreview}">
+                <Label x:Name="lblSaved" Content=""/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" Height="66" Margin="113,240,0,0" VerticalAlignment="Top" Width="100">
+            <Label Content="Hover" />
+            <Border Style="{StaticResource BorderPreview}">
+                <Label x:Name="lblHover" Content="Label"/>
+            </Border>
+        </StackPanel>
         <Button Content="Set" HorizontalAlignment="Left" Margin="10,373,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Hover" HorizontalAlignment="Left" Margin="126,238,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
     
