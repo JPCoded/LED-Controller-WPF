@@ -9,9 +9,10 @@
         <Style x:Name="Border" x:Key="BorderPreview" TargetType="Border">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="1,2,1,2"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="5" />
             <Setter Property="Width" Value="90"/>
-            <Setter Property="Height" Value="35"/>
+            <Setter Property="Height" Value="30"/>
         </Style>
     </Window.Resources>
     <Grid Margin="0,0,-6,-3">
@@ -31,23 +32,23 @@
         </Menu>
         <local:ColorPicker x:Name="cpColor" HorizontalAlignment="Left" Margin="6,36,0,0" VerticalAlignment="Top" MouseMove="cpColor_MouseMove" MouseLeftButtonUp="cpColor_MouseLeftButtonUp" MouseDown="cpColor_MouseDown" MouseLeftButtonDown="cpColor_MouseLeftButtonDown" Height="203" Width="203"/>
 
-        <StackPanel HorizontalAlignment="Left" Height="66" Margin="109,239,0,0" VerticalAlignment="Top" Width="100">
-            <Label Content="Hover" />
+        <StackPanel HorizontalAlignment="Left" Height="66" Margin="106,239,0,0" VerticalAlignment="Top" Width="100">
+            <Label Content="Hover" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <Border Style="{StaticResource BorderPreview}">
                 <Label x:Name="lblHover" Content=""/>
             </Border>
         </StackPanel>
         <Button Content="Set" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Width="75"/>
-        <StackPanel HorizontalAlignment="Left" Height="66" Margin="10,239,0,0" VerticalAlignment="Top" Width="100">
-            <Label Content="Hover" />
+        <StackPanel HorizontalAlignment="Left" Height="66" Margin="7,239,0,0" VerticalAlignment="Top" Width="100">
+            <Label Content="Saved" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <Border Style="{StaticResource BorderPreview}">
                 <Label x:Name="lblSaved" Content=""/>
             </Border>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" Height="82" Margin="214,80,0,0" VerticalAlignment="Top" Width="52">
-            <local:RGBBox x:Name="rgbRed" Text="R"/>
-            <local:RGBBox x:Name="rgbGreen" Text="G"/>
-            <local:RGBBox x:Name="rgbBlue" Text="B"/>
+            <local:RGBBox x:Name="rgbRed" Text="R" TextChanged="rgbRed_TextChanged"/>
+            <local:RGBBox x:Name="rgbGreen" Text="G" TextChanged="rgbGreen_TextChanged"/>
+            <local:RGBBox x:Name="rgbBlue" Text="B" TextChanged="rgbBlue_TextChanged"/>
         </StackPanel>
     </Grid>
 </Window>

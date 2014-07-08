@@ -44,17 +44,52 @@ namespace WPF_LED_Controller
 
         private void cpColor_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
+            e.Handled = true;
+           // lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
         }
 
         private void cpColor_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
             lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
         }
 
         private void cpColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
+        }
+
+        private void rgbRed_MyTextChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("text changed");
+        }
+
+        private void rgbRed_TextChanged(object sender, EventArgs e)
+        {
+            if(rgbRed.Value > 255)
+            {
+                rgbRed.Value = 255;
+            }
+        }
+
+
+
+        private void rgbGreen_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rgbBlue_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private Color MakeColorFromRGB()
+        {
+            byte rbyteValue = Convert.ToByte(rgbRed.Text);
+            byte gbyteValue = Convert.ToByte(rgbGreen.Text);
+            byte bbyteValue = Convert.ToByte(rgbBlue.Text);
+            Color rgbColor = Color.FromRgb(rbyteValue, gbyteValue, bbyteValue);
+            return rgbColor;
         }
     }
 }

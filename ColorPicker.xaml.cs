@@ -21,8 +21,6 @@ namespace WPF_LED_Controller
     public partial class ColorPicker : UserControl
     {
         private bool IsMouseDownOverEllipse = false;
-        private bool _shift = false;
-
         private Color _customColor = Colors.Transparent;
 
         public Color CustomColor

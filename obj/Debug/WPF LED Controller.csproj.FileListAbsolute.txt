@@ -14,6 +14,6 @@ C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\ColorPicker.g.cs
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller_MarkupCompile.lref
-C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.csprojResolveAssemblyReference.cache
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\RGBBox.baml
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\RGBBox.g.cs
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.csprojResolveAssemblyReference.cache

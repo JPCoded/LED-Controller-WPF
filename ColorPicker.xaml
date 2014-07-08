@@ -6,14 +6,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="201
              " d:DesignWidth="201">
-    <Grid Margin="0,0,2,2" Width="201" Height="201">
+    <Grid Margin="0,0,2,2">
         <Image x:Name="image" 
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Top" Margin="2"
+                       VerticalAlignment="Top" Margin="0"
                         />
         <Canvas x:Name="CanColor"  Width="201" Height="201" 
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top" Margin="2,2,0,0" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove"  >
+                       VerticalAlignment="Top" Margin="0" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove"  >
             <Canvas.Background>
                 <ImageBrush/>
             </Canvas.Background>

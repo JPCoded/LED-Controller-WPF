@@ -20,39 +20,52 @@ namespace WPF_LED_Controller
     /// </summary>
     public partial class RGBBox : UserControl
     {
-        public event TextChangedEventHandler TextChanged;
+        //needed to access TextChanged event outside this control
+        public event EventHandler<EventArgs> TextChanged;
         public RGBBox()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Get or Set the label
+        /// </summary>
         public string Text
         {
             get { return this.lblName.Content.ToString(); }
             set { this.lblName.Content = value; }
         }
+        /// <summary>
+        /// Get or Set value of txtRGB as integer
+        /// </summary>
+        public int Value
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(txtRGB.Text))
+                { return 0; }
+                else
+                { return Int32.Parse(this.txtRGB.Text); }
+            }
+            set { this.txtRGB.Text = value.ToString(); }
+        }
         private void txtRGB_KeyDown(object sender, KeyEventArgs e)
         {
-            string input = e.Key.ToString().Substring(1);
-            try
-            {
-                if (string.IsNullOrWhiteSpace(input))
-                { e.Handled = false; }
-                if (input[0] < '0' || input[0] > '9')
-                { e.Handled = false; }
-            }
-            catch { e.Handled = true; }
+       
+                if (e.Key > Key.D0 || e.Key < Key.D9)
+                {
+                    e.Handled = false;
+                }
+        
         }
 
         private void txtRGB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextChangedEventHandler h = TextChanged;
-            if (h != null)
+            if (TextChanged != null)
             {
-                h(this, e);
+                TextChanged(this, EventArgs.Empty);
             }
         }
 
-       
+
     }
 }
