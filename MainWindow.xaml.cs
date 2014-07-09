@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Ink;
+using System.IO.Ports;
+using System.Collections.ObjectModel;
 
 namespace WPF_LED_Controller
 {
@@ -21,14 +23,29 @@ namespace WPF_LED_Controller
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Databinding
+        public class Ports
+        {  public string Name { get; set; }  }
+
+        public ObservableCollection<Ports> MyPorts
+        { get { return _Ports; } }
+
+        ObservableCollection<Ports> _Ports = new ObservableCollection<Ports>();
+
+        #endregion
+
+        SerialPort ArduinoSerial = new SerialPort();
+       
         public MainWindow()
         {
             InitializeComponent();
+            
+            Refresh();
         }
 
         private void miOpen_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void miSave_Click(object sender, RoutedEventArgs e)
@@ -45,7 +62,6 @@ namespace WPF_LED_Controller
         private void cpColor_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-           // lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
         }
 
         private void cpColor_MouseDown(object sender, MouseButtonEventArgs e)
@@ -66,22 +82,27 @@ namespace WPF_LED_Controller
 
         private void rgbRed_TextChanged(object sender, EventArgs e)
         {
+            
             if(rgbRed.Value > 255)
             {
                 rgbRed.Value = 255;
             }
         }
 
-
-
         private void rgbGreen_TextChanged(object sender, EventArgs e)
         {
-
+            if (rgbGreen.Value > 255)
+            {
+                rgbGreen.Value = 255;
+            }
         }
 
         private void rgbBlue_TextChanged(object sender, EventArgs e)
         {
-
+            if (rgbBlue.Value > 255)
+            {
+                rgbBlue.Value = 255;
+            }
         }
         private Color MakeColorFromRGB()
         {
@@ -90,6 +111,25 @@ namespace WPF_LED_Controller
             byte bbyteValue = Convert.ToByte(rgbBlue.Text);
             Color rgbColor = Color.FromRgb(rbyteValue, gbyteValue, bbyteValue);
             return rgbColor;
+            
+        }   
+        /// <summary>
+        /// Refresh the listbox with current ports
+        /// </summary>
+        public void Refresh()
+        {
+            string[] ports = SerialPort.GetPortNames();
+            MyPorts.Clear();
+            foreach (var port in ports)
+            {
+                MyPorts.Add(new Ports { Name = port });
+            }
+        }
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
+
+ 
 }

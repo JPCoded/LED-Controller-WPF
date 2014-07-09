@@ -15,7 +15,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top" Margin="0" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove"  >
             <Canvas.Background>
-                <ImageBrush/>
+                <ImageBrush ImageSource="Resources/image.png"/>
             </Canvas.Background>
             <Ellipse x:Name="EpPointer" Width="8" 
                        Height="8" Stroke="Black" Fill="White" MouseLeftButtonDown="EpPointer_MouseLeftButtonDown" MouseLeftButtonUp="EpPointer_MouseLeftButtonUp" MouseMove="EpPointer_MouseMove" 
