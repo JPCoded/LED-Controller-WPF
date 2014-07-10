@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PortList.xaml.cs">
+      <DependentUpon>PortList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RGBBox.xaml.cs">
       <DependentUpon>RGBBox.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PortList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RGBBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

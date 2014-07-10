@@ -23,24 +23,16 @@ namespace WPF_LED_Controller
     /// </summary>
     public partial class MainWindow : Window
     {
-        #region Databinding
-        public class Ports
-        {  public string Name { get; set; }  }
-
-        public ObservableCollection<Ports> MyPorts
-        { get { return _Ports; } }
-
-        ObservableCollection<Ports> _Ports = new ObservableCollection<Ports>();
-
-        #endregion
+    
 
         SerialPort ArduinoSerial = new SerialPort();
        
         public MainWindow()
         {
             InitializeComponent();
-            
-            Refresh();
+          
+           plPorts.Refresh();
+       
         }
 
         private void miOpen_Click(object sender, RoutedEventArgs e)
@@ -113,21 +105,10 @@ namespace WPF_LED_Controller
             return rgbColor;
             
         }   
-        /// <summary>
-        /// Refresh the listbox with current ports
-        /// </summary>
-        public void Refresh()
-        {
-            string[] ports = SerialPort.GetPortNames();
-            MyPorts.Clear();
-            foreach (var port in ports)
-            {
-                MyPorts.Add(new Ports { Name = port });
-            }
-        }
+
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            Refresh();
+           plPorts.Refresh();
         }
     }
 

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\
 WPF_LED_Controller
 none
 false
 DEBUG;TRACE
-C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\App.xaml
-3377814723
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\App.xaml
+4-275473494
 
-11-218469693
+121514869808
 131478842535
-ColorPicker.xaml;MainWindow.xaml;RGBBox.xaml;
+ColorPicker.xaml;MainWindow.xaml;PortList.xaml;RGBBox.xaml;
 
-True
+False
 

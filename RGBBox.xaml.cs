@@ -50,15 +50,28 @@ namespace WPF_LED_Controller
         }
         private void txtRGB_KeyDown(object sender, KeyEventArgs e)
         {
-       
-                if (e.Key > Key.D0 || e.Key < Key.D9)
-                {
-                    e.Handled = false;
-                }
+
+            if (e.Key == Key.D || e.Key == Key.Space)
+                e.Handled = true;
+            else
+                e.Handled = !("D1D2D3D4D5D6D7D8D9D0".Contains(e.Key.ToString()));
         
         }
 
         private void txtRGB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextChanged != null)
+            {
+                TextChanged(this, EventArgs.Empty);
+            }
+        }
+
+        private void txtHex_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtHex_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (TextChanged != null)
             {

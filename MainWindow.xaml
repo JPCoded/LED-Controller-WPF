@@ -51,19 +51,13 @@
         </StackPanel>
         <Button Content="Set" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Width="75"/>
     
-        <StackPanel HorizontalAlignment="Left" Height="82" Margin="214,80,0,0" VerticalAlignment="Top" Width="52">
+        <StackPanel HorizontalAlignment="Left" Height="82" Margin="209,37,0,0" VerticalAlignment="Top" Width="80">
             <local:RGBBox x:Name="rgbRed" Text="R" TextChanged="rgbRed_TextChanged"/>
-            <local:RGBBox x:Name="rgbGreen" Text="G" TextChanged="rgbGreen_TextChanged"/>
+            <local:RGBBox x:Name="rgbGreen" Text="G" TextChanged="rgbGreen_TextChanged" Margin="-1,0,-21,0"/>
             <local:RGBBox x:Name="rgbBlue" Text="B" TextChanged="rgbBlue_TextChanged"/>
         </StackPanel>
-        <ListView x:Name="lstPorts" ItemsSource="{Binding MyPorts}" HorizontalAlignment="Left" Height="100" Margin="238,205,0,0" VerticalAlignment="Top" Width="100">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Ports" HeaderStringFormat="Ports" DisplayMemberBinding="{Binding Name}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button x:Name="btnRefresh" Content="Button" HorizontalAlignment="Left" Margin="251,314,0,0" VerticalAlignment="Top" Width="75" Click="btnRefresh_Click"/>
+        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="239,310,0,0" VerticalAlignment="Top" Width="50" Click="btnRefresh_Click"/>
+        <local:PortList x:Name="plPorts" HorizontalAlignment="Left" Margin="239,205,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
     

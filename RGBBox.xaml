@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="30">
+             mc:Ignorable="d" Height="25" Width="102">
     <UserControl.Resources>
         <Style TargetType="Border" x:Key="RGBText" x:Name="RGBText">
             <Setter Property="CornerRadius" Value="5"/>
@@ -13,13 +12,26 @@
             <Setter Property="Width" Value="30" />
             <Setter Property="Height" Value="25" />
         </Style>
+        <Style TargetType="TextBox" x:Key="TextBox">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="23" />
+            <Setter Property="MaxLength" Value="3" />
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="MaxLines" Value="1" />
+        </Style>
 
     </UserControl.Resources>
 
     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
         <Label x:Name="lblName" Content="Label" Foreground="White" FontWeight="Bold"/>
         <Border Style="{StaticResource RGBText}">
-        <TextBox x:Name="txtRGB" TextChanged="txtRGB_TextChanged" Height="23" TextWrapping="Wrap" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center" MaxLength="3" MaxLines="1" KeyDown="txtRGB_KeyDown"/>
-        </Border>
+        <TextBox x:Name="txtRGB" Style="{StaticResource TextBox}" TextChanged="txtRGB_TextChanged" KeyDown="txtRGB_KeyDown"/>
+        </Border> 
+        <GridSplitter Width="2" Background="{x:Null}" ></GridSplitter>
+        <Border Style="{StaticResource RGBText}">
+        <TextBox x:Name="txtHex" Style="{StaticResource TextBox}" TextChanged="txtHex_TextChanged" KeyDown="txtHex_KeyDown"/>
+    </Border>
     </StackPanel>
 </UserControl>
