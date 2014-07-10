@@ -44,18 +44,21 @@ namespace WPF_LED_Controller
                 if (string.IsNullOrEmpty(txtRGB.Text))
                 { return 0; }
                 else
-                { return Int32.Parse(this.txtRGB.Text); }
+                {
+                    //issue with the space key getting through, so have to have way to catch it until it's figured out
+                    try { return Int32.Parse(this.txtRGB.Text); }
+                    catch { return 0; }
+                }
             }
             set { this.txtRGB.Text = value.ToString(); }
         }
         private void txtRGB_KeyDown(object sender, KeyEventArgs e)
         {
-
-            if (e.Key == Key.D || e.Key == Key.Space)
+            //not the most elegant way, but was having issues with the +-./*` keys sneaking in the usual way so took different route
+            if (e.Key == Key.D || e.Key == Key.N || e.Key == Key.U || e.Key == Key.M || e.Key == Key.P || e.Key == Key.A )
                 e.Handled = true;
             else
-                e.Handled = !("D1D2D3D4D5D6D7D8D9D0".Contains(e.Key.ToString()));
-        
+                e.Handled = !("D1D2D3D4D5D6D7D8D9D0NumPad0NumPad1NumPad2NumPad3NumPad4NumPad5NumPad6NumPad7NumPad8NumPad9".Contains(e.Key.ToString()));
         }
 
         private void txtRGB_TextChanged(object sender, TextChangedEventArgs e)
