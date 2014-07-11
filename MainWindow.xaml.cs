@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Ink;
 using System.IO.Ports;
-using System.Collections.ObjectModel;
 
 namespace WPF_LED_Controller
 {
@@ -30,7 +29,7 @@ namespace WPF_LED_Controller
         public MainWindow()
         {
             InitializeComponent();
-          
+            ArduinoSerial.BaudRate = 115200;
            plPorts.Refresh();
        
         }
@@ -67,49 +66,48 @@ namespace WPF_LED_Controller
             lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
         }
 
-        private void rgbRed_MyTextChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("text changed");
-        }
-
         private void rgbRed_TextChanged(object sender, EventArgs e)
         {
-            
-            if(rgbRed.Value > 255)
+
+
+
+            if (((RGBBox)sender).Enter == true)
             {
-                rgbRed.Value = 255;
+                // cpColor.ChangeColor(MakeColorFromRGB());
+                ((RGBBox)sender).Enter = false;
             }
         }
 
         private void rgbGreen_TextChanged(object sender, EventArgs e)
         {
-            if (rgbGreen.Value > 255)
+            if (((RGBBox)sender).Enter == true)
             {
-                rgbGreen.Value = 255;
+                // cpColor.ChangeColor(MakeColorFromRGB());
+                ((RGBBox)sender).Enter = false;
             }
         }
 
         private void rgbBlue_TextChanged(object sender, EventArgs e)
         {
-            if (rgbBlue.Value > 255)
+
+
+            if (((RGBBox)sender).Enter == true)
             {
-                rgbBlue.Value = 255;
+                // cpColor.ChangeColor(MakeColorFromRGB());
+                ((RGBBox)sender).Enter = false;
             }
+           
         }
+
         private Color MakeColorFromRGB()
         {
-            byte rbyteValue = Convert.ToByte(rgbRed.Text);
-            byte gbyteValue = Convert.ToByte(rgbGreen.Text);
-            byte bbyteValue = Convert.ToByte(rgbBlue.Text);
+            byte rbyteValue = Convert.ToByte(rgbRed.Value);
+            byte gbyteValue = Convert.ToByte(rgbGreen.Value);
+            byte bbyteValue = Convert.ToByte(rgbBlue.Value);
             Color rgbColor = Color.FromRgb(rbyteValue, gbyteValue, bbyteValue);
             return rgbColor;
             
         }   
-
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-           plPorts.Refresh();
-        }
     }
 
  

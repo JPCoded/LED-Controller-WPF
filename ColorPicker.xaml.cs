@@ -100,6 +100,8 @@ namespace WPF_LED_Controller
                         Color Colorfromimagepoint = GetColorFromImage(i, j);
                         if (SimmilarColor(Colorfromimagepoint, _customColor))
                         {
+                            MessageBox.Show(Colorfromimagepoint.R.ToString() + ":" + Colorfromimagepoint.G.ToString() + ":" + Colorfromimagepoint.B.ToString());
+                          
                             MovePointerDuringReposition(i, j);
                             flag = true;
                             break;
@@ -126,6 +128,21 @@ namespace WPF_LED_Controller
             {
             }
         } 
+
+        public void ChangeColor(Color newColor)
+        {
+            try
+            {
+                CustomColor = newColor;
+                SavedColor = CustomColor;
+                Reposition();
+            }
+            catch
+            {
+                //probably not needed but better safe than sorry
+            }
+
+        }
         #endregion
 
         #region epPointer Functions

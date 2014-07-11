@@ -26,13 +26,22 @@ namespace WPF_LED_Controller
         {
             InitializeComponent();
         }
+        public bool Enter
+        { get; set; }
         /// <summary>
-        /// Get or Set the label
+        /// Set the label
+        /// </summary>
+        public string LabelText
+        {
+            set { this.lblName.Content = value; }
+        }
+        /// <summary>
+        /// Get or Set the value of txtRGB
         /// </summary>
         public string Text
         {
-            get { return this.lblName.Content.ToString(); }
-            set { this.lblName.Content = value; }
+            get { return this.txtRGB.Text; }
+            set { this.txtRGB.Text = value; }
         }
         /// <summary>
         /// Get or Set value of txtRGB as integer
@@ -54,8 +63,10 @@ namespace WPF_LED_Controller
         }
         private void txtRGB_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Enter)
+                Enter = true;
             //not the most elegant way, but was having issues with the +-./*` keys sneaking in the usual way so took different route
-            if (e.Key == Key.D || e.Key == Key.N || e.Key == Key.U || e.Key == Key.M || e.Key == Key.P || e.Key == Key.A )
+            if (e.Key == Key.D || e.Key == Key.N || e.Key == Key.U || e.Key == Key.M || e.Key == Key.P || e.Key == Key.A)
                 e.Handled = true;
             else
                 e.Handled = !("D1D2D3D4D5D6D7D8D9D0NumPad0NumPad1NumPad2NumPad3NumPad4NumPad5NumPad6NumPad7NumPad8NumPad9".Contains(e.Key.ToString()));
@@ -63,6 +74,13 @@ namespace WPF_LED_Controller
 
         private void txtRGB_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //because there's no point in copying this part of code for each text box, i put it hear to save space and make life easier
+            if (Convert.ToInt32(txtRGB.Text) > 255)
+            {
+                txtRGB.Text = "255";
+                txtRGB.CaretIndex = 3;
+            }
+
             if (TextChanged != null)
             {
                 TextChanged(this, EventArgs.Empty);

@@ -21,10 +21,11 @@ namespace WPF_LED_Controller
     /// </summary>
     public partial class PortList : UserControl
     {
-     
         public class Ports
         { 
-            public string Name { get; set; }
+            public Ports(string name)
+            { Name = name; }
+            public string Name { get; private set; }
             //needed because otherwise the output of text into listview isn't correct.
             public override string ToString()
             {
@@ -40,16 +41,26 @@ namespace WPF_LED_Controller
         {
             InitializeComponent();
             lsPorts.ItemsSource = MyPorts;
+            
         }
 
         public void Refresh()
         {
+            
             //clear list just to make sure we don't get duplicates
             MyPorts.Clear();
-            foreach (string port in SerialPort.GetPortNames())
-            {
-                MyPorts.Add(new Ports { Name = port });
-            }
+            for (int i = 0; i < MyPorts.Count; i++)
+                MyPorts.RemoveAt(i);
+                //dump all the port names into MyPorts
+                foreach (string port in SerialPort.GetPortNames())
+                {
+                    MyPorts.Add(new Ports(port));
+                }
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
 }
