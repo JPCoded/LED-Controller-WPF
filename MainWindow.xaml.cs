@@ -22,21 +22,21 @@ namespace WPF_LED_Controller
     /// </summary>
     public partial class MainWindow : Window
     {
-    
+
 
         SerialPort ArduinoSerial = new SerialPort();
-       
+
         public MainWindow()
         {
             InitializeComponent();
             ArduinoSerial.BaudRate = 115200;
-           plPorts.Refresh();
-       
+            plPorts.Refresh();
+
         }
 
         private void miOpen_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void miSave_Click(object sender, RoutedEventArgs e)
@@ -46,69 +46,37 @@ namespace WPF_LED_Controller
 
         private void cpColor_MouseMove(object sender, MouseEventArgs e)
         {
-            
-            lblHover.Background = new SolidColorBrush(cpColor.HoverColor);
-        }
 
-        private void cpColor_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            e.Handled = true;
+            lblHover.Background = new SolidColorBrush(cpColor.HoverColor);
         }
 
         private void cpColor_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            rgbRed.setColor(cpColor.SavedColor.R);
+            rgbGreen.setColor(cpColor.SavedColor.G);
+            rgbBlue.setColor(cpColor.SavedColor.B);
             lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
-        }
-
-        private void cpColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
-        }
-
-        private void rgbRed_TextChanged(object sender, EventArgs e)
-        {
-
-
-
-            if (((RGBBox)sender).Enter == true)
-            {
-                // cpColor.ChangeColor(MakeColorFromRGB());
-                ((RGBBox)sender).Enter = false;
-            }
-        }
-
-        private void rgbGreen_TextChanged(object sender, EventArgs e)
-        {
-            if (((RGBBox)sender).Enter == true)
-            {
-                // cpColor.ChangeColor(MakeColorFromRGB());
-                ((RGBBox)sender).Enter = false;
-            }
-        }
-
-        private void rgbBlue_TextChanged(object sender, EventArgs e)
-        {
-
-
-            if (((RGBBox)sender).Enter == true)
-            {
-                // cpColor.ChangeColor(MakeColorFromRGB());
-                ((RGBBox)sender).Enter = false;
-            }
-           
+            e.Handled = true;
         }
 
         private Color MakeColorFromRGB()
         {
-            byte rbyteValue = Convert.ToByte(rgbRed.Value);
-            byte gbyteValue = Convert.ToByte(rgbGreen.Value);
-            byte bbyteValue = Convert.ToByte(rgbBlue.Value);
+            string rsValue = string.IsNullOrEmpty(rgbRed.txtRGB.Text) ? "0" : rgbRed.txtRGB.Text;
+            byte rbyteValue = Convert.ToByte(rsValue);
+            string gsValue = string.IsNullOrEmpty(rgbGreen.txtRGB.Text) ? "0" : rgbGreen.txtRGB.Text;
+            byte gbyteValue = Convert.ToByte(gsValue);
+            string bsValue = string.IsNullOrEmpty(rgbBlue.txtRGB.Text) ? "0" : rgbBlue.txtRGB.Text;
+            byte bbyteValue = Convert.ToByte(bsValue);
             Color rgbColor = Color.FromRgb(rbyteValue, gbyteValue, bbyteValue);
             return rgbColor;
-            
-        }   
+        }
+
+        private void rgbTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (((RGBBox)sender).rgbFocus)
+                cpColor.ChangeColor(MakeColorFromRGB());
+        }
     }
 
- 
+
 }

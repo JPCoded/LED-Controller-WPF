@@ -5,22 +5,71 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="201
-             " d:DesignWidth="201">
-    <Grid Margin="0,0,2,2">
+             " Width="282">
+    <UserControl.Resources>
+        <Style TargetType="Border" x:Key="RGBText" x:Name="RGBText">
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1,2,1,2"/>
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="25" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="TextBox">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="23" />
+            <Setter Property="MaxLength" Value="3" />
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="MaxLines" Value="1" />
+        </Style>
+
+    </UserControl.Resources>
+    <Grid Margin="0,0,0,0">
         <Image x:Name="image" 
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Top" Margin="0"
+                       VerticalAlignment="Top" Margin="0" Width="201" Height="201"
                         />
         <Canvas x:Name="CanColor"  Width="201" Height="201" 
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top" Margin="0" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove"  >
+                       VerticalAlignment="Top" Margin="0" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove" LostFocus="CanColor_LostFocus" GotFocus="CanColor_GotFocus"  >
             <Canvas.Background>
-                <ImageBrush ImageSource="Resources/image.png"/>
+                <ImageBrush />
             </Canvas.Background>
-            <Ellipse x:Name="EpPointer" Width="8" 
-                       Height="8" Stroke="Black" Fill="White" MouseLeftButtonDown="EpPointer_MouseLeftButtonDown" MouseLeftButtonUp="EpPointer_MouseLeftButtonUp" MouseMove="EpPointer_MouseMove" 
-                       />
+            <Ellipse x:Name="EpPointer" Width="8" Height="8" Stroke="Black" Fill="White" />
         </Canvas>
+        <StackPanel HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top">
+            <StackPanel x:Name="spRed" Height="29" Orientation="Horizontal">
+                <Label Content="R" Foreground="White"/>
+                <Border Style="{StaticResource RGBText}">
+                    <TextBox x:Name="txtRed" Style="{StaticResource TextBox}" />
+                </Border>
+                <Separator Width="2" Background="{x:Null}"></Separator>
+                <Border Style="{StaticResource RGBText}">
+                    <TextBox x:Name="txtRHex" Style="{StaticResource TextBox}"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Height="29" Orientation="Horizontal" x:Name="spGreen">
+                <Label Content="G" Foreground="White"/>
+                <Border Style="{StaticResource RGBText}">
+                    <TextBox x:Name="txtGreen" Style="{StaticResource TextBox}"/>
+                </Border>
+                <Separator Width="2" Background="{x:Null}"></Separator>
+                <Border Style="{StaticResource RGBText}">
+                    <TextBox x:Name="txtGHex" Style="{StaticResource TextBox}"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Height="29" Orientation="Horizontal" x:Name="spBlue">
+                <Label Content="B" Foreground="White"/>
+                <Border Style="{StaticResource RGBText}">
+                    <TextBox x:Name="txtBlue" Style="{StaticResource TextBox}"/>
+                </Border>
+                <Separator Width="2" Background="{x:Null}"></Separator>
+                <Border Style="{StaticResource RGBText}">
+                    <TextBox x:Name="txtBHex" Style="{StaticResource TextBox}"/>
+                </Border>
+            </StackPanel>
+        </StackPanel>
 
     </Grid>
 </UserControl>

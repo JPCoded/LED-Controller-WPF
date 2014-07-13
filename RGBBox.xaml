@@ -27,11 +27,11 @@
     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
         <Label x:Name="lblName" Content="Label" Foreground="White" FontWeight="Bold"/>
         <Border Style="{StaticResource RGBText}">
-        <TextBox x:Name="txtRGB" Style="{StaticResource TextBox}" TextChanged="txtRGB_TextChanged" KeyDown="txtRGB_KeyDown"/>
+        <TextBox x:Name="txtRGB" Style="{StaticResource TextBox}" TextChanged="txtRGB_TextChanged" KeyDown="txtRGB_KeyDown" ToolTip="Integer value " GotFocus="txtRGB_GotFocus" LostFocus="txtRGB_LostFocus"/>
         </Border> 
         <GridSplitter Width="2" Background="{x:Null}" ></GridSplitter>
         <Border Style="{StaticResource RGBText}">
-        <TextBox x:Name="txtHex" Style="{StaticResource TextBox}" TextChanged="txtHex_TextChanged" KeyDown="txtHex_KeyDown"/>
+        <TextBox x:Name="txtHex" Style="{StaticResource TextBox}" TextChanged="txtHex_TextChanged" KeyDown="txtHex_KeyDown" ToolTip="Hex Value"/>
     </Border>
     </StackPanel>
 </UserControl>

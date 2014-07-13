@@ -22,36 +22,47 @@ namespace WPF_LED_Controller
     {
         //needed to access TextChanged event outside this control
         public event EventHandler<EventArgs> TextChanged;
+        private bool _focus = false;
         public RGBBox()
         {
             InitializeComponent();
         }
-        public bool Enter
-        { get; set; }
+        public bool rgbFocus
+        {
+            get { return _focus; }
+            set { _focus = value; }
+        }
+        public void setColor(int RGB)
+        {
+            txtRGB.Text = RGB.ToString();
+            txtHex.Text = RGB.ToString("X").PadLeft(2, '0');
+        }
+
         /// <summary>
-        /// Set the label
+        /// Set the label.
         /// </summary>
         public string LabelText
         {
-            set { this.lblName.Content = value; }
+            get { return lblName.Content.ToString(); }
+            set { if (this.lblName.Content.ToString() != value) { this.lblName.Content = value; } }
         }
         /// <summary>
-        /// Get or Set the value of txtRGB
+        /// Get or Set the value of txtRGB.
         /// </summary>
         public string Text
         {
             get { return this.txtRGB.Text; }
-            set { this.txtRGB.Text = value; }
+            set { if(this.txtRGB.Text != value) {this.txtRGB.Text = value;} }
         }
         /// <summary>
-        /// Get or Set value of txtRGB as integer
+        /// Get or Set value of txtRGB as integer.
         /// </summary>
         public int Value
         {
             get
             {
                 if (string.IsNullOrEmpty(txtRGB.Text))
-                { return 0; }
+                { return 000; }
                 else
                 {
                     //issue with the space key getting through, so have to have way to catch it until it's figured out
@@ -59,12 +70,17 @@ namespace WPF_LED_Controller
                     catch { return 0; }
                 }
             }
-            set { this.txtRGB.Text = value.ToString(); }
+            set { if (this.txtRGB.Text != value.ToString()) { this.txtRGB.Text = value.ToString(); } }
+        }
+
+        public string HexText
+        {
+            get { return txtHex.Text; }
+            set { txtHex.Text = value; }
         }
         private void txtRGB_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-                Enter = true;
+  
             //not the most elegant way, but was having issues with the +-./*` keys sneaking in the usual way so took different route
             if (e.Key == Key.D || e.Key == Key.N || e.Key == Key.U || e.Key == Key.M || e.Key == Key.P || e.Key == Key.A)
                 e.Handled = true;
@@ -74,11 +90,14 @@ namespace WPF_LED_Controller
 
         private void txtRGB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //because there's no point in copying this part of code for each text box, i put it hear to save space and make life easier
-            if (Convert.ToInt32(txtRGB.Text) > 255)
+            
+            //because there's no point in copying this part of code for each text box, i put it hear to save space and make life easier.
+            if (string.IsNullOrEmpty(txtRGB.Text))
+            {  }
+            else if (Convert.ToInt32(txtRGB.Text) > 255)
             {
                 txtRGB.Text = "255";
-                txtRGB.CaretIndex = 3;
+                txtRGB.CaretIndex = 3; //set cursor to end, else it puts cursor to front of text which isn't what most people would want.
             }
 
             if (TextChanged != null)
@@ -98,6 +117,16 @@ namespace WPF_LED_Controller
             {
                 TextChanged(this, EventArgs.Empty);
             }
+        }
+
+        private void txtRGB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            rgbFocus = true;
+        }
+
+        private void txtRGB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            rgbFocus = false;
         }
 
 

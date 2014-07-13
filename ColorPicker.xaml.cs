@@ -20,12 +20,13 @@ namespace WPF_LED_Controller
     /// </summary>
     public partial class ColorPicker : UserControl
     {
-        private bool IsMouseDownOverEllipse = false;
         private Color _customColor = Colors.Transparent;
 
         public Color CustomColor
         {
-            get { return _customColor; }
+            get
+            {
+                return _customColor; }
             set
             {
                 if (_customColor != value)
@@ -35,8 +36,9 @@ namespace WPF_LED_Controller
             }
         }
 
-        public Color HoverColor { get; set; }
-        public Color SavedColor { get; set; }
+        private bool canFocus { get; set; }
+        public Color HoverColor { get; private set; }
+        public Color SavedColor { get; private set; }
         public ColorPicker()
         {
             InitializeComponent();
@@ -48,13 +50,10 @@ namespace WPF_LED_Controller
 
         private Color GetColorFromImage(int i, int j)
         {
-            CroppedBitmap cb = new CroppedBitmap(image.Source as BitmapSource,
-       new Int32Rect(i,
-           j, 1, 1));
+            CroppedBitmap cb = new CroppedBitmap(image.Source as BitmapSource, new Int32Rect(i, j, 1, 1));
             byte[] color = new byte[4];
             cb.CopyPixels(color, 4, 0);
-            Color Colorfromimagepoint =
-              Color.FromArgb((byte)255, color[2], color[1], color[0]);
+            Color Colorfromimagepoint = Color.FromArgb((byte)255, color[2], color[1], color[0]);
             return Colorfromimagepoint;
         }
 
@@ -90,6 +89,7 @@ namespace WPF_LED_Controller
 
         private void Reposition()
         {
+            MessageBox.Show("Reposition");
             for (int i = 0; i < CanColor.ActualWidth; i++)
             {
                 bool flag = false;
@@ -100,8 +100,6 @@ namespace WPF_LED_Controller
                         Color Colorfromimagepoint = GetColorFromImage(i, j);
                         if (SimmilarColor(Colorfromimagepoint, _customColor))
                         {
-                            MessageBox.Show(Colorfromimagepoint.R.ToString() + ":" + Colorfromimagepoint.G.ToString() + ":" + Colorfromimagepoint.B.ToString());
-                          
                             MovePointerDuringReposition(i, j);
                             flag = true;
                             break;
@@ -133,36 +131,19 @@ namespace WPF_LED_Controller
         {
             try
             {
-                CustomColor = newColor;
-                SavedColor = CustomColor;
-                Reposition();
+                if (CustomColor != newColor)
+                {
+                    MessageBox.Show(newColor.R.ToString() + ":" + newColor.G.ToString() + ":" + newColor.B.ToString());
+                    CustomColor = newColor;
+                    SavedColor = newColor;
+                    Reposition();
+                }
             }
             catch
             {
                 //probably not needed but better safe than sorry
             }
 
-        }
-        #endregion
-
-        #region epPointer Functions
-        private void EpPointer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            IsMouseDownOverEllipse = false;
-        }
-
-        private void EpPointer_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            IsMouseDownOverEllipse = true;
-        }
-
-        private void EpPointer_MouseMove(object sender, MouseEventArgs e)
-        {
-            if(IsMouseDownOverEllipse)
-            {
-                ChangeColor();
-            }
-            e.Handled = true;
         }
         #endregion
 
@@ -183,6 +164,16 @@ namespace WPF_LED_Controller
             HoverColor = GetColorFromImage((int)Mouse.GetPosition(CanColor).X, (int)Mouse.GetPosition(CanColor).Y);
         }
         #endregion
+
+        private void CanColor_LostFocus(object sender, RoutedEventArgs e)
+        {
+            canFocus = false;
+        }
+
+        private void CanColor_GotFocus(object sender, RoutedEventArgs e)
+        {
+            canFocus = true;
+        }
 
 
     }
