@@ -17,16 +17,17 @@ namespace WPF_LED_Controller
 {
     /// <summary>
     /// Interaction logic for ColorPicker.xaml
+    /// Added my RGBBox control into this one. While it makes this code much longer because of added control, it makes it so I don't have to keep making calls from 2 different controls that are to be used by each other so often.
     /// </summary>
     public partial class ColorPicker : UserControl
     {
         private Color _customColor = Colors.Transparent;
-
         public Color CustomColor
         {
             get
             {
-                return _customColor; }
+                return _customColor;
+            }
             set
             {
                 if (_customColor != value)
@@ -35,8 +36,10 @@ namespace WPF_LED_Controller
                 }
             }
         }
-
         private bool canFocus { get; set; }
+       /// <summary>
+       /// Color that the mouse is current hovered over.
+       /// </summary>
         public Color HoverColor { get; private set; }
         public Color SavedColor { get; private set; }
         public ColorPicker()
@@ -44,7 +47,6 @@ namespace WPF_LED_Controller
             InitializeComponent();
             image.Source = loadBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch);
         }
-
 
         #region Custom Functions
 
@@ -125,7 +127,7 @@ namespace WPF_LED_Controller
             catch
             {
             }
-        } 
+        }
 
         public void ChangeColor(Color newColor)
         {
@@ -143,7 +145,43 @@ namespace WPF_LED_Controller
             {
                 //probably not needed but better safe than sorry
             }
+        }
 
+        /// <summary>
+        /// Check to see if the user inputed keys 0-9, including the numpad keys, but nothing else
+        /// </summary>
+        /// <param name="e">KeyEventArgs</param>
+        private void NumericValidation(KeyEventArgs e)
+        {
+            //not the most elegant way, but was having issues with the +-./*` keys sneaking in the usual way so took different route
+            if (e.Key == Key.D || e.Key == Key.N || e.Key == Key.U || e.Key == Key.M || e.Key == Key.P || e.Key == Key.A)
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                //wanted to have the ability to use numpad too.
+                e.Handled = !("D1D2D3D4D5D6D7D8D9D0NumPad0NumPad1NumPad2NumPad3NumPad4NumPad5NumPad6NumPad7NumPad8NumPad9".Contains(e.Key.ToString()));
+            }
+        }
+
+        /// <summary>
+        /// Check to see if the textbox value is over 255. If it is, set it to 255.
+        /// </summary>
+        /// <param name="sender"></param>
+        private void OverNumericValidation(object sender)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            { return; }
+            else
+            {
+                int checkVal = Convert.ToInt32(((TextBox)sender).Text);
+                if (checkVal > 255)
+                {
+                    ((TextBox)sender).Text = "255";
+                    ((TextBox)sender).CaretIndex = 3;
+                }
+            }
         }
         #endregion
 
@@ -163,8 +201,7 @@ namespace WPF_LED_Controller
         {
             HoverColor = GetColorFromImage((int)Mouse.GetPosition(CanColor).X, (int)Mouse.GetPosition(CanColor).Y);
         }
-        #endregion
-
+       
         private void CanColor_LostFocus(object sender, RoutedEventArgs e)
         {
             canFocus = false;
@@ -173,8 +210,41 @@ namespace WPF_LED_Controller
         private void CanColor_GotFocus(object sender, RoutedEventArgs e)
         {
             canFocus = true;
+        } 
+        
+        #endregion
+
+        #region TextBoxes
+        private void txtBlue_KeyDown(object sender, KeyEventArgs e)
+        {
+            NumericValidation(e);
+           
         }
 
+        private void txtGreen_KeyDown(object sender, KeyEventArgs e)
+        {
+            NumericValidation(e);
+        }
 
+        private void txtRed_KeyDown(object sender, KeyEventArgs e)
+        {
+            NumericValidation(e);
+        }
+
+        private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OverNumericValidation(sender);
+        }
+
+        private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OverNumericValidation(sender);
+        }
+
+        private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OverNumericValidation(sender);
+        }
+        #endregion
     }
 }

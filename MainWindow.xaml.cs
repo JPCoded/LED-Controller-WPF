@@ -52,30 +52,25 @@ namespace WPF_LED_Controller
 
         private void cpColor_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            rgbRed.setColor(cpColor.SavedColor.R);
-            rgbGreen.setColor(cpColor.SavedColor.G);
-            rgbBlue.setColor(cpColor.SavedColor.B);
-            lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
+            //rgbRed.setColor(cpColor.SavedColor.R);
+            //rgbGreen.setColor(cpColor.SavedColor.G);
+            //rgbBlue.setColor(cpColor.SavedColor.B);
+            //lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
             e.Handled = true;
         }
 
-        private Color MakeColorFromRGB()
-        {
-            string rsValue = string.IsNullOrEmpty(rgbRed.txtRGB.Text) ? "0" : rgbRed.txtRGB.Text;
-            byte rbyteValue = Convert.ToByte(rsValue);
-            string gsValue = string.IsNullOrEmpty(rgbGreen.txtRGB.Text) ? "0" : rgbGreen.txtRGB.Text;
-            byte gbyteValue = Convert.ToByte(gsValue);
-            string bsValue = string.IsNullOrEmpty(rgbBlue.txtRGB.Text) ? "0" : rgbBlue.txtRGB.Text;
-            byte bbyteValue = Convert.ToByte(bsValue);
-            Color rgbColor = Color.FromRgb(rbyteValue, gbyteValue, bbyteValue);
-            return rgbColor;
-        }
+       // private Color MakeColorFromRGB()
+       // {
+            //string rsValue = string.IsNullOrEmpty(rgbRed.txtRGB.Text) ? "0" : rgbRed.txtRGB.Text;
+            //byte rbyteValue = Convert.ToByte(rsValue);
+            //string gsValue = string.IsNullOrEmpty(rgbGreen.txtRGB.Text) ? "0" : rgbGreen.txtRGB.Text;
+            //byte gbyteValue = Convert.ToByte(gsValue);
+            //string bsValue = string.IsNullOrEmpty(rgbBlue.txtRGB.Text) ? "0" : rgbBlue.txtRGB.Text;
+            //byte bbyteValue = Convert.ToByte(bsValue);
+            //Color rgbColor = Color.FromRgb(rbyteValue, gbyteValue, bbyteValue);
+            //return rgbColor;
+       // }
 
-        private void rgbTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (((RGBBox)sender).rgbFocus)
-                cpColor.ChangeColor(MakeColorFromRGB());
-        }
     }
 
 

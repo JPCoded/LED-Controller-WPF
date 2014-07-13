@@ -22,12 +22,13 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="MaxLines" Value="1" />
+            <Setter Property="BorderBrush" Value="Transparent"/>
         </Style>
 
     </UserControl.Resources>
     <Grid Margin="0,0,0,0">
         <Image x:Name="image" 
-                       HorizontalAlignment="Center"
+                       HorizontalAlignment="Left"
                        VerticalAlignment="Top" Margin="0" Width="201" Height="201"
                         />
         <Canvas x:Name="CanColor"  Width="201" Height="201" 
@@ -38,11 +39,11 @@
             </Canvas.Background>
             <Ellipse x:Name="EpPointer" Width="8" Height="8" Stroke="Black" Fill="White" />
         </Canvas>
-        <StackPanel HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top">
+        <StackPanel HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top" Height="125">
             <StackPanel x:Name="spRed" Height="29" Orientation="Horizontal">
                 <Label Content="R" Foreground="White"/>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtRed" Style="{StaticResource TextBox}" />
+                    <TextBox x:Name="txtRed" Style="{StaticResource TextBox}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" />
                 </Border>
                 <Separator Width="2" Background="{x:Null}"></Separator>
                 <Border Style="{StaticResource RGBText}">
@@ -52,7 +53,7 @@
             <StackPanel Height="29" Orientation="Horizontal" x:Name="spGreen">
                 <Label Content="G" Foreground="White"/>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtGreen" Style="{StaticResource TextBox}"/>
+                    <TextBox x:Name="txtGreen" Style="{StaticResource TextBox}" KeyDown="txtGreen_KeyDown" TextChanged="txtGreen_TextChanged"/>
                 </Border>
                 <Separator Width="2" Background="{x:Null}"></Separator>
                 <Border Style="{StaticResource RGBText}">
@@ -62,12 +63,15 @@
             <StackPanel Height="29" Orientation="Horizontal" x:Name="spBlue">
                 <Label Content="B" Foreground="White"/>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtBlue" Style="{StaticResource TextBox}"/>
+                    <TextBox x:Name="txtBlue" Style="{StaticResource TextBox}" KeyDown="txtBlue_KeyDown" TextChanged="txtBlue_TextChanged"/>
                 </Border>
                 <Separator Width="2" Background="{x:Null}"></Separator>
                 <Border Style="{StaticResource RGBText}">
                     <TextBox x:Name="txtBHex" Style="{StaticResource TextBox}"/>
                 </Border>
+            </StackPanel>
+            <StackPanel Height="29">
+                <TextBox x:Name="txtHAll" Height="23" TextWrapping="Wrap" Text="#555555" Width="60"/>
             </StackPanel>
         </StackPanel>
 

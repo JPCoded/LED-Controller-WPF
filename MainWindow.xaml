@@ -35,7 +35,6 @@
                 <MenuItem x:Name="miOpen" Header="Open" Click="miOpen_Click"/>
             </MenuItem>
         </Menu>
-        <local:ColorPicker x:Name="cpColor" HorizontalAlignment="Left" Margin="0,37,0,0" VerticalAlignment="Top" MouseMove="cpColor_MouseMove" MouseDown="cpColor_MouseDown" Height="203" Width="203"/>
 
         <StackPanel Style="{StaticResource SavedHoverPanel}" Margin="6,239,0,0" >
             <Label Content="Saved" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -51,13 +50,8 @@
             </Border>
         </StackPanel>
         <Button Content="Set" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Width="75"/>
-
-        <StackPanel HorizontalAlignment="Left" Height="82" Margin="209,37,0,0" VerticalAlignment="Top" Width="80">
-            <local:RGBBox x:Name="rgbRed" LabelText="R" TextChanged="rgbTextBox_TextChanged" />
-            <local:RGBBox x:Name="rgbGreen" LabelText="G" TextChanged="rgbTextBox_TextChanged" Margin="-1,0,0,0"/>
-            <local:RGBBox x:Name="rgbBlue" LabelText="B" TextChanged="rgbTextBox_TextChanged"/>
-        </StackPanel>
-        <local:PortList x:Name="plPorts" HorizontalAlignment="Left" Margin="214,142,0,0" VerticalAlignment="Top"/>
+        <local:PortList x:Name="plPorts" HorizontalAlignment="Left" Margin="214,148,0,0" VerticalAlignment="Top"/>
+        <local:ColorPicker x:Name="cpColor" HorizontalAlignment="Left" Margin="6,33,0,0" VerticalAlignment="Top" MouseDown="cpColor_MouseDown" MouseMove="cpColor_MouseMove"/>
     </Grid>
 </Window>
     

@@ -93,7 +93,7 @@ namespace WPF_LED_Controller
             
             //because there's no point in copying this part of code for each text box, i put it hear to save space and make life easier.
             if (string.IsNullOrEmpty(txtRGB.Text))
-            {  }
+            { e.Handled = true; }
             else if (Convert.ToInt32(txtRGB.Text) > 255)
             {
                 txtRGB.Text = "255";
