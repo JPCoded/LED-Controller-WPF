@@ -47,6 +47,7 @@ namespace WPF_LED_Controller
         public void Refresh()
         {
             
+
             //clear list just to make sure we don't get duplicates
             MyPorts.Clear();
             for (int i = 0; i < MyPorts.Count; i++)

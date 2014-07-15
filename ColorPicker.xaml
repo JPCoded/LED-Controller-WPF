@@ -29,11 +29,10 @@
     <Grid Margin="0,0,0,0">
         <Image x:Name="image" 
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top" Margin="0" Width="201" Height="201"
-                        />
+                       VerticalAlignment="Top" Margin="0" Width="201" Height="201" />
         <Canvas x:Name="CanColor"  Width="201" Height="201" 
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top" Margin="0" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove" LostFocus="CanColor_LostFocus" GotFocus="CanColor_GotFocus"  >
+                       VerticalAlignment="Top" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove"  >
             <Canvas.Background>
                 <ImageBrush />
             </Canvas.Background>

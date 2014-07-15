@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:DesignWidth="75" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    
     <Grid>
         <ListView x:Name="lsPorts" HorizontalAlignment="Left" ItemsSource="{Binding MyPorts}" Height="75" Margin="0,0,0,0" VerticalAlignment="Top" Width="75"
                   >

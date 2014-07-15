@@ -51,7 +51,7 @@
         </StackPanel>
         <Button Content="Set" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Width="75"/>
         <local:PortList x:Name="plPorts" HorizontalAlignment="Left" Margin="214,148,0,0" VerticalAlignment="Top"/>
-        <local:ColorPicker x:Name="cpColor" HorizontalAlignment="Left" Margin="6,33,0,0" VerticalAlignment="Top" MouseDown="cpColor_MouseDown" MouseMove="cpColor_MouseMove"/>
+        <local:ColorPicker x:Name="cpColor"  HorizontalAlignment="Left" Margin="6,33,0,0" VerticalAlignment="Top" MouseDown="cpColor_MouseDown" MouseMove="cpColor_MouseMove" PreviewMouseDown="cpColor_PreviewMouseDown"/>
     </Grid>
 </Window>
     

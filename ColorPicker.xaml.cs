@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing.Imaging;
 
 namespace WPF_LED_Controller
 {
@@ -22,34 +24,135 @@ namespace WPF_LED_Controller
     public partial class ColorPicker : UserControl
     {
         private Color _customColor = Colors.Transparent;
+        private UnsafeBitmap myUnsafeBitmap; 
+      
+
+        /// <summary>
+        /// Not my code. The Unsafe bitmap idea was taken from MSDN article. Just had to use the full names for things such as System.Drawing.Bitmap, because System.Drawing has a Color funtion that messes with the WPF color function. Also modified it a slight bit for my needs and removed unneeded items. Also made few functions that were once public private.
+        /// </summary>
+       private unsafe class UnsafeBitmap
+       {
+           System.Drawing.Bitmap bitmap;
+           int width = 201;
+          BitmapData bitmapData = null;
+           Byte* pBase = null;
+
+           public UnsafeBitmap(System.Drawing.Bitmap bitmap)
+           {
+               this.bitmap = new System.Drawing.Bitmap(bitmap);
+           }
+
+           public void Dispose()
+           {
+               bitmap.Dispose();
+           }
+
+           public System.Drawing.Bitmap Bitmap
+           {
+               get { return (bitmap); }
+           }
+
+           private Point PixelSize
+           {
+               get
+               {
+                   System.Drawing.GraphicsUnit unit = System.Drawing.GraphicsUnit.Pixel;
+                   System.Drawing.RectangleF bounds = bitmap.GetBounds(ref unit);
+                   return new Point((int)bounds.Width, (int)bounds.Height);
+               }
+           }
+            public void LockBitmap()
+            {
+                System.Drawing.GraphicsUnit unit = System.Drawing.GraphicsUnit.Pixel;
+                System.Drawing.RectangleF boundsF = bitmap.GetBounds(ref unit);
+                System.Drawing.Rectangle bounds = new System.Drawing.Rectangle((int)boundsF.X, (int)boundsF.Y, (int)boundsF.Width, (int)boundsF.Height);
+
+                width = (int)boundsF.Width * sizeof(PixelData);
+                if(width % 4 != 0)
+                {
+                    width = 4 * (width / 4 + 1);
+                }
+                bitmapData = bitmap.LockBits(bounds, ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                pBase = (Byte*)bitmapData.Scan0.ToPointer();
+            }
+
+           public PixelData GetPixel(int x, int y)
+            {
+                PixelData returnValue = *PixelAt(x, y);
+                return returnValue;
+            }
+
+           private PixelData* PixelAt(int x, int y)
+           {
+               return (PixelData*)(pBase + y * width + x * sizeof(PixelData));
+           }
+
+           public void UnlockBitmap()
+           {
+               bitmap.UnlockBits(bitmapData);
+               bitmapData = null;
+               pBase = null;
+           }
+           
+       }
+      public struct PixelData
+            {
+                public byte blue;
+                public byte green;
+                public byte red;
+            }
+
         public Color CustomColor
         {
             get
             {
                 return _customColor;
             }
-            set
+           private set
             {
                 if (_customColor != value)
                 {
                     _customColor = value;
+                    MadHatter();
                 }
             }
         }
-        private bool canFocus { get; set; }
+
+        /// <summary>
+        /// Called when ever customColor is changed. Changes the values of the text box, like mad hatter saying "Change places!"
+        /// </summary>
+        public void MadHatter()
+        {
+            if(txtRed.Text != CustomColor.R.ToString())
+            {
+                txtRed.Text = CustomColor.R.ToString();
+                txtRHex.Text = CustomColor.R.ToString("X").PadLeft(2, '0');
+            }
+            if (txtGreen.Text != CustomColor.G.ToString())
+            {
+                txtGreen.Text = CustomColor.G.ToString();
+                txtGHex.Text = CustomColor.G.ToString("X").PadLeft(2, '0');
+            }
+            if (txtBlue.Text != CustomColor.B.ToString())
+            { 
+                txtBlue.Text = CustomColor.B.ToString();
+                txtBHex.Text = CustomColor.B.ToString("X").PadLeft(2, '0');
+            }
+
+        }
+
        /// <summary>
        /// Color that the mouse is current hovered over.
        /// </summary>
         public Color HoverColor { get; private set; }
-        public Color SavedColor { get; private set; }
         public ColorPicker()
         {
             InitializeComponent();
             image.Source = loadBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch);
+            myUnsafeBitmap = new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch);
         }
 
         #region Custom Functions
-
         private Color GetColorFromImage(int i, int j)
         {
             CroppedBitmap cb = new CroppedBitmap(image.Source as BitmapSource, new Int32Rect(i, j, 1, 1));
@@ -58,6 +161,8 @@ namespace WPF_LED_Controller
             Color Colorfromimagepoint = Color.FromArgb((byte)255, color[2], color[1], color[0]);
             return Colorfromimagepoint;
         }
+
+        //static unsafe 
 
         //find similar colors since there's isn't the full range of colors
         private bool SimmilarColor(Color pointColor, Color selectedColor)
@@ -91,7 +196,8 @@ namespace WPF_LED_Controller
 
         private void Reposition()
         {
-            MessageBox.Show("Reposition");
+            myUnsafeBitmap.LockBitmap();
+           
             for (int i = 0; i < CanColor.ActualWidth; i++)
             {
                 bool flag = false;
@@ -99,9 +205,12 @@ namespace WPF_LED_Controller
                 {
                     try
                     {
-                        Color Colorfromimagepoint = GetColorFromImage(i, j);
+                        PixelData pixel = myUnsafeBitmap.GetPixel(i, j);
+
+                        Color Colorfromimagepoint = Color.FromRgb(pixel.red, pixel.green, pixel.blue) ;
                         if (SimmilarColor(Colorfromimagepoint, _customColor))
                         {
+                            
                             MovePointerDuringReposition(i, j);
                             flag = true;
                             break;
@@ -114,6 +223,7 @@ namespace WPF_LED_Controller
                 }
                 if (flag) break;
             }
+            myUnsafeBitmap.UnlockBitmap();
         }
 
         private void ChangeColor()
@@ -121,23 +231,23 @@ namespace WPF_LED_Controller
             try
             {
                 CustomColor = GetColorFromImage((int)Mouse.GetPosition(CanColor).X, (int)Mouse.GetPosition(CanColor).Y);
-                SavedColor = CustomColor;
                 MovePointer();
             }
             catch
             {
+                return;
             }
         }
 
-        public void ChangeColor(Color newColor)
+        private void ChangeColor(Color newColor)
         {
             try
             {
                 if (CustomColor != newColor)
                 {
-                    MessageBox.Show(newColor.R.ToString() + ":" + newColor.G.ToString() + ":" + newColor.B.ToString());
+                    
                     CustomColor = newColor;
-                    SavedColor = newColor;
+                    
                     Reposition();
                 }
             }
@@ -188,7 +298,7 @@ namespace WPF_LED_Controller
         #region canColor Functions
         private void CanColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ChangeColor();
+                ChangeColor();
             e.Handled = true;
         }
 
@@ -201,16 +311,6 @@ namespace WPF_LED_Controller
         {
             HoverColor = GetColorFromImage((int)Mouse.GetPosition(CanColor).X, (int)Mouse.GetPosition(CanColor).Y);
         }
-       
-        private void CanColor_LostFocus(object sender, RoutedEventArgs e)
-        {
-            canFocus = false;
-        }
-
-        private void CanColor_GotFocus(object sender, RoutedEventArgs e)
-        {
-            canFocus = true;
-        } 
         
         #endregion
 
@@ -218,17 +318,27 @@ namespace WPF_LED_Controller
         private void txtBlue_KeyDown(object sender, KeyEventArgs e)
         {
             NumericValidation(e);
-           
+            string bsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
+            byte bbyteValue = Convert.ToByte(bsValue);
+            ChangeColor(Color.FromRgb(CustomColor.R, CustomColor.G,bbyteValue));
+            
         }
 
         private void txtGreen_KeyDown(object sender, KeyEventArgs e)
         {
             NumericValidation(e);
+            string gsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
+            byte gbyteValue = Convert.ToByte(gsValue);
+            ChangeColor(Color.FromRgb(CustomColor.R, gbyteValue, CustomColor.B));
+
         }
 
         private void txtRed_KeyDown(object sender, KeyEventArgs e)
         {
             NumericValidation(e);
+            string rsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
+            byte rbyteValue = Convert.ToByte(rsValue);
+            ChangeColor(Color.FromRgb(rbyteValue, CustomColor.G, CustomColor.B));
         }
 
         private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
@@ -246,5 +356,7 @@ namespace WPF_LED_Controller
             OverNumericValidation(sender);
         }
         #endregion
+
+
     }
 }

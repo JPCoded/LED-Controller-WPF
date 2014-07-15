@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("WPF LED Controller")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Application to control a RGB LED Strip")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("JPCoded")]
 [assembly: AssemblyProduct("WPF LED Controller")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]

@@ -52,11 +52,13 @@ namespace WPF_LED_Controller
 
         private void cpColor_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //rgbRed.setColor(cpColor.SavedColor.R);
-            //rgbGreen.setColor(cpColor.SavedColor.G);
-            //rgbBlue.setColor(cpColor.SavedColor.B);
-            //lblSaved.Background = new SolidColorBrush(cpColor.SavedColor);
+           lblSaved.Background = new SolidColorBrush(cpColor.CustomColor);
             e.Handled = true;
+        }
+
+        private void cpColor_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            lblSaved.Background = new SolidColorBrush(cpColor.CustomColor);
         }
 
        // private Color MakeColorFromRGB()
