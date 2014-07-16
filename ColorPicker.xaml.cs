@@ -24,7 +24,8 @@ namespace WPF_LED_Controller
     public partial class ColorPicker : UserControl
     {
         private Color _customColor = Colors.Transparent;
-        private UnsafeBitmap myUnsafeBitmap; 
+        private UnsafeBitmap myUnsafeBitmap;
+        public event EventHandler<EventArgs> TextChanged;
       
 
         /// <summary>
@@ -148,21 +149,18 @@ namespace WPF_LED_Controller
         public ColorPicker()
         {
             InitializeComponent();
-            image.Source = loadBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch);
             myUnsafeBitmap = new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch);
         }
 
         #region Custom Functions
         private Color GetColorFromImage(int i, int j)
         {
-            CroppedBitmap cb = new CroppedBitmap(image.Source as BitmapSource, new Int32Rect(i, j, 1, 1));
-            byte[] color = new byte[4];
-            cb.CopyPixels(color, 4, 0);
-            Color Colorfromimagepoint = Color.FromArgb((byte)255, color[2], color[1], color[0]);
+            myUnsafeBitmap.LockBitmap();
+            PixelData pixel = myUnsafeBitmap.GetPixel(i, j);
+            Color Colorfromimagepoint = Color.FromRgb(pixel.red, pixel.green, pixel.blue);
+            myUnsafeBitmap.UnlockBitmap();
             return Colorfromimagepoint;
         }
-
-        //static unsafe 
 
         //find similar colors since there's isn't the full range of colors
         private bool SimmilarColor(Color pointColor, Color selectedColor)
@@ -171,12 +169,6 @@ namespace WPF_LED_Controller
             if (diff < 20) return true;
             else
                 return false;
-        }
-
-        public static BitmapSource loadBitmap(System.Drawing.Bitmap source)
-        {
-            return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(source.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty,
-                System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
         }
 
         private void MovePointer()
@@ -309,6 +301,7 @@ namespace WPF_LED_Controller
 
         private void CanColor_MouseMove(object sender, MouseEventArgs e)
         {
+            
             HoverColor = GetColorFromImage((int)Mouse.GetPosition(CanColor).X, (int)Mouse.GetPosition(CanColor).Y);
         }
         
@@ -330,7 +323,6 @@ namespace WPF_LED_Controller
             string gsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
             byte gbyteValue = Convert.ToByte(gsValue);
             ChangeColor(Color.FromRgb(CustomColor.R, gbyteValue, CustomColor.B));
-
         }
 
         private void txtRed_KeyDown(object sender, KeyEventArgs e)
@@ -344,16 +336,28 @@ namespace WPF_LED_Controller
         private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
             OverNumericValidation(sender);
+            if (TextChanged != null)
+            {
+                TextChanged(this, EventArgs.Empty);
+            }
         }
 
         private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
             OverNumericValidation(sender);
+            if (TextChanged != null)
+            {
+                TextChanged(this, EventArgs.Empty);
+            }
         }
 
         private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
         {
             OverNumericValidation(sender);
+            if (TextChanged != null)
+            {
+                TextChanged(this, EventArgs.Empty);
+            }
         }
         #endregion
 

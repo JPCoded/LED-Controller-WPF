@@ -27,14 +27,11 @@
 
     </UserControl.Resources>
     <Grid Margin="0,0,0,0">
-        <Image x:Name="image" 
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top" Margin="0" Width="201" Height="201" />
         <Canvas x:Name="CanColor"  Width="201" Height="201" 
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove"  >
             <Canvas.Background>
-                <ImageBrush />
+                <ImageBrush ImageSource="Resources/image.png" />
             </Canvas.Background>
             <Ellipse x:Name="EpPointer" Width="8" Height="8" Stroke="Black" Fill="White" />
         </Canvas>
