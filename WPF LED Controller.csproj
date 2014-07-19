@@ -59,6 +59,9 @@
     <Compile Include="PortList.xaml.cs">
       <DependentUpon>PortList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PreviewLabel.xaml.cs">
+      <DependentUpon>PreviewLabel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RGBBox.xaml.cs">
       <DependentUpon>RGBBox.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PreviewLabel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\GlassButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RGBBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +118,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -118,7 +130,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\image.png" />
+    <Resource Include="Images\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

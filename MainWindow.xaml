@@ -21,7 +21,7 @@
         </Style>
 
     </Window.Resources>
-    <Grid Margin="0,0,-5,-3" Width="300">
+    <Grid Margin="0,0,-6,0">
 
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -35,23 +35,11 @@
                 <MenuItem x:Name="miOpen" Header="Open" Click="miOpen_Click"/>
             </MenuItem>
         </Menu>
-
-        <StackPanel Style="{StaticResource SavedHoverPanel}" Margin="6,239,0,0" >
-            <Label Content="Saved" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Border Style="{StaticResource BorderPreview}">
-                <Label x:Name="lblSaved" Content=""/>
-            </Border>
-        </StackPanel>
-
-        <StackPanel Style="{StaticResource SavedHoverPanel}" Margin="119,239,0,0">
-            <Label Content="Hover" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Border Style="{StaticResource BorderPreview}">
-                <Label x:Name="lblHover" Content=""/>
-            </Border>
-        </StackPanel>
-        <Button Content="Set" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Width="75"/>
-        <local:PortList x:Name="plPorts" HorizontalAlignment="Left" Margin="214,148,0,0" VerticalAlignment="Top"/>
-        <local:ColorPicker x:Name="cpColor"  HorizontalAlignment="Left" Margin="6,33,0,0" VerticalAlignment="Top" MouseDown="cpColor_MouseDown" MouseMove="cpColor_MouseMove" PreviewMouseDown="cpColor_PreviewMouseDown"/>
+        <Button x:Name="btnSet" Content="Set" HorizontalAlignment="Left" Margin="7,304,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <local:PortList x:Name="plPorts" HorizontalAlignment="Left" Margin="214,160,0,0" VerticalAlignment="Top"/>
+        <local:ColorPicker x:Name="cpColor"  HorizontalAlignment="Left" Margin="2,33,0,0" VerticalAlignment="Top" MouseMove="cpColor_MouseMove"/>
+        <local:PreviewLabel x:Name="pwlSaved" HorizontalAlignment="Left" Height="56" Margin="6,240,0,0" VerticalAlignment="Top" Width="90"/>
+        <local:PreviewLabel x:Name="pwlHover" HorizontalAlignment="Left" Margin="110,239,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
     

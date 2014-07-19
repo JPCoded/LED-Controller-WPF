@@ -22,16 +22,34 @@ namespace WPF_LED_Controller
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
         SerialPort ArduinoSerial = new SerialPort();
-
+        
         public MainWindow()
         {
             InitializeComponent();
+            cpColor.txtRed.TextChanged += txtRed_TextChanged;
+            cpColor.txtGreen.TextChanged += txtGreen_TextChanged;
+            cpColor.txtBlue.TextChanged += txtBlue_TextChanged;
+            pwlSaved.SetTitle = "Saved";
+            pwlHover.SetTitle = "Hover";
             ArduinoSerial.BaudRate = 115200;
             plPorts.Refresh();
 
+        }
+
+        void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           pwlSaved.setBackground(cpColor.CustomColor);
+        }
+
+        void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            pwlSaved.setBackground(cpColor.CustomColor);
+        }
+
+        void txtRed_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            pwlSaved.setBackground(cpColor.CustomColor);
         }
 
         private void miOpen_Click(object sender, RoutedEventArgs e)
@@ -46,33 +64,54 @@ namespace WPF_LED_Controller
 
         private void cpColor_MouseMove(object sender, MouseEventArgs e)
         {
-
-            lblHover.Background = new SolidColorBrush(cpColor.HoverColor);
+            pwlHover.setBackground(cpColor.HoverColor);
         }
 
-        private void cpColor_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-           lblSaved.Background = new SolidColorBrush(cpColor.CustomColor);
-            e.Handled = true;
+           if(!string.IsNullOrEmpty(plPorts.getPort))
+           {
+               //try and catch any issues that pop up when using the arduino.
+               try
+               {
+                   if (ArduinoSerial.IsOpen)
+                   { ArduinoSerial.Close(); }
+                  
+                   ArduinoSerial.PortName = plPorts.getPort;
+                   
+                   ArduinoSerial.Open();
+                   byte[] colorBytes = { cpColor.CustomColor.R, cpColor.CustomColor.G, cpColor.CustomColor.B, 0x0A };
+                   try
+                   {
+                       ArduinoSerial.Write(colorBytes, 0, 3);
+                   }
+                   catch (System.IO.IOException)
+                   {
+                       MessageBox.Show("Failed to communicate with arduino. Make sure you have port selected.", "Communication Failure");
+                   }
+               }
+               catch (System.IO.IOException)
+               {
+                   MessageBox.Show("Error connecting to port " + plPorts.getPort + ". Make sure the Aruduino is connected or correct port selected.", "IO Error");
+               }
+               catch(System.UnauthorizedAccessException)
+               {
+                   MessageBox.Show("Unauthorized Access to this port.", "Unauthorized Access");
+               }
+               catch(System.ArgumentException ae)
+               {
+                   MessageBox.Show("Message: " + ae.Message, "ArgumentExecption");
+               }
+               catch(System.InvalidOperationException io)
+               {
+                   MessageBox.Show("Message: " + io.Message,"InvalidOperationExecption");
+               }
+           }
+           else
+           {
+               MessageBox.Show("I can't allow you to do that Dave.\nPlease select a port first.", "Hal9000");
+           }
         }
-
-        private void cpColor_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            lblSaved.Background = new SolidColorBrush(cpColor.CustomColor);
-        }
-
-       // private Color MakeColorFromRGB()
-       // {
-            //string rsValue = string.IsNullOrEmpty(rgbRed.txtRGB.Text) ? "0" : rgbRed.txtRGB.Text;
-            //byte rbyteValue = Convert.ToByte(rsValue);
-            //string gsValue = string.IsNullOrEmpty(rgbGreen.txtRGB.Text) ? "0" : rgbGreen.txtRGB.Text;
-            //byte gbyteValue = Convert.ToByte(gsValue);
-            //string bsValue = string.IsNullOrEmpty(rgbBlue.txtRGB.Text) ? "0" : rgbBlue.txtRGB.Text;
-            //byte bbyteValue = Convert.ToByte(bsValue);
-            //Color rgbColor = Color.FromRgb(rbyteValue, gbyteValue, bbyteValue);
-            //return rgbColor;
-       // }
-
     }
 
 

@@ -7,10 +7,17 @@
              d:DesignHeight="201
              " Width="282">
     <UserControl.Resources>
-        <Style TargetType="Border" x:Key="RGBText" x:Name="RGBText">
+        <Style TargetType="Border" x:Key="HexBorder">
             <Setter Property="CornerRadius" Value="5"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="1,2,1,2"/>
+            <Setter Property="Width" Value="60" />
+            <Setter Property="Height" Value="23"/>
+        </Style>
+        <Style TargetType="Border" x:Key="RGBText">
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2,2,2,2"/>
             <Setter Property="Width" Value="30" />
             <Setter Property="Height" Value="25" />
         </Style>
@@ -23,6 +30,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="MaxLines" Value="1" />
             <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
     </UserControl.Resources>
@@ -31,7 +39,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove"  >
             <Canvas.Background>
-                <ImageBrush ImageSource="Resources/image.png" />
+                <ImageBrush ImageSource="Images/image.png" />
             </Canvas.Background>
             <Ellipse x:Name="EpPointer" Width="8" Height="8" Stroke="Black" Fill="White" />
         </Canvas>
@@ -39,7 +47,7 @@
             <StackPanel x:Name="spRed" Height="29" Orientation="Horizontal">
                 <Label Content="R" Foreground="White"/>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtRed" Style="{StaticResource TextBox}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" />
+                    <TextBox x:Name="txtRed" Style="{StaticResource TextBox}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRed_PreviewKeyDown" />
                 </Border>
                 <Separator Width="2" Background="{x:Null}"></Separator>
                 <Border Style="{StaticResource RGBText}">
@@ -49,7 +57,7 @@
             <StackPanel Height="29" Orientation="Horizontal" x:Name="spGreen">
                 <Label Content="G" Foreground="White"/>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtGreen" Style="{StaticResource TextBox}" KeyDown="txtGreen_KeyDown" TextChanged="txtGreen_TextChanged"/>
+                    <TextBox x:Name="txtGreen" Style="{StaticResource TextBox}" KeyDown="txtGreen_KeyDown" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtGreen_PreviewKeyDown"/>
                 </Border>
                 <Separator Width="2" Background="{x:Null}"></Separator>
                 <Border Style="{StaticResource RGBText}">
@@ -59,15 +67,18 @@
             <StackPanel Height="29" Orientation="Horizontal" x:Name="spBlue">
                 <Label Content="B" Foreground="White"/>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtBlue" Style="{StaticResource TextBox}" KeyDown="txtBlue_KeyDown" TextChanged="txtBlue_TextChanged"/>
+                    <TextBox x:Name="txtBlue" Style="{StaticResource TextBox}" KeyDown="txtBlue_KeyDown" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtBlue_PreviewKeyDown"/>
                 </Border>
                 <Separator Width="2" Background="{x:Null}"></Separator>
                 <Border Style="{StaticResource RGBText}">
                     <TextBox x:Name="txtBHex" Style="{StaticResource TextBox}"/>
                 </Border>
             </StackPanel>
-            <StackPanel Height="29">
-                <TextBox x:Name="txtHAll" Height="23" TextWrapping="Wrap" Text="#555555" Width="60"/>
+            <StackPanel Height="29" Orientation="Horizontal">
+                <Label Content="H" Foreground="White"/>
+                <Border Style="{StaticResource HexBorder}">
+                <TextBox x:Name="txtHAll" Height="23" TextWrapping="Wrap" Text="" Width="60"/>
+                </Border>
             </StackPanel>
         </StackPanel>
 

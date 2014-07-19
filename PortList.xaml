@@ -3,16 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="75" DataContext="{Binding RelativeSource={RelativeSource Self}}">
-    
+             mc:Ignorable="d" d:DesignWidth="75" DataContext="{Binding RelativeSource={RelativeSource Self}}" Height="99">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\GlassButtons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-        <ListView x:Name="lsPorts" HorizontalAlignment="Left" ItemsSource="{Binding MyPorts}" Height="75" Margin="0,0,0,0" VerticalAlignment="Top" Width="75"
+
+        <ListView x:Name="lsPorts" HorizontalAlignment="Left" ItemsSource="{Binding MyPorts}" Height="75" Margin="0,24,0,0" VerticalAlignment="Top" Width="75"
                   >
 
 
 
         </ListView>
-        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Width="75" Click="btnRefresh_Click"/>
+
+        <StackPanel HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="75" Orientation="Horizontal">
+            <Label Content="Ports" Width="46" Margin="0,1,0,0" Foreground="White" FontWeight="Bold"/>
+            <Separator Margin="0" Width="13" Background="{x:Null}"/>
+            <Button x:Name="btnRefresh" Click="btnRefresh_Click" Style="{StaticResource GlassButton}" Width="15" Height="15" Background="#FFF50808" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="Images\Refresh.png" Width="10" Height="10"></Image>
+            </Button>
+        </StackPanel>
 
     </Grid>
 </UserControl>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
+using System.Collections.ObjectModel;
 
 namespace WPF_LED_Controller
 {
@@ -22,7 +23,7 @@ namespace WPF_LED_Controller
     public partial class PortList : UserControl
     {
         public class Ports
-        { 
+        {
             public Ports(string name)
             { Name = name; }
             public string Name { get; private set; }
@@ -32,31 +33,37 @@ namespace WPF_LED_Controller
                 return this.Name;
             }
         }
+        public string getPort
+        {get {
+            string portname = string.Empty;
+            portname = (lsPorts.SelectedValue == null)? string.Empty : lsPorts.SelectedValue.ToString();
+            return portname;
+        } 
+        }
 
-        public List<Ports> MyPorts
+        public ObservableCollection<Ports> MyPorts
         { get { return _Ports; } }
 
-        List<Ports> _Ports = new List<Ports>();
+        ObservableCollection<Ports> _Ports = new ObservableCollection<Ports>();
         public PortList()
         {
             InitializeComponent();
             lsPorts.ItemsSource = MyPorts;
-            
+
         }
 
         public void Refresh()
         {
-            
 
             //clear list just to make sure we don't get duplicates
             MyPorts.Clear();
             for (int i = 0; i < MyPorts.Count; i++)
-                MyPorts.RemoveAt(i);
-                //dump all the port names into MyPorts
-                foreach (string port in SerialPort.GetPortNames())
-                {
-                    MyPorts.Add(new Ports(port));
-                }
+            { MyPorts.RemoveAt(i); }
+            //dump all the port names into MyPorts
+            foreach (string port in SerialPort.GetPortNames())
+            {
+                MyPorts.Add(new Ports(port));
+            }
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)

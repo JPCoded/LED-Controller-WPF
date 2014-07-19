@@ -19,7 +19,7 @@ namespace WPF_LED_Controller
 {
     /// <summary>
     /// Interaction logic for ColorPicker.xaml
-    /// Added my RGBBox control into this one. While it makes this code much longer because of added control, it makes it so I don't have to keep making calls from 2 different controls that are to be used by each other so often.
+    /// Added my RGBBox control into this one. While it makes this code much longer because of added control, it makes it so I don't have to keep making calls from 2 different controls that are to be used by each other so often. Needs huge rework later to help with changing color and text boxes. At the moment it's not very effecient or well designed but will get to it later.
     /// </summary>
     public partial class ColorPicker : UserControl
     {
@@ -139,7 +139,11 @@ namespace WPF_LED_Controller
                 txtBlue.Text = CustomColor.B.ToString();
                 txtBHex.Text = CustomColor.B.ToString("X").PadLeft(2, '0');
             }
-
+          
+            string redHex = CustomColor.R.ToString("X").PadLeft(2, '0');
+            string greenHex = CustomColor.G.ToString("X").PadLeft(2, '0');
+            string blueHex = CustomColor.B.ToString("X").PadLeft(2, '0');
+            txtHAll.Text = String.Format("#{0}{1}{2}", redHex, greenHex, blueHex);
         }
 
        /// <summary>
@@ -283,6 +287,36 @@ namespace WPF_LED_Controller
                     ((TextBox)sender).Text = "255";
                     ((TextBox)sender).CaretIndex = 3;
                 }
+                else if(checkVal < 0)
+                {
+                    ((TextBox)sender).Text = "0";
+                    ((TextBox)sender).CaretIndex = 1;
+                }
+            }
+        }
+
+        private void OverNumericValidation(object sender, int OverUnder)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            { return; }
+            else
+            {
+                int checkVal = Convert.ToInt32(((TextBox)sender).Text);
+                checkVal += OverUnder;
+                if (checkVal > 255)
+                {
+                    ((TextBox)sender).Text = "255";
+                    ((TextBox)sender).CaretIndex = 3;
+                }
+                else if (checkVal < 0)
+                {
+                    ((TextBox)sender).Text = "0";
+                    ((TextBox)sender).CaretIndex = 1;
+                }
+                else 
+                {
+                    ((TextBox)sender).Text = checkVal.ToString();
+                }
             }
         }
         #endregion
@@ -314,7 +348,6 @@ namespace WPF_LED_Controller
             string bsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
             byte bbyteValue = Convert.ToByte(bsValue);
             ChangeColor(Color.FromRgb(CustomColor.R, CustomColor.G,bbyteValue));
-            
         }
 
         private void txtGreen_KeyDown(object sender, KeyEventArgs e)
@@ -336,6 +369,13 @@ namespace WPF_LED_Controller
         private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
             OverNumericValidation(sender);
+
+            if (((TextBox)sender).Text != CustomColor.R.ToString())
+            {
+                string rsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
+                byte rbyteValue = Convert.ToByte(rsValue);
+                ChangeColor(Color.FromRgb(rbyteValue, CustomColor.G, CustomColor.B));
+            }
             if (TextChanged != null)
             {
                 TextChanged(this, EventArgs.Empty);
@@ -359,8 +399,36 @@ namespace WPF_LED_Controller
                 TextChanged(this, EventArgs.Empty);
             }
         }
-        #endregion
+        
 
+        private void txtRed_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Up)
+            {
+                OverNumericValidation(sender, 1);
+            }
+            if(e.Key == Key.Down)
+            { OverNumericValidation(sender, -1); }
+        }
+
+        private void txtGreen_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+            }
+            if (e.Key == Key.Down)
+            { }
+        }
+
+        private void txtBlue_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+            }
+            if (e.Key == Key.Down)
+            { }
+        }
+#endregion
 
     }
 }
