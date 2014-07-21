@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -124,26 +123,13 @@ namespace WPF_LED_Controller
         /// </summary>
         public void MadHatter()
         {
-            if(txtRed.Text != CustomColor.R.ToString())
-            {
                 txtRed.Text = CustomColor.R.ToString();
                 txtRHex.Text = CustomColor.R.ToString("X").PadLeft(2, '0');
-            }
-            if (txtGreen.Text != CustomColor.G.ToString())
-            {
                 txtGreen.Text = CustomColor.G.ToString();
                 txtGHex.Text = CustomColor.G.ToString("X").PadLeft(2, '0');
-            }
-            if (txtBlue.Text != CustomColor.B.ToString())
-            { 
                 txtBlue.Text = CustomColor.B.ToString();
                 txtBHex.Text = CustomColor.B.ToString("X").PadLeft(2, '0');
-            }
-          
-            string redHex = CustomColor.R.ToString("X").PadLeft(2, '0');
-            string greenHex = CustomColor.G.ToString("X").PadLeft(2, '0');
-            string blueHex = CustomColor.B.ToString("X").PadLeft(2, '0');
-            txtHAll.Text = String.Format("#{0}{1}{2}", redHex, greenHex, blueHex);
+                txtHAll.Text = String.Format("#{0}{1}{2}", txtRHex.Text, txtGHex.Text, txtBHex.Text);
         }
 
        /// <summary>
@@ -253,6 +239,7 @@ namespace WPF_LED_Controller
             }
         }
 
+        //need to rework most of the validation functions to reduce code and make everything less confusing.
         /// <summary>
         /// Check to see if the user inputed keys 0-9, including the numpad keys, but nothing else
         /// </summary>
@@ -270,55 +257,25 @@ namespace WPF_LED_Controller
                 e.Handled = !("D1D2D3D4D5D6D7D8D9D0NumPad0NumPad1NumPad2NumPad3NumPad4NumPad5NumPad6NumPad7NumPad8NumPad9".Contains(e.Key.ToString()));
             }
         }
-
         /// <summary>
-        /// Check to see if the textbox value is over 255. If it is, set it to 255.
+        /// Checks if number is less than 0 or greater than 255
         /// </summary>
-        /// <param name="sender"></param>
-        private void OverNumericValidation(object sender)
+        /// <param name="ValueToCheck">String value to be checked</param>
+        /// <returns>New string value</returns>
+        private string OverUnderValidation(string ValueToCheck)
         {
-            if (string.IsNullOrEmpty(((TextBox)sender).Text))
-            { return; }
-            else
+            if (!string.IsNullOrEmpty(ValueToCheck))
             {
-                int checkVal = Convert.ToInt32(((TextBox)sender).Text);
+                int checkVal = Convert.ToInt32(ValueToCheck);
                 if (checkVal > 255)
-                {
-                    ((TextBox)sender).Text = "255";
-                    ((TextBox)sender).CaretIndex = 3;
-                }
-                else if(checkVal < 0)
-                {
-                    ((TextBox)sender).Text = "0";
-                    ((TextBox)sender).CaretIndex = 1;
-                }
+                { return "255"; }
+                else if (checkVal < 0)
+                { return "0"; }
             }
+                       
+            return ValueToCheck;
         }
 
-        private void OverNumericValidation(object sender, int OverUnder)
-        {
-            if (string.IsNullOrEmpty(((TextBox)sender).Text))
-            { return; }
-            else
-            {
-                int checkVal = Convert.ToInt32(((TextBox)sender).Text);
-                checkVal += OverUnder;
-                if (checkVal > 255)
-                {
-                    ((TextBox)sender).Text = "255";
-                    ((TextBox)sender).CaretIndex = 3;
-                }
-                else if (checkVal < 0)
-                {
-                    ((TextBox)sender).Text = "0";
-                    ((TextBox)sender).CaretIndex = 1;
-                }
-                else 
-                {
-                    ((TextBox)sender).Text = checkVal.ToString();
-                }
-            }
-        }
         #endregion
 
         #region canColor Functions
@@ -368,12 +325,11 @@ namespace WPF_LED_Controller
 
         private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
-            OverNumericValidation(sender);
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
             if (((TextBox)sender).Text != CustomColor.R.ToString())
             {
-                string rsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
-                byte rbyteValue = Convert.ToByte(rsValue);
+                byte rbyteValue = Convert.ToByte(((TextBox)sender).Text);
                 ChangeColor(Color.FromRgb(rbyteValue, CustomColor.G, CustomColor.B));
             }
             if (TextChanged != null)
@@ -384,7 +340,14 @@ namespace WPF_LED_Controller
 
         private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
-            OverNumericValidation(sender);
+
+            if (((TextBox)sender).Text != CustomColor.R.ToString())
+            {
+                byte gbyteValue = Convert.ToByte(((TextBox)sender).Text);
+                ChangeColor(Color.FromRgb(CustomColor.R, gbyteValue, CustomColor.B));
+            }
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
+           
             if (TextChanged != null)
             {
                 TextChanged(this, EventArgs.Empty);
@@ -393,7 +356,14 @@ namespace WPF_LED_Controller
 
         private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            OverNumericValidation(sender);
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
+
+
+            if (((TextBox)sender).Text != CustomColor.R.ToString())
+            {
+                byte bbyteValue = Convert.ToByte(((TextBox)sender).Text);
+                ChangeColor(Color.FromRgb( CustomColor.R, CustomColor.G, bbyteValue));
+            }
             if (TextChanged != null)
             {
                 TextChanged(this, EventArgs.Empty);
@@ -405,28 +375,42 @@ namespace WPF_LED_Controller
         {
             if(e.Key == Key.Up)
             {
-                OverNumericValidation(sender, 1);
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
+               ((TextBox)sender).Text = newValue.ToString();
             }
-            if(e.Key == Key.Down)
-            { OverNumericValidation(sender, -1); }
+            else if(e.Key == Key.Down)
+            {
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
+                ((TextBox)sender).Text = newValue.ToString();
+            }
         }
 
         private void txtGreen_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up)
             {
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
+                ((TextBox)sender).Text = newValue.ToString();
             }
-            if (e.Key == Key.Down)
-            { }
+            else if (e.Key == Key.Down)
+            {
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
+                ((TextBox)sender).Text = newValue.ToString();
+            }
         }
 
         private void txtBlue_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up)
             {
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
+                ((TextBox)sender).Text = newValue.ToString();
             }
-            if (e.Key == Key.Down)
-            { }
+            else if (e.Key == Key.Down)
+            {
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
+                ((TextBox)sender).Text = newValue.ToString();
+            }
         }
 #endregion
 

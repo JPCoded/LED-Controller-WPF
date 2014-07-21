@@ -20,5 +20,6 @@ C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.pdb
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\PreviewLabel.baml
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\PreviewLabel.g.cs
-C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.csprojResolveAssemblyReference.cache
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\Resources\GlassButtons.baml
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.csprojResolveAssemblyReference.cache
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\Resources\ColorControls.baml

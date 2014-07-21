@@ -7,32 +7,11 @@
              d:DesignHeight="201
              " Width="282">
     <UserControl.Resources>
-        <Style TargetType="Border" x:Key="HexBorder">
-            <Setter Property="CornerRadius" Value="5"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="1,2,1,2"/>
-            <Setter Property="Width" Value="60" />
-            <Setter Property="Height" Value="23"/>
-        </Style>
-        <Style TargetType="Border" x:Key="RGBText">
-            <Setter Property="CornerRadius" Value="5"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2,2,2,2"/>
-            <Setter Property="Width" Value="30" />
-            <Setter Property="Height" Value="25" />
-        </Style>
-        <Style TargetType="TextBox" x:Key="TextBox">
-            <Setter Property="Width" Value="30"/>
-            <Setter Property="Height" Value="23" />
-            <Setter Property="MaxLength" Value="3" />
-            <Setter Property="TextWrapping" Value="NoWrap"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="MaxLines" Value="1" />
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\ColorControls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid Margin="0,0,0,0">
         <Canvas x:Name="CanColor"  Width="201" Height="201" 
