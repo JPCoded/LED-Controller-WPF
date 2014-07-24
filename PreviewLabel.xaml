@@ -3,34 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
              mc:Ignorable="d" HorizontalAlignment="Left" VerticalAlignment="Top" Height="56" Width="90">
     <UserControl.Resources>
-        <Style x:Name="Border" x:Key="BorderPreview" TargetType="Border">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="CornerRadius" Value="5" />
-            <Setter Property="Width" Value="90"/>
-            <Setter Property="Height" Value="30"/>
-        </Style>
-        <Style x:Name="SavedHover" x:Key="SavedHoverPanel" TargetType="StackPanel">
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Height" Value="57"/>
-            <Setter Property="Width" Value="90" />
-        </Style>
-        <Style x:Key="Title" TargetType="Label">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            
-        </Style>
+        
+        <ResourceDictionary>
+          
+            <ResourceDictionary.MergedDictionaries>
+   
+                <ResourceDictionary Source="Dictionaries\PreviewLabelDict.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
     </UserControl.Resources>
     <Grid>
         <StackPanel Style="{StaticResource SavedHoverPanel}">
             <Label x:Name="lblTitle" Style="{StaticResource Title}" Content="Label"/>
             <Border Style="{StaticResource BorderPreview}">
-                <Label x:Name="lblPreview"/>
+                <Label x:Name="lblPreview" />
+             
+              
+
             </Border>
         </StackPanel>
 

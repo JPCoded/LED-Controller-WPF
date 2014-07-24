@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\
 WPF_LED_Controller
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\App.xaml
 82139338311
 
@@ -16,5 +16,5 @@ C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF
 131478842535
 ColorPicker.xaml;Dictionaries\PreviewLabelDict.xaml;MainWindow.xaml;PortList.xaml;PreviewLabel.xaml;Dictionaries\ColorControls.xaml;Resources\GlassButtons.xaml;RGBBox.xaml;
 
-False
+True
 

@@ -25,42 +25,41 @@ namespace WPF_LED_Controller
         private Color _customColor = Colors.Transparent;
         private UnsafeBitmap myUnsafeBitmap;
         public event EventHandler<EventArgs> TextChanged;
-      
 
         /// <summary>
         /// Not my code. The Unsafe bitmap idea was taken from MSDN article. Just had to use the full names for things such as System.Drawing.Bitmap, because System.Drawing has a Color funtion that messes with the WPF color function. Also modified it a slight bit for my needs and removed unneeded items. Also made few functions that were once public private.
         /// </summary>
-       private unsafe class UnsafeBitmap
-       {
-           System.Drawing.Bitmap bitmap;
-           int width = 201;
-          BitmapData bitmapData = null;
-           Byte* pBase = null;
+        private unsafe class UnsafeBitmap
+        {
+            System.Drawing.Bitmap bitmap;
+            int width = 201;
+            BitmapData bitmapData = null;
+            Byte* pBase = null;
 
-           public UnsafeBitmap(System.Drawing.Bitmap bitmap)
-           {
-               this.bitmap = new System.Drawing.Bitmap(bitmap);
-           }
+            public UnsafeBitmap(System.Drawing.Bitmap bitmap)
+            {
+                this.bitmap = new System.Drawing.Bitmap(bitmap);
+            }
 
-           public void Dispose()
-           {
-               bitmap.Dispose();
-           }
+            public void Dispose()
+            {
+                bitmap.Dispose();
+            }
 
-           public System.Drawing.Bitmap Bitmap
-           {
-               get { return (bitmap); }
-           }
+            public System.Drawing.Bitmap Bitmap
+            {
+                get { return (bitmap); }
+            }
 
-           private Point PixelSize
-           {
-               get
-               {
-                   System.Drawing.GraphicsUnit unit = System.Drawing.GraphicsUnit.Pixel;
-                   System.Drawing.RectangleF bounds = bitmap.GetBounds(ref unit);
-                   return new Point((int)bounds.Width, (int)bounds.Height);
-               }
-           }
+            private Point PixelSize
+            {
+                get
+                {
+                    System.Drawing.GraphicsUnit unit = System.Drawing.GraphicsUnit.Pixel;
+                    System.Drawing.RectangleF bounds = bitmap.GetBounds(ref unit);
+                    return new Point((int)bounds.Width, (int)bounds.Height);
+                }
+            }
             public void LockBitmap()
             {
                 System.Drawing.GraphicsUnit unit = System.Drawing.GraphicsUnit.Pixel;
@@ -68,7 +67,7 @@ namespace WPF_LED_Controller
                 System.Drawing.Rectangle bounds = new System.Drawing.Rectangle((int)boundsF.X, (int)boundsF.Y, (int)boundsF.Width, (int)boundsF.Height);
 
                 width = (int)boundsF.Width * sizeof(PixelData);
-                if(width % 4 != 0)
+                if (width % 4 != 0)
                 {
                     width = 4 * (width / 4 + 1);
                 }
@@ -76,31 +75,31 @@ namespace WPF_LED_Controller
                 pBase = (Byte*)bitmapData.Scan0.ToPointer();
             }
 
-           public PixelData GetPixel(int x, int y)
+            public PixelData GetPixel(int x, int y)
             {
                 PixelData returnValue = *PixelAt(x, y);
                 return returnValue;
             }
 
-           private PixelData* PixelAt(int x, int y)
-           {
-               return (PixelData*)(pBase + y * width + x * sizeof(PixelData));
-           }
-
-           public void UnlockBitmap()
-           {
-               bitmap.UnlockBits(bitmapData);
-               bitmapData = null;
-               pBase = null;
-           }
-           
-       }
-      public struct PixelData
+            private PixelData* PixelAt(int x, int y)
             {
-                public byte blue;
-                public byte green;
-                public byte red;
+                return (PixelData*)(pBase + y * width + x * sizeof(PixelData));
             }
+
+            public void UnlockBitmap()
+            {
+                bitmap.UnlockBits(bitmapData);
+                bitmapData = null;
+                pBase = null;
+            }
+
+        }
+        public struct PixelData
+        {
+            public byte blue;
+            public byte green;
+            public byte red;
+        }
 
         public Color CustomColor
         {
@@ -108,7 +107,7 @@ namespace WPF_LED_Controller
             {
                 return _customColor;
             }
-           private set
+            private set
             {
                 if (_customColor != value)
                 {
@@ -123,18 +122,20 @@ namespace WPF_LED_Controller
         /// </summary>
         public void MadHatter()
         {
-                txtRed.Text = CustomColor.R.ToString();
-                txtRHex.Text = CustomColor.R.ToString("X").PadLeft(2, '0');
-                txtGreen.Text = CustomColor.G.ToString();
-                txtGHex.Text = CustomColor.G.ToString("X").PadLeft(2, '0');
-                txtBlue.Text = CustomColor.B.ToString();
-                txtBHex.Text = CustomColor.B.ToString("X").PadLeft(2, '0');
-                txtHAll.Text = String.Format("#{0}{1}{2}", txtRHex.Text, txtGHex.Text, txtBHex.Text);
+            txtRed.Text = CustomColor.R.ToString();
+           
+            txtRHex.Text = CustomColor.R.ToString();
+           // txtRHex.Text = CustomColor.R.ToString("X").PadLeft(2, '0');
+            txtGreen.Text = CustomColor.G.ToString();
+            txtGHex.Text = CustomColor.G.ToString("X").PadLeft(2, '0');
+            txtBlue.Text = CustomColor.B.ToString();
+            txtBHex.Text = CustomColor.B.ToString("X").PadLeft(2, '0');
+            txtHAll.Text = String.Format("#{0}{1}{2}", txtRHex.Text, txtGHex.Text, txtBHex.Text);
         }
 
-       /// <summary>
-       /// Color that the mouse is current hovered over.
-       /// </summary>
+        /// <summary>
+        /// Color that the mouse is current hovered over.
+        /// </summary>
         public Color HoverColor { get; private set; }
         public ColorPicker()
         {
@@ -179,7 +180,7 @@ namespace WPF_LED_Controller
         private void Reposition()
         {
             myUnsafeBitmap.LockBitmap();
-           
+
             for (int i = 0; i < CanColor.ActualWidth; i++)
             {
                 bool flag = false;
@@ -189,10 +190,10 @@ namespace WPF_LED_Controller
                     {
                         PixelData pixel = myUnsafeBitmap.GetPixel(i, j);
 
-                        Color Colorfromimagepoint = Color.FromRgb(pixel.red, pixel.green, pixel.blue) ;
+                        Color Colorfromimagepoint = Color.FromRgb(pixel.red, pixel.green, pixel.blue);
                         if (SimmilarColor(Colorfromimagepoint, _customColor))
                         {
-                            
+
                             MovePointerDuringReposition(i, j);
                             flag = true;
                             break;
@@ -227,9 +228,7 @@ namespace WPF_LED_Controller
             {
                 if (CustomColor != newColor)
                 {
-                    
                     CustomColor = newColor;
-                    
                     Reposition();
                 }
             }
@@ -257,11 +256,19 @@ namespace WPF_LED_Controller
                 e.Handled = !("D1D2D3D4D5D6D7D8D9D0NumPad0NumPad1NumPad2NumPad3NumPad4NumPad5NumPad6NumPad7NumPad8NumPad9".Contains(e.Key.ToString()));
             }
         }
-        /// <summary>
-        /// Checks if number is less than 0 or greater than 255
-        /// </summary>
-        /// <param name="ValueToCheck">String value to be checked</param>
-        /// <returns>New string value</returns>
+
+        private void HexValidation(KeyEventArgs e)
+        {
+            //for some reason, this way works here, but won't work for the NumericValidation. 
+            string input = e.Key.ToString();
+            if (e.Key == Key.D3 && (e.Key == Key.LeftShift || e.Key == Key.RightShift))
+            { input = "#"; }
+            if (!(input == "#" || (input[0] >= 'A' && input[0] <= 'F') || (input[0] >= 'a' && input[0] <= 'F') || (input[0] >= '0' && input[0] <= '9')))
+            {
+                e.Handled = true;
+            }
+
+        }
         private string OverUnderValidation(string ValueToCheck)
         {
             if (!string.IsNullOrEmpty(ValueToCheck))
@@ -272,7 +279,7 @@ namespace WPF_LED_Controller
                 else if (checkVal < 0)
                 { return "0"; }
             }
-                       
+
             return ValueToCheck;
         }
 
@@ -281,7 +288,7 @@ namespace WPF_LED_Controller
         #region canColor Functions
         private void CanColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-                ChangeColor();
+            ChangeColor();
             e.Handled = true;
         }
 
@@ -292,10 +299,9 @@ namespace WPF_LED_Controller
 
         private void CanColor_MouseMove(object sender, MouseEventArgs e)
         {
-            
             HoverColor = GetColorFromImage((int)Mouse.GetPosition(CanColor).X, (int)Mouse.GetPosition(CanColor).Y);
         }
-        
+
         #endregion
 
         #region TextBoxes
@@ -304,7 +310,7 @@ namespace WPF_LED_Controller
             NumericValidation(e);
             string bsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
             byte bbyteValue = Convert.ToByte(bsValue);
-            ChangeColor(Color.FromRgb(CustomColor.R, CustomColor.G,bbyteValue));
+            ChangeColor(Color.FromRgb(CustomColor.R, CustomColor.G, bbyteValue));
         }
 
         private void txtGreen_KeyDown(object sender, KeyEventArgs e)
@@ -340,14 +346,14 @@ namespace WPF_LED_Controller
 
         private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
             if (((TextBox)sender).Text != CustomColor.R.ToString())
             {
                 byte gbyteValue = Convert.ToByte(((TextBox)sender).Text);
                 ChangeColor(Color.FromRgb(CustomColor.R, gbyteValue, CustomColor.B));
             }
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
-           
+
             if (TextChanged != null)
             {
                 TextChanged(this, EventArgs.Empty);
@@ -362,23 +368,23 @@ namespace WPF_LED_Controller
             if (((TextBox)sender).Text != CustomColor.R.ToString())
             {
                 byte bbyteValue = Convert.ToByte(((TextBox)sender).Text);
-                ChangeColor(Color.FromRgb( CustomColor.R, CustomColor.G, bbyteValue));
+                ChangeColor(Color.FromRgb(CustomColor.R, CustomColor.G, bbyteValue));
             }
             if (TextChanged != null)
             {
                 TextChanged(this, EventArgs.Empty);
             }
         }
-        
+
 
         private void txtRed_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Up)
+            if (e.Key == Key.Up)
             {
                 int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
-               ((TextBox)sender).Text = newValue.ToString();
+                ((TextBox)sender).Text = newValue.ToString();
             }
-            else if(e.Key == Key.Down)
+            else if (e.Key == Key.Down)
             {
                 int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
                 ((TextBox)sender).Text = newValue.ToString();
@@ -412,7 +418,32 @@ namespace WPF_LED_Controller
                 ((TextBox)sender).Text = newValue.ToString();
             }
         }
-#endregion
 
+        private void txtHAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            HexValidation(e);
+            try
+            {
+                MessageBox.Show(ColorConverter.ConvertFromString(txtHAll.Text).ToString());
+                CustomColor = (Color)ColorConverter.ConvertFromString(txtHAll.Text); }
+            catch 
+            { }
+        }
+
+        private void txtRHex_KeyDown(object sender, KeyEventArgs e)
+        {
+            HexValidation(e);
+        }
+
+        private void txtGHex_KeyDown(object sender, KeyEventArgs e)
+        {
+            HexValidation(e);
+        }
+
+        private void txtBHex_KeyDown(object sender, KeyEventArgs e)
+        {
+            HexValidation(e);
+        }
+        #endregion
     }
 }
