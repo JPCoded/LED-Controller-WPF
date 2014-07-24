@@ -124,8 +124,7 @@ namespace WPF_LED_Controller
         {
             txtRed.Text = CustomColor.R.ToString();
            
-            txtRHex.Text = CustomColor.R.ToString();
-           // txtRHex.Text = CustomColor.R.ToString("X").PadLeft(2, '0');
+           txtRHex.Text = CustomColor.R.ToString("X").PadLeft(2, '0');
             txtGreen.Text = CustomColor.G.ToString();
             txtGHex.Text = CustomColor.G.ToString("X").PadLeft(2, '0');
             txtBlue.Text = CustomColor.B.ToString();

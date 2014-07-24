@@ -3,16 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:converter="clr-namespace:WPF_LED_Controller.Converters"
+             xmlns:converter="clr-namespace:WPF_LED_Controller"
              mc:Ignorable="d" 
              
              d:DesignHeight="201
              " Width="282">
     <UserControl.Resources>
         <ResourceDictionary>
-           
             <ResourceDictionary.MergedDictionaries>
-                
                 <ResourceDictionary Source="Dictionaries\ColorControls.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -28,42 +26,42 @@
             </Canvas.Background>
             <Ellipse x:Name="EpPointer" Width="8" Height="8" Stroke="Black" Fill="White" />
         </Canvas>
-        <StackPanel HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top" Height="125">
+        <StackPanel HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top" Height="114">
             <StackPanel x:Name="spRed" Height="29" Orientation="Horizontal">
                 <Label Content="R" Foreground="White"/>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtRed" Style="{StaticResource TextBox}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRed_PreviewKeyDown" />
+                    <TextBox x:Name="txtRed" Style="{StaticResource RGBTextBox}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRed_PreviewKeyDown" />
                 </Border>
                 <Separator Width="2" Background="{x:Null}"></Separator>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtRHex"  Style="{StaticResource TextBox}" Text="{Binding Text,RelativeSource={RelativeSource Self}, StringFormat={}{0:X2}}" KeyDown="txtRHex_KeyDown" ClipToBounds="True"/>
+                    <TextBox x:Name="txtRHex"  Style="{StaticResource RGBTextBox}" KeyDown="txtRHex_KeyDown" />
                   
                 </Border>
             </StackPanel>
             <StackPanel Height="29" Orientation="Horizontal" x:Name="spGreen">
                 <Label Content="G" Foreground="White"/>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtGreen" Style="{StaticResource TextBox}" KeyDown="txtGreen_KeyDown" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtGreen_PreviewKeyDown"/>
+                    <TextBox x:Name="txtGreen" Style="{StaticResource RGBTextBox}" KeyDown="txtGreen_KeyDown" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtGreen_PreviewKeyDown"/>
                 </Border>
                 <Separator Width="2" Background="{x:Null}"></Separator>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtGHex" Style="{StaticResource TextBox}" KeyDown="txtGHex_KeyDown"/>
+                    <TextBox x:Name="txtGHex" Style="{StaticResource RGBTextBox}" KeyDown="txtGHex_KeyDown"/>
                 </Border>
             </StackPanel>
             <StackPanel Height="29" Orientation="Horizontal" x:Name="spBlue">
                 <Label Content="B" Foreground="White"/>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtBlue" Style="{StaticResource TextBox}" KeyDown="txtBlue_KeyDown" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtBlue_PreviewKeyDown"/>
+                    <TextBox x:Name="txtBlue" Style="{StaticResource RGBTextBox}" KeyDown="txtBlue_KeyDown" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtBlue_PreviewKeyDown"/>
                 </Border>
                 <Separator Width="2" Background="{x:Null}"></Separator>
                 <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtBHex" Style="{StaticResource TextBox}" KeyDown="txtBHex_KeyDown"/>
+                    <TextBox x:Name="txtBHex" Style="{StaticResource RGBTextBox}" KeyDown="txtBHex_KeyDown"/>
                 </Border>
             </StackPanel>
             <StackPanel Height="29" Orientation="Horizontal">
                 <Label Content="H" Foreground="White"/>
                 <Border Style="{StaticResource HexBorder}">
-                    <TextBox x:Name="txtHAll" Height="23" TextWrapping="NoWrap"  Width="60" MaxLength="7" KeyDown="txtHAll_KeyDown" />
+                    <TextBox x:Name="txtHAll" Style="{StaticResource HexText}" KeyDown="txtHAll_KeyDown" />
                 </Border>
             </StackPanel>
         </StackPanel>

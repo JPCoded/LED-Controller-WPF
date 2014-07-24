@@ -114,5 +114,4 @@ namespace WPF_LED_Controller
         }
     }
 
-
 }

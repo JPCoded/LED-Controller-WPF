@@ -1,32 +1,46 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-                    xmlns:converter="clr-namespace:WPF_LED_Controller.Converters">
-    
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+    <!--Base Style for borders-->
     <Style TargetType="Border" x:Key="baseStyle">
         <Setter Property="CornerRadius" Value="5"/>
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="BorderThickness" Value="2,2,2,2"/>
+        <Setter Property="Background" Value="White"/>
     </Style>
- 
-    <Style TargetType="Border" x:Key="HexBorder" BasedOn="{StaticResource baseStyle}">
+    
+    <!-- Base Style for textboxes-->
+    <Style TargetType="TextBox" x:Key="textBase">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="23"/>
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="MaxLines" Value="1"/>
+        <Setter Property="ClipToBounds" Value="True"/>
+    </Style>
+    
+    <!-- Border for the long hex textbox-->
+    <Style TargetType="Border" x:Key="HexBorder" BasedOn="{StaticResource baseStyle}">   
         <Setter Property="Width" Value="60" />
         <Setter Property="Height" Value="23"/>
     </Style>
-  
+    
+    <!-- Border for the RGB and Hex textboxes-->
     <Style TargetType="Border" x:Key="RGBText" BasedOn="{StaticResource baseStyle}">
         <Setter Property="Width" Value="30" />
-        <Setter Property="Height" Value="25" />
+        <Setter Property="Height" Value="23" />
+    </Style>
+    <!-- Textbox for RGBValues-->
+    <Style TargetType="TextBox" x:Key="RGBTextBox" BasedOn="{StaticResource textBase}">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="MaxLength" Value="3" />
     </Style>
     
-    <Style TargetType="TextBox" x:Key="TextBox">
-        <Setter Property="Width" Value="30"/>
-        <Setter Property="Height" Value="23" />
-        <Setter Property="MaxLength" Value="3" />
-        <Setter Property="TextWrapping" Value="NoWrap"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="MaxLines" Value="1" />
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
+    <Style TargetType="TextBox" x:Key="HexText" BasedOn="{StaticResource textBase}">
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="MaxLength" Value="7"/>
     </Style>
+           
 </ResourceDictionary>

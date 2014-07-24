@@ -7,20 +7,7 @@
         Title="LED Controller" ResizeMode="CanMinimize"  Width="301" Height="364">
     <Window.Resources>
         
-        <Style x:Name="Border" x:Key="BorderPreview" TargetType="Border">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="CornerRadius" Value="5" />
-            <Setter Property="Width" Value="90"/>
-            <Setter Property="Height" Value="30"/>
-        </Style>
-        <Style x:Name="SavedHover" x:Key="SavedHoverPanel" TargetType="StackPanel">
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Height" Value="57"/>
-            <Setter Property="Width" Value="90" />
-        </Style>
+    
 
     </Window.Resources>
     <Grid Margin="0,0,0,0">
