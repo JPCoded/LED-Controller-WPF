@@ -57,10 +57,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\ColorToBrushConverter.cs">
-      <Generator>MSBuild:Compile</Generator>
-    </Compile>
-    <Compile Include="Converters\HexConvert.cs" />
     <Compile Include="PortList.xaml.cs">
       <DependentUpon>PortList.xaml</DependentUpon>
     </Compile>
@@ -97,13 +93,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PreviewLabel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Dictionaries\ColorControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PreviewLabel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\GlassButtons.xaml">
       <SubType>Designer</SubType>
@@ -148,7 +144,6 @@
   <ItemGroup>
     <Resource Include="Images\Refresh.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

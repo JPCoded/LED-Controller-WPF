@@ -44,7 +44,8 @@ namespace WPF_LED_Controller
 
         void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
-            pwlSaved.setBackground(cpColor.CustomColor);
+            
+             pwlSaved.setBackground(cpColor.CustomColor);
         }
 
         void txtRed_TextChanged(object sender, TextChangedEventArgs e)

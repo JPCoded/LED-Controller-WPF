@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            
              
              mc:Ignorable="d" HorizontalAlignment="Left" VerticalAlignment="Top" Height="56" Width="90">
     <UserControl.Resources>
-        
+       
         <ResourceDictionary>
-          
+       
             <ResourceDictionary.MergedDictionaries>
-   
                 <ResourceDictionary Source="Dictionaries\PreviewLabelDict.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -19,12 +19,7 @@
     <Grid>
         <StackPanel Style="{StaticResource SavedHoverPanel}">
             <Label x:Name="lblTitle" Style="{StaticResource Title}" Content="Label"/>
-            <Border Style="{StaticResource BorderPreview}">
-                <Label x:Name="lblPreview" />
-             
-              
-
-            </Border>
+            <Border Style="{StaticResource BorderPreview}" x:Name="previewBorder" />
         </StackPanel>
 
     </Grid>
