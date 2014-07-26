@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\App.xaml
-82139338311
+8-1605649968
 
-13-1855565552
+13-1918109157
 14-1116865645
-ColorPicker.xaml;Dictionaries\PreviewLabelDict.xaml;MainWindow.xaml;PortList.xaml;Dictionaries\ColorControls.xaml;PreviewLabel.xaml;Resources\GlassButtons.xaml;RGBBox.xaml;
+UserControls\ColorPicker.xaml;Dictionaries\PreviewLabelDict.xaml;MainWindow.xaml;UserControls\PortList.xaml;Dictionaries\ColorControls.xaml;UserControls\PreviewLabel.xaml;Resources\GlassButtons.xaml;RGBBox.xaml;
 
 False
 

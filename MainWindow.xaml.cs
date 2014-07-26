@@ -68,7 +68,7 @@ namespace WPF_LED_Controller
             pwlHover.setBackground(cpColor.HoverColor);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnSet_Click(object sender, RoutedEventArgs e)
         {
            if(!string.IsNullOrEmpty(plPorts.getPort))
            {

@@ -57,16 +57,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="PortList.xaml.cs">
+    <Compile Include="UserControls\PortList.xaml.cs">
       <DependentUpon>PortList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PreviewLabel.xaml.cs">
+    <Compile Include="UserControls\PreviewLabel.xaml.cs">
       <DependentUpon>PreviewLabel.xaml</DependentUpon>
     </Compile>
     <Compile Include="RGBBox.xaml.cs">
       <DependentUpon>RGBBox.xaml</DependentUpon>
     </Compile>
-    <Page Include="ColorPicker.xaml">
+    <Page Include="UserControls\ColorPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,14 +82,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ColorPicker.xaml.cs">
+    <Compile Include="UserControls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PortList.xaml">
+    <Page Include="UserControls\PortList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,7 +97,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PreviewLabel.xaml">
+    <Page Include="UserControls\PreviewLabel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -139,7 +139,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\image.png" />
+    <Resource Include="Images\Swatch.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Refresh.png" />

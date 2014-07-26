@@ -11,7 +11,7 @@
         <ResourceDictionary>
        
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Dictionaries\PreviewLabelDict.xaml"/>
+                <ResourceDictionary Source="/Dictionaries\PreviewLabelDict.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

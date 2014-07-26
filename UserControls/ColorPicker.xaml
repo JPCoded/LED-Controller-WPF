@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:converter="clr-namespace:WPF_LED_Controller"
              mc:Ignorable="d" 
              
              d:DesignHeight="201
@@ -11,7 +10,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Dictionaries\ColorControls.xaml"/>
+                <ResourceDictionary Source="/Dictionaries/ColorControls.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
          
@@ -22,7 +21,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove"  >
             <Canvas.Background>
-                <ImageBrush ImageSource="Images/image.png" />
+                <ImageBrush ImageSource="/Images/Swatch.png" />
             </Canvas.Background>
             <Ellipse x:Name="EpPointer" Width="8" Height="8" Stroke="Black" Fill="White" />
         </Canvas>
@@ -65,6 +64,5 @@
                 </Border>
             </StackPanel>
         </StackPanel>
-
     </Grid>
 </UserControl>

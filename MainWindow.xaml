@@ -17,7 +17,7 @@
                 <MenuItem x:Name="miOpen" Header="Open" Click="miOpen_Click"/>
             </MenuItem>
         </Menu>
-        <Button x:Name="btnSet" Content="Set" HorizontalAlignment="Left" Margin="7,304,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="btnSet" Content="Set" HorizontalAlignment="Left" Margin="7,304,0,0" VerticalAlignment="Top" Width="75" Click="btnSet_Click"/>
         <local:PortList x:Name="plPorts" HorizontalAlignment="Left" Margin="207,159,0,0" VerticalAlignment="Top"/>
         <local:ColorPicker x:Name="cpColor"  HorizontalAlignment="Left" Margin="2,33,0,0" VerticalAlignment="Top" MouseMove="cpColor_MouseMove"/>
 
