@@ -66,6 +66,10 @@
     <Compile Include="RGBBox.xaml.cs">
       <DependentUpon>RGBBox.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\BorderedTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ColorPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,7 +97,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dictionaries\ColorControls.xaml">
+    <Page Include="Dictionaries\ColorPickerDict.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

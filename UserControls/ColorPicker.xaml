@@ -10,7 +10,8 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Dictionaries/ColorControls.xaml"/>
+                <ResourceDictionary Source="/Dictionaries/ColorPickerDict.xaml"/>
+                <ResourceDictionary Source="/Resources/BorderedTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
          
@@ -28,35 +29,25 @@
         <StackPanel HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top" Height="114">
             <StackPanel x:Name="spRed" Height="29" Orientation="Horizontal">
                 <Label Content="R" Foreground="White"/>
-                <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtRed" Style="{StaticResource RGBTextBox}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRed_PreviewKeyDown" />
-                </Border>
+                <TextBox x:Name="txtRed" Style="{StaticResource BorderedText}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRed_PreviewKeyDown" />
                 <Separator Width="2" Background="{x:Null}"></Separator>
-                <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtRHex"  Style="{StaticResource RGBTextBox}" KeyDown="txtRHex_KeyDown" />
-                  
-                </Border>
+                <TextBox x:Name="txtRHex"  Style="{StaticResource  BorderedText}" KeyDown="txtRHex_KeyDown" />
             </StackPanel>
+            
             <StackPanel Height="29" Orientation="Horizontal" x:Name="spGreen">
                 <Label Content="G" Foreground="White"/>
-                <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtGreen" Style="{StaticResource RGBTextBox}" KeyDown="txtGreen_KeyDown" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtGreen_PreviewKeyDown"/>
-                </Border>
+                <TextBox x:Name="txtGreen" Style="{StaticResource  BorderedText}" KeyDown="txtGreen_KeyDown" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtGreen_PreviewKeyDown"/>
                 <Separator Width="2" Background="{x:Null}"></Separator>
-                <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtGHex" Style="{StaticResource RGBTextBox}" KeyDown="txtGHex_KeyDown"/>
-                </Border>
+                <TextBox x:Name="txtGHex" Style="{StaticResource  BorderedText}" KeyDown="txtGHex_KeyDown"/>                
             </StackPanel>
+            
             <StackPanel Height="29" Orientation="Horizontal" x:Name="spBlue">
                 <Label Content="B" Foreground="White"/>
-                <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtBlue" Style="{StaticResource RGBTextBox}" KeyDown="txtBlue_KeyDown" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtBlue_PreviewKeyDown"/>
-                </Border>
+                <TextBox x:Name="txtBlue" Style="{StaticResource BorderedText}" KeyDown="txtBlue_KeyDown" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtBlue_PreviewKeyDown"/>        
                 <Separator Width="2" Background="{x:Null}"></Separator>
-                <Border Style="{StaticResource RGBText}">
-                    <TextBox x:Name="txtBHex" Style="{StaticResource RGBTextBox}" KeyDown="txtBHex_KeyDown"/>
-                </Border>
+                <TextBox x:Name="txtBHex" Style="{StaticResource  BorderedText}" KeyDown="txtBHex_KeyDown"/>               
             </StackPanel>
+            
             <StackPanel Height="29" Orientation="Horizontal">
                 <Label Content="H" Foreground="White"/>
                 <Border Style="{StaticResource HexBorder}">

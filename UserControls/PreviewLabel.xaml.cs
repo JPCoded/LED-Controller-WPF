@@ -31,7 +31,7 @@ namespace WPF_LED_Controller
 
         public void setBackground(Color background)
         {
-            previewBorder.Background = new SolidColorBrush(background);
+            recColor.Fill = new SolidColorBrush(background);
                 
         }
     }
