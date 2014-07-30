@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("converters/colortobrushconverter.cs")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/swatch3%20-%20copy.png")]
 
 

@@ -19,9 +19,8 @@
     <Grid>
         <StackPanel Style="{StaticResource SavedHoverPanel}">
             <Label x:Name="lblTitle" Style="{StaticResource Title}" Content="Label"/>
-           
                 <Rectangle x:Name="recColor" Style="{StaticResource Rect}"/>
-           
+ 
         </StackPanel>
 
     </Grid>

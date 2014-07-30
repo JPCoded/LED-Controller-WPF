@@ -44,12 +44,11 @@ namespace WPF_LED_Controller
         public ObservableCollection<Ports> MyPorts
         { get { return _Ports; } }
 
-        ObservableCollection<Ports> _Ports = new ObservableCollection<Ports>();
+        private ObservableCollection<Ports> _Ports = new ObservableCollection<Ports>();
         public PortList()
         {
             InitializeComponent();
             lsPorts.ItemsSource = MyPorts;
-
         }
 
         public void Refresh()

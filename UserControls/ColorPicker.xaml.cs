@@ -25,6 +25,7 @@ namespace WPF_LED_Controller
         private Color _customColor = Colors.Transparent;
         private UnsafeBitmap myUnsafeBitmap;
         public event EventHandler<EventArgs> TextChanged;
+        private System.Drawing.Bitmap[] BitmapResourceArray = { WPF_LED_Controller.Properties.Resources.ColorSwatch, WPF_LED_Controller.Properties.Resources.ColorSwatch2, WPF_LED_Controller.Properties.Resources.ColorSwatch3 };
 
         /// <summary>
         /// Not my code. The Unsafe bitmap idea was taken from MSDN article. Just had to use the full names for things such as System.Drawing.Bitmap, because System.Drawing has a Color funtion that messes with the WPF color function. Also modified it a slight bit for my needs and removed unneeded items. Also made few functions that were once public private.
@@ -139,7 +140,8 @@ namespace WPF_LED_Controller
         public ColorPicker()
         {
             InitializeComponent();
-            myUnsafeBitmap = new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch);
+            myUnsafeBitmap = new UnsafeBitmap(BitmapResourceArray[0]);
+           
         }
 
         #region Custom Functions
@@ -334,7 +336,8 @@ namespace WPF_LED_Controller
 
             if (((TextBox)sender).Text != CustomColor.R.ToString())
             {
-                byte rbyteValue = Convert.ToByte(((TextBox)sender).Text);
+                //Convert textbox to byte, but check to see if it's empty, if so send 0
+                byte rbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
                 ChangeColor(Color.FromRgb(rbyteValue, CustomColor.G, CustomColor.B));
             }
             if (TextChanged != null)
@@ -346,9 +349,10 @@ namespace WPF_LED_Controller
         private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
-            if (((TextBox)sender).Text != CustomColor.R.ToString())
+            if (((TextBox)sender).Text != CustomColor.G.ToString())
             {
-                byte gbyteValue = Convert.ToByte(((TextBox)sender).Text);
+                //Convert textbox to byte, but check to see if it's empty, if so send 0
+                byte gbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
                 ChangeColor(Color.FromRgb(CustomColor.R, gbyteValue, CustomColor.B));
             }
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
@@ -364,9 +368,10 @@ namespace WPF_LED_Controller
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
 
-            if (((TextBox)sender).Text != CustomColor.R.ToString())
+            if (((TextBox)sender).Text != CustomColor.B.ToString())
             {
-                byte bbyteValue = Convert.ToByte(((TextBox)sender).Text);
+                //Convert textbox to byte, but check to see if it's empty, if so send 0
+                byte bbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
                 ChangeColor(Color.FromRgb(CustomColor.R, CustomColor.G, bbyteValue));
             }
             if (TextChanged != null)
@@ -375,7 +380,23 @@ namespace WPF_LED_Controller
             }
         }
 
-
+        private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                { ((TextBox)sender).Text = "0"; }
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
+                ((TextBox)sender).Text = newValue.ToString();
+            }
+            else if (e.Key == Key.Down)
+            {
+                if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                { ((TextBox)sender).Text = "0"; }
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
+                ((TextBox)sender).Text = newValue.ToString();
+            }
+        }
         private void txtRed_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up)
@@ -408,6 +429,8 @@ namespace WPF_LED_Controller
         {
             if (e.Key == Key.Up)
             {
+                if(string.IsNullOrEmpty(((TextBox)sender).Text))
+                { ((TextBox)sender).Text = "0"; }
                 int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
                 ((TextBox)sender).Text = newValue.ToString();
             }
@@ -424,7 +447,8 @@ namespace WPF_LED_Controller
             try
             {
                 MessageBox.Show(ColorConverter.ConvertFromString(txtHAll.Text).ToString());
-                CustomColor = (Color)ColorConverter.ConvertFromString(txtHAll.Text); }
+                CustomColor = (Color)ColorConverter.ConvertFromString(txtHAll.Text); 
+            }
             catch 
             { }
         }
