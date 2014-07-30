@@ -13,94 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing.Imaging;
+using WPF_LED_Controller.UserControls;
 
 namespace WPF_LED_Controller
 {
     /// <summary>
     /// Interaction logic for ColorPicker.xaml
-    /// Added my RGBBox control into this one. While it makes this code much longer because of added control, it makes it so I don't have to keep making calls from 2 different controls that are to be used by each other so often. Needs huge rework later to help with changing color and text boxes. At the moment it's not very effecient or well designed but will get to it later.
+    /// 
     /// </summary>
     public partial class ColorPicker : UserControl
     {
+        
         private Color _customColor = Colors.Transparent;
         private UnsafeBitmap myUnsafeBitmap;
         public event EventHandler<EventArgs> TextChanged;
         private System.Drawing.Bitmap[] BitmapResourceArray = { WPF_LED_Controller.Properties.Resources.ColorSwatch, WPF_LED_Controller.Properties.Resources.ColorSwatch2, WPF_LED_Controller.Properties.Resources.ColorSwatch3 };
-
-        /// <summary>
-        /// Not my code. The Unsafe bitmap idea was taken from MSDN article. Just had to use the full names for things such as System.Drawing.Bitmap, because System.Drawing has a Color funtion that messes with the WPF color function. Also modified it a slight bit for my needs and removed unneeded items. Also made few functions that were once public private.
-        /// </summary>
-        private unsafe class UnsafeBitmap
-        {
-            System.Drawing.Bitmap bitmap;
-            int width = 201;
-            BitmapData bitmapData = null;
-            Byte* pBase = null;
-
-            public UnsafeBitmap(System.Drawing.Bitmap bitmap)
-            {
-                this.bitmap = new System.Drawing.Bitmap(bitmap);
-            }
-
-            public void Dispose()
-            {
-                bitmap.Dispose();
-            }
-
-            public System.Drawing.Bitmap Bitmap
-            {
-                get { return (bitmap); }
-            }
-
-            private Point PixelSize
-            {
-                get
-                {
-                    System.Drawing.GraphicsUnit unit = System.Drawing.GraphicsUnit.Pixel;
-                    System.Drawing.RectangleF bounds = bitmap.GetBounds(ref unit);
-                    return new Point((int)bounds.Width, (int)bounds.Height);
-                }
-            }
-            public void LockBitmap()
-            {
-                System.Drawing.GraphicsUnit unit = System.Drawing.GraphicsUnit.Pixel;
-                System.Drawing.RectangleF boundsF = bitmap.GetBounds(ref unit);
-                System.Drawing.Rectangle bounds = new System.Drawing.Rectangle((int)boundsF.X, (int)boundsF.Y, (int)boundsF.Width, (int)boundsF.Height);
-
-                width = (int)boundsF.Width * sizeof(PixelData);
-                if (width % 4 != 0)
-                {
-                    width = 4 * (width / 4 + 1);
-                }
-                bitmapData = bitmap.LockBits(bounds, ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-                pBase = (Byte*)bitmapData.Scan0.ToPointer();
-            }
-
-            public PixelData GetPixel(int x, int y)
-            {
-                PixelData returnValue = *PixelAt(x, y);
-                return returnValue;
-            }
-
-            private PixelData* PixelAt(int x, int y)
-            {
-                return (PixelData*)(pBase + y * width + x * sizeof(PixelData));
-            }
-
-            public void UnlockBitmap()
-            {
-                bitmap.UnlockBits(bitmapData);
-                bitmapData = null;
-                pBase = null;
-            }
-
-        }
-        public struct PixelData
-        {
-            public byte blue;
-            public byte green;
-            public byte red;
-        }
 
         public Color CustomColor
         {

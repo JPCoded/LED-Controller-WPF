@@ -1,0 +1,35 @@
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\WPF LED Controller.exe.config
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\WPF LED Controller.exe
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\WPF LED Controller.pdb
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\Microsoft.Practices.Prism.Interactivity.dll
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\Microsoft.Practices.Prism.xml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\Microsoft.Practices.Prism.Interactivity.xml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\Resources\BorderedTextBox.baml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\UserControls\ColorPicker.baml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\Dictionaries\PreviewLabelDict.baml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\UserControls\ColorSwatch.baml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\UserControls\PortList.baml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\Dictionaries\ColorPickerDict.baml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\UserControls\PreviewLabel.baml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\Resources\GlassButtons.baml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\UserControls\ColorPicker.g.cs
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\MainWindow.g.cs
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\UserControls\ColorSwatch.g.cs
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\UserControls\PortList.g.cs
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\UserControls\PreviewLabel.g.cs
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\App.g.cs
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller_MarkupCompile.cache
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller_MarkupCompile.lref
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\MainWindow.baml
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.g.resources
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF_LED_Controller.Properties.Resources.resources
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.csproj.GenerateResource.Cache
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.exe
+C:\Users\cwarlord87\documents\visual studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.pdb

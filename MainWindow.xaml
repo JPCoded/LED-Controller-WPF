@@ -1,7 +1,7 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:WPF_LED_Controller" xmlns:ColorSwatch="clr-namespace:ColorSwatch;assembly=ColorSwatch" x:Class="WPF_LED_Controller.MainWindow"
+        xmlns:local="clr-namespace:WPF_LED_Controller" x:Class="WPF_LED_Controller.MainWindow"
         Title="LED Controller" ResizeMode="CanMinimize"  Width="301" Height="364">
     <Grid Margin="0,0,0,0" UseLayoutRounding="True">
 
