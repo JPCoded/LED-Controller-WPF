@@ -1,59 +1,49 @@
-﻿<UserControl x:Name="cpcColor" x:Class="WPF_LED_Controller.ColorPicker"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             
-             d:DesignHeight="201
-             " Width="282">
+             xmlns:local="clr-namespace:WPF_LED_Controller.UserControls" x:Name="cpcColor" x:Class="WPF_LED_Controller.UserControls.ColorPicker" 
+             mc:Ignorable="d" Width="282" Height="223">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Dictionaries/ColorPickerDict.xaml"/>
+             
                 <ResourceDictionary Source="/Resources/BorderedTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-         
+
     </UserControl.Resources>
     <Grid Margin="0,0,0,0">
-  
-        <Canvas x:Name="CanColor"  Width="201" Height="201" 
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top" MouseLeftButtonDown="CanColor_MouseLeftButtonDown" MouseLeftButtonUp="CanColor_MouseLeftButtonUp" MouseMove="CanColor_MouseMove"  >
-            <Canvas.Background>
-                <ImageBrush ImageSource="/Images/Swatch.png" />
-            </Canvas.Background>
-            <Ellipse x:Name="EpPointer" Width="8" Height="8" Stroke="Black" Fill="White" />
-        </Canvas>
         <StackPanel HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top" Height="114">
-            <StackPanel x:Name="spRed" Height="29" Orientation="Horizontal">
+            <StackPanel x:Name="spRed" Height="25" Orientation="Horizontal">
                 <Label Content="R" Foreground="White"/>
-                <TextBox x:Name="txtRed" Style="{StaticResource BorderedText}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" />
-                <Separator Width="2" Background="{x:Null}"></Separator>
-                <TextBox x:Name="txtRHex"  Style="{StaticResource  BorderedText}" KeyDown="txtRHex_KeyDown" />
+                <TextBox x:Name="txtRed" Style="{StaticResource BorderedText}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                <Separator Width="2" Background="{x:Null}"/>
+                <TextBox x:Name="txtRHex"  Style="{StaticResource BorderedText}" KeyDown="txtRHex_KeyDown" Width="30" Height="23" />
             </StackPanel>
-            
-            <StackPanel Height="29" Orientation="Horizontal" x:Name="spGreen">
+
+            <StackPanel Height="25" Orientation="Horizontal" x:Name="spGreen">
                 <Label Content="G" Foreground="White"/>
-                <TextBox x:Name="txtGreen" Style="{StaticResource  BorderedText}" KeyDown="txtGreen_KeyDown" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown"/>
-                <Separator Width="2" Background="{x:Null}"></Separator>
-                <TextBox x:Name="txtGHex" Style="{StaticResource  BorderedText}" KeyDown="txtGHex_KeyDown"/>                
+                <TextBox x:Name="txtGreen" Style="{StaticResource BorderedText}" KeyDown="txtGreen_KeyDown" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Width="30" Height="23"/>
+                <Separator Width="2" Background="{x:Null}"/>
+                <TextBox x:Name="txtGHex" Style="{StaticResource BorderedText}" KeyDown="txtGHex_KeyDown" Width="30" Height="23"/>
             </StackPanel>
-            
-            <StackPanel Height="29" Orientation="Horizontal" x:Name="spBlue">
+
+            <StackPanel Height="25" Orientation="Horizontal" x:Name="spBlue">
                 <Label Content="B" Foreground="White"/>
-                <TextBox x:Name="txtBlue" Style="{StaticResource BorderedText}" KeyDown="txtBlue_KeyDown" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown"/>        
-                <Separator Width="2" Background="{x:Null}"></Separator>
-                <TextBox x:Name="txtBHex" Style="{StaticResource  BorderedText}" KeyDown="txtBHex_KeyDown"/>               
+                <TextBox x:Name="txtBlue" Style="{StaticResource BorderedText}" KeyDown="txtBlue_KeyDown" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Width="30" Height="23"/>
+                <Separator Width="2" Background="{x:Null}"/>
+                <TextBox x:Name="txtBHex" Style="{StaticResource BorderedText}" KeyDown="txtBHex_KeyDown" Width="30" Height="23"/>
             </StackPanel>
-            
-            <StackPanel Height="29" Orientation="Horizontal">
+
+            <StackPanel Height="25" Orientation="Horizontal">
                 <Label Content="H" Foreground="White"/>
-                <Border Style="{StaticResource HexBorder}">
-                    <TextBox x:Name="txtHAll" Style="{StaticResource HexText}" KeyDown="txtHAll_KeyDown" />
-                </Border>
+              
+                    <TextBox x:Name="txtHAll" Style="{StaticResource BorderedText}" KeyDown="txtHAll_KeyDown" Width="60" Height="23" />
+                
             </StackPanel>
         </StackPanel>
+        <local:ColorSwatch x:Name="canColor" HorizontalAlignment="Left" Height="223" VerticalAlignment="Top" Width="201"/>
     </Grid>
 </UserControl>

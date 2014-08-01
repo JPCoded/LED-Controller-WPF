@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.IO.Ports;
 using System.Collections.ObjectModel;
 
-namespace WPF_LED_Controller
+namespace WPF_LED_Controller.UserControls
 {
     /// <summary>
     /// Interaction logic for PortList.xaml

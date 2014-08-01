@@ -35,22 +35,23 @@ namespace WPF_LED_Controller
             ArduinoSerial.BaudRate = 115200;
             plPorts.Refresh();
 
+
         }
 
         void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
         {
-           pwlSaved.setBackground(cpColor.CustomColor);
+           pwlSaved.setBackground(cpColor.canColor.CustomColor);
         }
 
         void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
             
-             pwlSaved.setBackground(cpColor.CustomColor);
+             pwlSaved.setBackground(cpColor.canColor.CustomColor);
         }
 
         void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
-            pwlSaved.setBackground(cpColor.CustomColor);
+            pwlSaved.setBackground(cpColor.canColor.CustomColor);
         }
 
         private void miOpen_Click(object sender, RoutedEventArgs e)
@@ -65,7 +66,7 @@ namespace WPF_LED_Controller
 
         private void cpColor_MouseMove(object sender, MouseEventArgs e)
         {
-            pwlHover.setBackground(cpColor.HoverColor);
+            pwlHover.setBackground(cpColor.canColor.HoverColor);
         }
 
         private void btnSet_Click(object sender, RoutedEventArgs e)
@@ -81,7 +82,7 @@ namespace WPF_LED_Controller
                    ArduinoSerial.PortName = plPorts.getPort;
                    
                    ArduinoSerial.Open();
-                   byte[] colorBytes = { cpColor.CustomColor.R, cpColor.CustomColor.G, cpColor.CustomColor.B, 0x0A };
+                   byte[] colorBytes = { cpColor.canColor.CustomColor.R, cpColor.canColor.CustomColor.G, cpColor.canColor.CustomColor.B, 0x0A };
                    try
                    {
                        ArduinoSerial.Write(colorBytes, 0, 3);
