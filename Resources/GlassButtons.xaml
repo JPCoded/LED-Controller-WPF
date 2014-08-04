@@ -53,6 +53,7 @@
                                     Point1="9.106,14.370"
                                     Point2="27.875,0"
                                     Point3="50,0"/>
+                                        
                                         <BezierSegment Point1="72.198,0" Point2="91.018,14.466" Point3="97.546,34.485"/>
                                         <BezierSegment
                                     IsSmoothJoin="True"

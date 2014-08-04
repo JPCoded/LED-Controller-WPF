@@ -69,6 +69,45 @@ namespace WPF_LED_Controller.UserControls
             }
         }
 
+        public void doTrack(char pm)
+        {
+            if(pm == '-')
+            {
+                if (Tracker > 0)
+                {
+                    Tracker--;
+                    btnPrevious.IsEnabled = (Tracker == 0) ? false : true;
+                    
+                    btnNext.IsEnabled = true;
+                }
+                else 
+                {
+                    btnNext.IsEnabled = true;
+                    btnPrevious.IsEnabled = false;
+                }
+            
+            }
+            else if(pm == '+')
+            {
+                if (Tracker < 2)
+                {
+                    Tracker++;
+                    btnNext.IsEnabled = (Tracker == 2) ? false : true;
+
+                    btnPrevious.IsEnabled = true;
+                }
+                else
+                {
+                    btnNext.IsEnabled = false;
+                    btnPrevious.IsEnabled = true;
+                }
+            }
+
+            imgColor.Source = images[Tracker];
+            myUnsafeBitmap = unsafeBitmaps[Tracker];
+            Reposition();
+            lblTrack.Content = "[" + Tracker.ToString() + "/2]";
+        }
          private void NotifyPropertyChanged(String propertyName = "")
         {
             if (PropertyChanged != null)
@@ -88,6 +127,7 @@ namespace WPF_LED_Controller.UserControls
             myUnsafeBitmap = unsafeBitmaps[0];
             lblTrack.Content = "[" + Tracker.ToString() + "/2]";
         }
+
         #region Bitmap functions
         private bool SimmilarColor(Color pointColor, Color selectedColor)
         {
@@ -186,25 +226,11 @@ namespace WPF_LED_Controller.UserControls
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            if(Tracker > 0)
-            {
-                Tracker--;
-                imgColor.Source = images[Tracker];
-                myUnsafeBitmap = unsafeBitmaps[Tracker];
-                Reposition();
-                lblTrack.Content = "[" + Tracker.ToString() + "/2]";
-            }
+            doTrack('-');
         }
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            if(Tracker < 2)
-            {
-                Tracker++;
-                imgColor.Source = images[Tracker];
-                myUnsafeBitmap = unsafeBitmaps[Tracker];
-                Reposition();
-                lblTrack.Content = "[" + Tracker.ToString() + "/2]";
-            }
+            doTrack('+');
         }
 
         private void canColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
