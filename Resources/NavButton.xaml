@@ -10,15 +10,34 @@
                  
                     <Grid>
                         <!--22 height, 27 width-->
-    
-                        <Path x:Name="Arrow"  Fill="{TemplateBinding Background}" Data="F1 M -2.05205e-009,11.0214L 7.44251,16.4556L 14.8358,21.9999L 14.7705,11L 14.8039,-6.36093e-007L 7.42675,5.56566L -2.05205e-009,11.0214 Z "/>
-                        <Path x:Name="Strike" Fill="{TemplateBinding Background}" Data="F1 M 14.75,6.82313L 27,6.82313L 27,15.1981L 14.75,15.1981L 14.75,6.82313 Z "/>
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
+                        <Path x:Name="Head"  Fill="{TemplateBinding Background}" Data="F1 M -1.44639e-006,11.0108L 5.50516,16.4478L 10.9739,21.9949L 10.9215,10.995L 10.9421,-0.00504494L 5.48939,5.55783L -1.44639e-006,11.0108 Z"/>                     
+                        <Path x:Name="Body" Fill="{TemplateBinding Background}">
+                            <Path.Data>
+                                <GeometryGroup>
+                                    <RectangleGeometry Rect="11.29,7 2,8"/>
+                                    <RectangleGeometry Rect="14.29,7 2,8"/>
+                                    <RectangleGeometry Rect="17.29,7 2,8"/>
+                                    <RectangleGeometry Rect="20.29,7 2,8"/>
+                                    <RectangleGeometry Rect="23.29,7 2,8"/>  
+                                </GeometryGroup>
+                            </Path.Data>
+                        </Path>
+                              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>            
+                    
                     <ControlTemplate.Triggers>
+                  
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Arrow" Property="Fill" Value="Gray"/>
-                            <Setter TargetName="Strike" Property="Fill" Value="Gray"/>
+                            <Setter TargetName="Head" Property="Fill" Value="#FFD6D6D6"/>
+                            <Setter TargetName="Body" Property="Fill" Value="#FFD6D6D6"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Head" Property="Fill" Value="#FF0389C7"/>
+                            <Setter TargetName="Body" Property="Fill" Value="#FF0389C7"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Head" Property="Fill" Value="#FF0CC703"/>
+                            <Setter TargetName="Body" Property="Fill" Value="#FF0CC703"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

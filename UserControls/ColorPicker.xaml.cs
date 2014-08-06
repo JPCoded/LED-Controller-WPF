@@ -60,8 +60,7 @@ namespace WPF_LED_Controller.UserControls
             }
         }
 
-        #region Custom Functions
-   
+        #region Validation
         /// <summary>
         /// Check to see if the user inputed keys 0-9, including the numpad keys, but nothing else
         /// </summary>
@@ -105,7 +104,6 @@ namespace WPF_LED_Controller.UserControls
 
             return ValueToCheck;
         }
-
         #endregion
 
 
@@ -198,49 +196,6 @@ namespace WPF_LED_Controller.UserControls
             {
                 if (string.IsNullOrEmpty(((TextBox)sender).Text))
                 { ((TextBox)sender).Text = "0"; }
-                int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
-                ((TextBox)sender).Text = newValue.ToString();
-            }
-        }
-        private void txtRed_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Up)
-            {
-                int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
-                ((TextBox)sender).Text = newValue.ToString();
-            }
-            else if (e.Key == Key.Down)
-            {
-                int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
-                ((TextBox)sender).Text = newValue.ToString();
-            }
-        }
-
-        private void txtGreen_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Up)
-            {
-                int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
-                ((TextBox)sender).Text = newValue.ToString();
-            }
-            else if (e.Key == Key.Down)
-            {
-                int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
-                ((TextBox)sender).Text = newValue.ToString();
-            }
-        }
-
-        private void txtBlue_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Up)
-            {
-                if(string.IsNullOrEmpty(((TextBox)sender).Text))
-                { ((TextBox)sender).Text = "0"; }
-                int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
-                ((TextBox)sender).Text = newValue.ToString();
-            }
-            else if (e.Key == Key.Down)
-            {
                 int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
                 ((TextBox)sender).Text = newValue.ToString();
             }
