@@ -106,9 +106,119 @@ namespace WPF_LED_Controller.UserControls
         }
         #endregion
 
-
-
         #region TextBoxes
+
+        #region TextChanged
+        private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
+
+            if (((TextBox)sender).Text != canColor.CustomColor.R.ToString())
+            {
+                //Convert textbox to byte, but check to see if it's empty, if so send 0
+                byte rbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
+                //change red vaule of main color
+                canColor.ChangeColor(Color.FromRgb(rbyteValue, canColor.CustomColor.G, canColor.CustomColor.B));
+            }
+            if (TextChanged != null)
+            {
+                TextChanged(this, EventArgs.Empty);
+            }
+        }
+
+        private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
+
+            if (((TextBox)sender).Text != canColor.CustomColor.G.ToString())
+            {
+                //Convert textbox to byte, but check to see if it's empty, if so send 0
+                byte gbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
+                //change green vaule of main color
+                canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, gbyteValue, canColor.CustomColor.B));
+            }
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
+
+            if (TextChanged != null)
+            {
+             
+                TextChanged(this, EventArgs.Empty);
+            }
+        }
+
+        private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
+
+            if (((TextBox)sender).Text != canColor.CustomColor.B.ToString())
+            {
+                //Convert textbox to byte, but check to see if it's empty, if so send 0
+                byte bbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
+                //change blue vaule of main color
+                canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, canColor.CustomColor.G, bbyteValue));
+            }
+            if (TextChanged != null)
+            {
+                TextChanged(this, EventArgs.Empty);
+            }
+        }
+        private void txtGHex_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void txtRHex_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBHex_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region PreviewKeyDown
+        private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                { ((TextBox)sender).Text = "0"; }
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
+                ((TextBox)sender).Text = newValue.ToString();
+            }
+            else if (e.Key == Key.Down)
+            {
+                if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                { ((TextBox)sender).Text = "0"; }
+                int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
+                ((TextBox)sender).Text = newValue.ToString();
+            }
+        }
+
+        private void txtHex_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                { ((TextBox)sender).Text = "0"; }
+                int newValue = Int32.Parse(((TextBox)sender).Text, System.Globalization.NumberStyles.HexNumber) + 1;
+                ((TextBox)sender).Text = newValue.ToString("X").PadLeft(2, '0');
+            }
+            else if (e.Key == Key.Down)
+            {
+                if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                { ((TextBox)sender).Text = "0"; }
+                int newValue = Int32.Parse(((TextBox)sender).Text,System.Globalization.NumberStyles.HexNumber) - 1;
+                ((TextBox)sender).Text = newValue.ToString("X").PadLeft(2, '0');
+            }
+        }
+        #endregion
+
+        #region KeyDown
+
         private void txtBlue_KeyDown(object sender, KeyEventArgs e)
         {
             NumericValidation(e);
@@ -133,74 +243,6 @@ namespace WPF_LED_Controller.UserControls
             canColor.ChangeColor(Color.FromRgb(rbyteValue, canColor.CustomColor.G, canColor.CustomColor.B));
         }
 
-        private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
-
-            if (((TextBox)sender).Text != canColor.CustomColor.R.ToString())
-            {
-                //Convert textbox to byte, but check to see if it's empty, if so send 0
-                byte rbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
-                canColor.ChangeColor(Color.FromRgb(rbyteValue, canColor.CustomColor.G, canColor.CustomColor.B));
-            }
-            if (TextChanged != null)
-            {
-                TextChanged(this, EventArgs.Empty);
-            }
-        }
-
-        private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
-            if (((TextBox)sender).Text != canColor.CustomColor.G.ToString())
-            {
-                //Convert textbox to byte, but check to see if it's empty, if so send 0
-                byte gbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
-                canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, gbyteValue, canColor.CustomColor.B));
-            }
-            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
-
-            if (TextChanged != null)
-            {
-                TextChanged(this, EventArgs.Empty);
-            }
-        }
-
-        private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
-
-
-            if (((TextBox)sender).Text != canColor.CustomColor.B.ToString())
-            {
-                //Convert textbox to byte, but check to see if it's empty, if so send 0
-                byte bbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
-                canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, canColor.CustomColor.G, bbyteValue));
-            }
-            if (TextChanged != null)
-            {
-                TextChanged(this, EventArgs.Empty);
-            }
-        }
-
-        private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Up)
-            {
-                if (string.IsNullOrEmpty(((TextBox)sender).Text))
-                { ((TextBox)sender).Text = "0"; }
-                int newValue = Convert.ToInt32(((TextBox)sender).Text) + 1;
-                ((TextBox)sender).Text = newValue.ToString();
-            }
-            else if (e.Key == Key.Down)
-            {
-                if (string.IsNullOrEmpty(((TextBox)sender).Text))
-                { ((TextBox)sender).Text = "0"; }
-                int newValue = Convert.ToInt32(((TextBox)sender).Text) - 1;
-                ((TextBox)sender).Text = newValue.ToString();
-            }
-        }
-
         private void txtHAll_KeyDown(object sender, KeyEventArgs e)
         {
             HexValidation(e);
@@ -219,17 +261,25 @@ namespace WPF_LED_Controller.UserControls
         private void txtRHex_KeyDown(object sender, KeyEventArgs e)
         {
             HexValidation(e);
+            string rsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
         }
 
         private void txtGHex_KeyDown(object sender, KeyEventArgs e)
         {
             HexValidation(e);
+            string gsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
         }
 
         private void txtBHex_KeyDown(object sender, KeyEventArgs e)
         {
             HexValidation(e);
+            string bsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
+
         }
         #endregion
+
+        #endregion
+
+      
     }
 }
