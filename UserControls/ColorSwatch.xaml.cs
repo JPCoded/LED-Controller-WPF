@@ -69,6 +69,41 @@ namespace WPF_LED_Controller.UserControls
             }
         }
 
+        //can't get converters to work right, so just making Red, Green, and Blue Functions to make it easier to convert colors to string and hex 
+        public string Red(bool Hex = false)
+        {
+            if(Hex)
+            {
+                return CustomColor.R.ToString("X").PadLeft(2, '0');
+            }
+            else
+            {
+                return CustomColor.R.ToString();
+            }
+        }
+        public string Green(bool Hex = false)
+        {
+            if (Hex)
+            {
+                return CustomColor.G.ToString("X").PadLeft(2, '0');
+            }
+            else
+            {
+                return CustomColor.G.ToString();
+            }
+        }
+        public string Blue(bool Hex = false)
+        {
+            if (Hex)
+            {
+                return CustomColor.B.ToString("X").PadLeft(2, '0');
+            }
+            else
+            {
+                return CustomColor.B.ToString();
+            }
+        }
+
         public void doTrack(char pm)
         {
             if(pm == '-')

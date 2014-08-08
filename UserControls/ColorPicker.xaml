@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_LED_Controller.UserControls" x:Name="cpcColor" x:Class="WPF_LED_Controller.UserControls.ColorPicker" 
+             
              mc:Ignorable="d" Width="282" Height="223">
     <UserControl.Resources>
         <ResourceDictionary>
+           
             <ResourceDictionary.MergedDictionaries>
+               
                 <ResourceDictionary Source="/Resources/BorderedTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -19,7 +22,7 @@
                 <Label Content="R" Foreground="White"/>
                 <TextBox x:Name="txtRed"  Style="{StaticResource BorderedText}" KeyDown="txtRed_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
                 <Separator Width="2" Background="{x:Null}"/>
-                <TextBox x:Name="txtRHex" MaxLength="2"  Style="{StaticResource BorderedText}" TextChanged="txtRHex_TextChanged" KeyDown="txtRHex_KeyDown" PreviewKeyDown="txtHex_PreviewKeyDown" Width="30" Height="23" />
+                <TextBox x:Name="txtRHex" MaxLength="2" Text="{Binding Path=Value, StringFormat={}{0:x} }"  Style="{StaticResource BorderedText}" TextChanged="txtRHex_TextChanged" KeyDown="txtRHex_KeyDown" PreviewKeyDown="txtHex_PreviewKeyDown" Width="30" Height="23" />
             </StackPanel>
 
             <StackPanel Height="25" Orientation="Horizontal" x:Name="spGreen">

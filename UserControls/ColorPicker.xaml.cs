@@ -26,13 +26,6 @@ namespace WPF_LED_Controller.UserControls
         
         private Color _customColor = Colors.Transparent;
         public event EventHandler<EventArgs> TextChanged;
-        
-
-
-      
-
-  
-
 
         /// <summary>
         /// Color that the mouse is current hovered over.
@@ -50,12 +43,12 @@ namespace WPF_LED_Controller.UserControls
         {
             if (e.PropertyName == "Custom")
             {
-                txtRed.Text = canColor.CustomColor.R.ToString();
-                txtRHex.Text = canColor.CustomColor.R.ToString("X").PadLeft(2, '0');
-                txtGreen.Text = canColor.CustomColor.G.ToString();
-                txtGHex.Text = canColor.CustomColor.G.ToString("X").PadLeft(2, '0');
-                txtBlue.Text = canColor.CustomColor.B.ToString();
-                txtBHex.Text = canColor.CustomColor.B.ToString("X").PadLeft(2, '0');
+                txtRed.Text = canColor.Red();
+                txtRHex.Text = canColor.Red(true);
+                txtGreen.Text = canColor.Green();
+                txtGHex.Text = canColor.Green(true);
+                txtBlue.Text = canColor.Blue();
+                txtBHex.Text = canColor.Blue(true);
                 txtHAll.Text = String.Format("#{0}{1}{2}", txtRHex.Text, txtGHex.Text, txtBHex.Text);
             }
         }
@@ -91,18 +84,28 @@ namespace WPF_LED_Controller.UserControls
             }
 
         }
-        private string OverUnderValidation(string ValueToCheck)
+        private string OverUnderValidation(string ValueToCheck, string valType = "Int")
         {
             if (!string.IsNullOrEmpty(ValueToCheck))
             {
-                int checkVal = Convert.ToInt32(ValueToCheck);
-                if (checkVal > 255)
-                { return "255"; }
-                else if (checkVal < 0)
-                { return "0"; }
+                if (valType == "Int")
+                {
+                    int checkVal = Int32.Parse(ValueToCheck);
+                    if (checkVal > 255)
+                    { return "255"; }
+                    else if (checkVal < 0)
+                    { return "0"; }
+                }
+                else if(valType == "Hex")
+                {
+                    int checkVal = Int32.Parse(ValueToCheck, System.Globalization.NumberStyles.HexNumber);
+                    if (checkVal > 255)
+                    { return (255).ToString("X").PadLeft(2, '0').ToUpper(); }
+                    else if (checkVal < 0)
+                    { return (0).ToString("X").PadLeft(2, '0').ToUpper(); }
+                }
             }
-
-            return ValueToCheck;
+            return ValueToCheck.ToUpper();
         }
         #endregion
 
@@ -113,7 +116,7 @@ namespace WPF_LED_Controller.UserControls
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox)sender).Text != canColor.CustomColor.R.ToString())
+            if (((TextBox)sender).Text != canColor.Red())
             {
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
                 byte rbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
@@ -130,7 +133,7 @@ namespace WPF_LED_Controller.UserControls
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox)sender).Text != canColor.CustomColor.G.ToString())
+            if (((TextBox)sender).Text != canColor.Green())
             {
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
                 byte gbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
@@ -151,7 +154,7 @@ namespace WPF_LED_Controller.UserControls
 
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox)sender).Text != canColor.CustomColor.B.ToString())
+            if (((TextBox)sender).Text != canColor.Blue())
             {
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
                 byte bbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
@@ -165,16 +168,34 @@ namespace WPF_LED_Controller.UserControls
         }
         private void txtGHex_TextChanged(object sender, TextChangedEventArgs e)
         {
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text,"Hex");
 
+            if (TextChanged != null)
+            {
+
+                TextChanged(this, EventArgs.Empty);
+            }
         }
         private void txtRHex_TextChanged(object sender, TextChangedEventArgs e)
         {
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text, "Hex");
 
+            if (TextChanged != null)
+            {
+
+                TextChanged(this, EventArgs.Empty);
+            }
         }
 
         private void txtBHex_TextChanged(object sender, TextChangedEventArgs e)
         {
+            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text, "Hex");
 
+            if (TextChanged != null)
+            {
+
+                TextChanged(this, EventArgs.Empty);
+            }
         }
 
         #endregion
