@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Drawing.Imaging;
-using WPF_LED_Controller.UserControls;
 
 namespace WPF_LED_Controller.UserControls
 {
@@ -35,8 +23,6 @@ namespace WPF_LED_Controller.UserControls
         {
             InitializeComponent();
             canColor.PropertyChanged += canColor_PropertyChanged;
-           
-           
         }
 
         void canColor_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -82,7 +68,6 @@ namespace WPF_LED_Controller.UserControls
             {
                 e.Handled = true;
             }
-
         }
         private string OverUnderValidation(string ValueToCheck, string valType = "Int")
         {
@@ -105,6 +90,13 @@ namespace WPF_LED_Controller.UserControls
                     { return (0).ToString("X").PadLeft(2, '0').ToUpper(); }
                 }
             }
+            else
+            {
+                if(valType == "Int")
+                { return "0";}
+                else
+                { return (0).ToString("X").PadLeft(2, '0').ToUpper(); }
+            }
             return ValueToCheck.ToUpper();
         }
         #endregion
@@ -119,7 +111,7 @@ namespace WPF_LED_Controller.UserControls
             if (((TextBox)sender).Text != canColor.Red())
             {
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
-                byte rbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
+                byte rbyteValue = Convert.ToByte(((TextBox)sender).Text);
                 //change red vaule of main color
                 canColor.ChangeColor(Color.FromRgb(rbyteValue, canColor.CustomColor.G, canColor.CustomColor.B));
             }
@@ -136,55 +128,44 @@ namespace WPF_LED_Controller.UserControls
             if (((TextBox)sender).Text != canColor.Green())
             {
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
-                byte gbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
+                byte gbyteValue = Convert.ToByte(((TextBox)sender).Text);
                 //change green vaule of main color
                 canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, gbyteValue, canColor.CustomColor.B));
             }
-            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
-
+           
             if (TextChanged != null)
             {
-             
                 TextChanged(this, EventArgs.Empty);
             }
         }
 
         private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
         {
-
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
             if (((TextBox)sender).Text != canColor.Blue())
             {
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
-                byte bbyteValue = Convert.ToByte(string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text);
+                byte bbyteValue = Convert.ToByte(((TextBox)sender).Text);
                 //change blue vaule of main color
                 canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, canColor.CustomColor.G, bbyteValue));
             }
             if (TextChanged != null)
-            {
-                TextChanged(this, EventArgs.Empty);
-            }
+            { TextChanged(this, EventArgs.Empty); }
         }
         private void txtGHex_TextChanged(object sender, TextChangedEventArgs e)
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text,"Hex");
 
             if (TextChanged != null)
-            {
-
-                TextChanged(this, EventArgs.Empty);
-            }
+            { TextChanged(this, EventArgs.Empty); }
         }
         private void txtRHex_TextChanged(object sender, TextChangedEventArgs e)
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text, "Hex");
 
             if (TextChanged != null)
-            {
-
-                TextChanged(this, EventArgs.Empty);
-            }
+            { TextChanged(this, EventArgs.Empty); }
         }
 
         private void txtBHex_TextChanged(object sender, TextChangedEventArgs e)
@@ -192,10 +173,7 @@ namespace WPF_LED_Controller.UserControls
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text, "Hex");
 
             if (TextChanged != null)
-            {
-
-                TextChanged(this, EventArgs.Empty);
-            }
+            { TextChanged(this, EventArgs.Empty); }
         }
 
         #endregion

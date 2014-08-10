@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPF_LED_Controller.UserControls
 {
@@ -35,14 +28,11 @@ namespace WPF_LED_Controller.UserControls
         private List<BitmapImage> _images = new List<BitmapImage>();
         public List<BitmapImage> images
         { get { return _images; } }
-       
         
         public Color CustomColor
         {
             get
-            {
-                return _customColor;
-            }
+            { return _customColor; }
              set
             {
                 if (_customColor != value)
@@ -56,9 +46,7 @@ namespace WPF_LED_Controller.UserControls
         public Color HoverColor
         {
             get
-            {
-                return _hoverColor;
-            }
+            { return _hoverColor; }
             private set
             {
                 if (_hoverColor != value)
@@ -73,35 +61,23 @@ namespace WPF_LED_Controller.UserControls
         public string Red(bool Hex = false)
         {
             if(Hex)
-            {
-                return CustomColor.R.ToString("X").PadLeft(2, '0');
-            }
+            { return CustomColor.R.ToString("X").PadLeft(2, '0'); }
             else
-            {
-                return CustomColor.R.ToString();
-            }
+            { return CustomColor.R.ToString(); }
         }
         public string Green(bool Hex = false)
         {
             if (Hex)
-            {
-                return CustomColor.G.ToString("X").PadLeft(2, '0');
-            }
+            { return CustomColor.G.ToString("X").PadLeft(2, '0'); }
             else
-            {
-                return CustomColor.G.ToString();
-            }
+            { return CustomColor.G.ToString(); }
         }
         public string Blue(bool Hex = false)
         {
             if (Hex)
-            {
-                return CustomColor.B.ToString("X").PadLeft(2, '0');
-            }
+            { return CustomColor.B.ToString("X").PadLeft(2, '0'); }
             else
-            {
-                return CustomColor.B.ToString();
-            }
+            { return CustomColor.B.ToString(); }
         }
 
         public void doTrack(char pm)
@@ -112,7 +88,6 @@ namespace WPF_LED_Controller.UserControls
                 {
                     Tracker--;
                     btnPrevious.IsEnabled = (Tracker == 0) ? false : true;
-                    
                     btnNext.IsEnabled = true;
                 }
                 else 
