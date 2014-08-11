@@ -29,11 +29,11 @@ namespace WPF_LED_Controller.UserControls
         {
             if (e.PropertyName == "Custom")
             {
-                txtRed.Text = canColor.Red();
+               // txtRed.Text = canColor.Red();
                 txtRHex.Text = canColor.Red(true);
-                txtGreen.Text = canColor.Green();
+                //txtGreen.Text = canColor.Green();
                 txtGHex.Text = canColor.Green(true);
-                txtBlue.Text = canColor.Blue();
+               // txtBlue.Text = canColor.Blue();
                 txtBHex.Text = canColor.Blue(true);
                 txtHAll.Text = String.Format("#{0}{1}{2}", txtRHex.Text, txtGHex.Text, txtBHex.Text);
             }

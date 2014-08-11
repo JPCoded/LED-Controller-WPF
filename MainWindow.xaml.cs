@@ -22,8 +22,7 @@ namespace WPF_LED_Controller
             pwlHover.SetTitle = "Hover";
             ArduinoSerial.BaudRate = 115200;
             plPorts.Refresh();
-
-
+           
         }
 
         void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
@@ -77,29 +76,29 @@ namespace WPF_LED_Controller
                    }
                    catch (System.IO.IOException)
                    {
-                       MessageBox.Show("Failed to communicate with arduino. Make sure you have port selected.", "Communication Failure");
+                       MessageBox.Show("Failed to communicate with arduino. Make sure you have port selected.", "Communication Failure", MessageBoxButton.OK, MessageBoxImage.Error);
                    }
                }
                catch (System.IO.IOException)
                {
-                   MessageBox.Show("Error connecting to port " + plPorts.getPort + ". Make sure the Aruduino is connected or correct port selected.", "IO Error");
+                   MessageBox.Show("Error connecting to port " + plPorts.getPort + ". Make sure the Aruduino is connected or correct port selected.", "IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
                }
                catch(System.UnauthorizedAccessException)
                {
-                   MessageBox.Show("Unauthorized Access to this port.", "Unauthorized Access");
+                   MessageBox.Show("Unauthorized Access to this port.", "Unauthorized Access", MessageBoxButton.OK, MessageBoxImage.Error);
                }
                catch(System.ArgumentException ae)
                {
-                   MessageBox.Show("Message: " + ae.Message, "ArgumentExecption");
+                   MessageBox.Show("Message: " + ae.Message, "ArgumentExecption", MessageBoxButton.OK, MessageBoxImage.Error);
                }
                catch(System.InvalidOperationException io)
                {
-                   MessageBox.Show("Message: " + io.Message,"InvalidOperationExecption");
+                   MessageBox.Show("Message: " + io.Message, "InvalidOperationExecption", MessageBoxButton.OK, MessageBoxImage.Error);
                }
            }
            else
            {
-               MessageBox.Show("I can't allow you to do that Dave.\nPlease select a port first.", "Hal9000");
+               MessageBox.Show("I can't allow you to do that Dave.\nPlease select a port first.", "Hal9000",MessageBoxButton.OK,MessageBoxImage.Error);
            }
         }
     }

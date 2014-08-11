@@ -14,6 +14,84 @@ namespace WPF_LED_Controller.UserControls
     /// </summary>
     public partial class ColorSwatch : UserControl, INotifyPropertyChanged
     {
+
+        public static DependencyProperty RedProperty;
+        public static DependencyProperty GreenProperty;
+        public static DependencyProperty BlueProperty;
+        public static DependencyProperty ColorProperty;
+        public static readonly RoutedEvent ColorChangedEvent;
+
+        static ColorSwatch()
+        {
+            ColorProperty = DependencyProperty.Register("Color", typeof(Color), typeof(ColorSwatch), new FrameworkPropertyMetadata(Colors.Black, new PropertyChangedCallback(OnColorChanged)));
+
+            RedProperty = DependencyProperty.Register("Red1", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
+
+           GreenProperty = DependencyProperty.Register("Green1", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
+
+            BlueProperty = DependencyProperty.Register("Blue1", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
+
+            ColorChangedEvent = EventManager.RegisterRoutedEvent("ColorChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<Color>), typeof(ColorSwatch));
+
+        }
+        public Color Color
+        {
+            get { return (Color)GetValue(ColorProperty); }
+            set { SetValue(ColorProperty, value); }
+        }
+        
+        public byte Red1
+        {
+            get { return (byte)GetValue(RedProperty); }
+            set { SetValue(RedProperty, value); }
+        }
+
+        public byte Green1       
+        {
+            get { return (byte)GetValue(GreenProperty); }
+            set { SetValue(GreenProperty, value); }
+        }
+
+        public byte Blue1
+        {
+            get { return (byte)GetValue(BlueProperty); }
+            set { SetValue(BlueProperty, value); }
+        }
+
+        public event RoutedPropertyChangedEventHandler<Color> ColorChanged
+        {
+            add { AddHandler(ColorChangedEvent, value); }
+            remove { RemoveHandler(ColorChangedEvent, value); }
+        }
+       public static void OnColorRGBChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            ColorSwatch colorSwatch = (ColorSwatch)sender;
+            Color color = colorSwatch.Color;
+            if (e.Property == RedProperty)
+                color.R = (byte)e.NewValue;
+            else if (e.Property == GreenProperty)
+                color.G = (byte)e.NewValue;
+            else if (e.Property == BlueProperty)
+                color.B = (byte)e.NewValue;
+
+            colorSwatch.Color = color;
+        }
+
+        public static void OnColorChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+       {
+           Color newColor = (Color)e.NewValue;
+           Color oldColor = (Color)e.OldValue;
+
+           ColorSwatch colorSwatch = (ColorSwatch)sender;
+           colorSwatch.Red1 = newColor.R;
+           colorSwatch.Blue1 = newColor.B;
+           colorSwatch.Green1 = newColor.G;
+
+           RoutedPropertyChangedEventArgs<Color> args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
+           args.RoutedEvent = ColorSwatch.ColorChangedEvent;
+           colorSwatch.RaiseEvent(args);
+       }
+
         public event PropertyChangedEventHandler PropertyChanged;
         //not best idea, but might as well make array of them so i don't have to constanlty make new unsafebitmaps
         private UnsafeBitmap[] unsafeBitmaps = { new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch2), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch3) };
@@ -26,7 +104,7 @@ namespace WPF_LED_Controller.UserControls
         private int Tracker = 0;
         //list for the bitmap images
         private List<BitmapImage> _images = new List<BitmapImage>();
-        public List<BitmapImage> images
+        private List<BitmapImage> images
         { get { return _images; } }
         
         public Color CustomColor
@@ -209,6 +287,7 @@ namespace WPF_LED_Controller.UserControls
             try
             {
                 CustomColor = GetColorFromImage((int)Mouse.GetPosition(canColor).X, (int)Mouse.GetPosition(canColor).Y);
+                Color = CustomColor;
                 MovePointer();
             }
             catch
