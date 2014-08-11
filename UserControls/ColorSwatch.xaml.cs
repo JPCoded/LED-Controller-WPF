@@ -303,6 +303,7 @@ namespace WPF_LED_Controller.UserControls
                 if (CustomColor != newColor)
                 {
                     CustomColor = newColor;
+                    Color = newColor;
                     Reposition();
                 }
             }

@@ -113,7 +113,7 @@ namespace WPF_LED_Controller.UserControls
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
                 byte rbyteValue = Convert.ToByte(((TextBox)sender).Text);
                 //change red vaule of main color
-                canColor.ChangeColor(Color.FromRgb(rbyteValue, canColor.CustomColor.G, canColor.CustomColor.B));
+                canColor.ChangeColor(Color.FromRgb(rbyteValue, canColor.Green1, canColor.Blue1));
             }
             if (TextChanged != null)
             {
@@ -130,7 +130,7 @@ namespace WPF_LED_Controller.UserControls
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
                 byte gbyteValue = Convert.ToByte(((TextBox)sender).Text);
                 //change green vaule of main color
-                canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, gbyteValue, canColor.CustomColor.B));
+                canColor.ChangeColor(Color.FromRgb(canColor.Red1, gbyteValue, canColor.Blue1));
             }
            
             if (TextChanged != null)
@@ -148,7 +148,7 @@ namespace WPF_LED_Controller.UserControls
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
                 byte bbyteValue = Convert.ToByte(((TextBox)sender).Text);
                 //change blue vaule of main color
-                canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, canColor.CustomColor.G, bbyteValue));
+                canColor.ChangeColor(Color.FromRgb(canColor.Red1, canColor.Green1, bbyteValue));
             }
             if (TextChanged != null)
             { TextChanged(this, EventArgs.Empty); }
@@ -217,29 +217,9 @@ namespace WPF_LED_Controller.UserControls
         #endregion
 
         #region KeyDown
-
-        private void txtBlue_KeyDown(object sender, KeyEventArgs e)
+        private void txtRGB_KeyDown(object sender, KeyEventArgs e)
         {
             NumericValidation(e);
-            string bsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
-            byte bbyteValue = Convert.ToByte(bsValue);
-            canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, canColor.CustomColor.G, bbyteValue));
-        }
-
-        private void txtGreen_KeyDown(object sender, KeyEventArgs e)
-        {
-            NumericValidation(e);
-            string gsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
-            byte gbyteValue = Convert.ToByte(gsValue);
-            canColor.ChangeColor(Color.FromRgb(canColor.CustomColor.R, gbyteValue, canColor.CustomColor.B));
-        }
-
-        private void txtRed_KeyDown(object sender, KeyEventArgs e)
-        {
-            NumericValidation(e);
-            string rsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
-            byte rbyteValue = Convert.ToByte(rsValue);
-            canColor.ChangeColor(Color.FromRgb(rbyteValue, canColor.CustomColor.G, canColor.CustomColor.B));
         }
 
         private void txtHAll_KeyDown(object sender, KeyEventArgs e)
