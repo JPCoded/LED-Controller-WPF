@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,7 +11,7 @@ namespace WPF_LED_Controller.UserControls
     /// <summary>
     /// Interaction logic for ColorSwatch.xaml
     /// </summary>
-    public partial class ColorSwatch : UserControl, INotifyPropertyChanged
+    public partial class ColorSwatch : UserControl
     {
 
         public static DependencyProperty RedProperty;
@@ -20,39 +19,50 @@ namespace WPF_LED_Controller.UserControls
         public static DependencyProperty BlueProperty;
         public static DependencyProperty ColorProperty;
         public static readonly RoutedEvent ColorChangedEvent;
-
+       //not best idea, but might as well make array of them so i don't have to constanlty make new unsafebitmaps
+        private UnsafeBitmap[] unsafeBitmaps = { new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch2), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch3) };
+        //unsafe bitmap used for functions to find color
+        private UnsafeBitmap myUnsafeBitmap;
+        //private colors
+        private Color _hoverColor = Colors.Transparent;
+        //used to track current bitmap
+        private int Tracker = 0;
+        //list for the bitmap images
+        private List<BitmapImage> _images = new List<BitmapImage>();
+        private List<BitmapImage> images
+        { get { return _images; } }
         static ColorSwatch()
         {
             ColorProperty = DependencyProperty.Register("Color", typeof(Color), typeof(ColorSwatch), new FrameworkPropertyMetadata(Colors.Black, new PropertyChangedCallback(OnColorChanged)));
 
-            RedProperty = DependencyProperty.Register("Red1", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
+            RedProperty = DependencyProperty.Register("Red", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
 
-           GreenProperty = DependencyProperty.Register("Green1", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
+           GreenProperty = DependencyProperty.Register("Green", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
 
-            BlueProperty = DependencyProperty.Register("Blue1", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
+            BlueProperty = DependencyProperty.Register("Blue", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
 
             ColorChangedEvent = EventManager.RegisterRoutedEvent("ColorChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<Color>), typeof(ColorSwatch));
 
         }
-        public Color Color
+        public Color SavedColor
         {
             get { return (Color)GetValue(ColorProperty); }
             set { SetValue(ColorProperty, value); }
         }
         
-        public byte Red1
+        public byte Red
         {
             get { return (byte)GetValue(RedProperty); }
             set { SetValue(RedProperty, value); }
         }
 
-        public byte Green1       
+        public byte Green     
         {
             get { return (byte)GetValue(GreenProperty); }
             set { SetValue(GreenProperty, value); }
         }
 
-        public byte Blue1
+        public byte Blue
         {
             get { return (byte)GetValue(BlueProperty); }
             set { SetValue(BlueProperty, value); }
@@ -66,7 +76,7 @@ namespace WPF_LED_Controller.UserControls
        public static void OnColorRGBChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             ColorSwatch colorSwatch = (ColorSwatch)sender;
-            Color color = colorSwatch.Color;
+            Color color = colorSwatch.SavedColor;
             if (e.Property == RedProperty)
                 color.R = (byte)e.NewValue;
             else if (e.Property == GreenProperty)
@@ -74,7 +84,8 @@ namespace WPF_LED_Controller.UserControls
             else if (e.Property == BlueProperty)
                 color.B = (byte)e.NewValue;
 
-            colorSwatch.Color = color;
+            colorSwatch.SavedColor = color;
+           
         }
 
         public static void OnColorChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -83,43 +94,16 @@ namespace WPF_LED_Controller.UserControls
            Color oldColor = (Color)e.OldValue;
 
            ColorSwatch colorSwatch = (ColorSwatch)sender;
-           colorSwatch.Red1 = newColor.R;
-           colorSwatch.Blue1 = newColor.B;
-           colorSwatch.Green1 = newColor.G;
+           colorSwatch.Red = newColor.R;
+           colorSwatch.Blue = newColor.B;
+           colorSwatch.Green = newColor.G;
 
            RoutedPropertyChangedEventArgs<Color> args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
            args.RoutedEvent = ColorSwatch.ColorChangedEvent;
            colorSwatch.RaiseEvent(args);
+           colorSwatch.Reposition();
+           
        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        //not best idea, but might as well make array of them so i don't have to constanlty make new unsafebitmaps
-        private UnsafeBitmap[] unsafeBitmaps = { new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch2), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch3) };
-        //unsafe bitmap used for functions to find color
-        private UnsafeBitmap myUnsafeBitmap;
-        //private colors
-        private Color _customColor = Colors.Transparent;
-        private Color _hoverColor = Colors.Transparent;
-        //used to track current bitmap
-        private int Tracker = 0;
-        //list for the bitmap images
-        private List<BitmapImage> _images = new List<BitmapImage>();
-        private List<BitmapImage> images
-        { get { return _images; } }
-        
-        public Color CustomColor
-        {
-            get
-            { return _customColor; }
-             set
-            {
-                if (_customColor != value)
-                {
-                    _customColor = value;
-                    NotifyPropertyChanged("Custom");
-                }
-            }
-        }
         
         public Color HoverColor
         {
@@ -130,32 +114,8 @@ namespace WPF_LED_Controller.UserControls
                 if (_hoverColor != value)
                 {
                     _hoverColor = value;
-                    NotifyPropertyChanged("Hover");
                 }
             }
-        }
-
-        //can't get converters to work right, so just making Red, Green, and Blue Functions to make it easier to convert colors to string and hex 
-        public string Red(bool Hex = false)
-        {
-            if(Hex)
-            { return CustomColor.R.ToString("X").PadLeft(2, '0'); }
-            else
-            { return CustomColor.R.ToString(); }
-        }
-        public string Green(bool Hex = false)
-        {
-            if (Hex)
-            { return CustomColor.G.ToString("X").PadLeft(2, '0'); }
-            else
-            { return CustomColor.G.ToString(); }
-        }
-        public string Blue(bool Hex = false)
-        {
-            if (Hex)
-            { return CustomColor.B.ToString("X").PadLeft(2, '0'); }
-            else
-            { return CustomColor.B.ToString(); }
         }
 
         public void doTrack(char pm)
@@ -173,7 +133,6 @@ namespace WPF_LED_Controller.UserControls
                     btnNext.IsEnabled = true;
                     btnPrevious.IsEnabled = false;
                 }
-            
             }
             else if(pm == '+')
             {
@@ -181,7 +140,6 @@ namespace WPF_LED_Controller.UserControls
                 {
                     Tracker++;
                     btnNext.IsEnabled = (Tracker == 2) ? false : true;
-
                     btnPrevious.IsEnabled = true;
                 }
                 else
@@ -196,13 +154,7 @@ namespace WPF_LED_Controller.UserControls
             Reposition();
             lblTrack.Content = "[" + Tracker.ToString() + "/2]";
         }
-         private void NotifyPropertyChanged(String propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+   
         public ColorSwatch()
         {
             InitializeComponent();
@@ -263,7 +215,7 @@ namespace WPF_LED_Controller.UserControls
                         PixelData pixel = myUnsafeBitmap.GetPixel(i, j);
 
                         Color Colorfromimagepoint = Color.FromRgb(pixel.red, pixel.green, pixel.blue);
-                        if (SimmilarColor(Colorfromimagepoint, _customColor))
+                        if (SimmilarColor(Colorfromimagepoint, SavedColor))
                         {
 
                             MovePointerDuringReposition(i, j);
@@ -286,8 +238,7 @@ namespace WPF_LED_Controller.UserControls
         {
             try
             {
-                CustomColor = GetColorFromImage((int)Mouse.GetPosition(canColor).X, (int)Mouse.GetPosition(canColor).Y);
-                Color = CustomColor;
+                SavedColor = GetColorFromImage((int)Mouse.GetPosition(canColor).X, (int)Mouse.GetPosition(canColor).Y);
                 MovePointer();
             }
             catch
@@ -300,10 +251,9 @@ namespace WPF_LED_Controller.UserControls
         {
             try
             {
-                if (CustomColor != newColor)
+                if (SavedColor != newColor)
                 {
-                    CustomColor = newColor;
-                    Color = newColor;
+                    SavedColor = newColor;
                     Reposition();
                 }
             }

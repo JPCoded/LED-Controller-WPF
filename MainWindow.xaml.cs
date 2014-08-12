@@ -27,18 +27,18 @@ namespace WPF_LED_Controller
 
         void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
         {
-           pwlSaved.setBackground(cpColor.canColor.CustomColor);
+           pwlSaved.setBackground(cpColor.canColor.SavedColor);
         }
 
         void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
             
-             pwlSaved.setBackground(cpColor.canColor.CustomColor);
+             pwlSaved.setBackground(cpColor.canColor.SavedColor);
         }
 
         void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
-            pwlSaved.setBackground(cpColor.canColor.CustomColor);
+            pwlSaved.setBackground(cpColor.canColor.SavedColor);
         }
 
         private void miOpen_Click(object sender, RoutedEventArgs e)
@@ -69,7 +69,7 @@ namespace WPF_LED_Controller
                    ArduinoSerial.PortName = plPorts.getPort;
                    
                    ArduinoSerial.Open();
-                   byte[] colorBytes = { cpColor.canColor.CustomColor.R, cpColor.canColor.CustomColor.G, cpColor.canColor.CustomColor.B, 0x0A };
+                   byte[] colorBytes = { cpColor.canColor.Red, cpColor.canColor.Green, cpColor.canColor.Blue, 0x0A };
                    try
                    {
                        ArduinoSerial.Write(colorBytes, 0, 3);
