@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -30,7 +31,8 @@ namespace WPF_LED_Controller.UserControls
                 //txtGHex.Text = canColor.Green(true);
                // txtBlue.Text = canColor.Blue();
                 //txtBHex.Text = canColor.Blue(true);
-                txtHAll.Text = String.Format("#{0}{1}{2}", txtRHex.Text, txtGHex.Text, txtBHex.Text); 
+              //  txtHAll.Text = String.Format("#{0}{1}{2}", txtRHex.Text, txtGHex.Text, txtBHex.Text);
+              //  canColor.Reposition();
            
         }
 
@@ -148,28 +150,6 @@ namespace WPF_LED_Controller.UserControls
             if (TextChanged != null)
             { TextChanged(this, EventArgs.Empty); }
         }
-        private void txtGHex_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text,"Hex");
-
-            if (TextChanged != null)
-            { TextChanged(this, EventArgs.Empty); }
-        }
-        private void txtRHex_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text, "Hex");
-
-            if (TextChanged != null)
-            { TextChanged(this, EventArgs.Empty); }
-        }
-
-        private void txtBHex_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text, "Hex");
-
-            if (TextChanged != null)
-            { TextChanged(this, EventArgs.Empty); }
-        }
 
         #endregion
 
@@ -190,28 +170,10 @@ namespace WPF_LED_Controller.UserControls
                 { ((TextBox)sender).Text = "255"; }
                 int oldValue = Convert.ToInt32(((TextBox)sender).Text);
                 int newValue = (oldValue - 1 < 0) ? 0 : oldValue - 1;
-
                 ((TextBox)sender).Text = newValue.ToString();
             }
         }
 
-        private void txtHex_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Up)
-            {
-                if (string.IsNullOrEmpty(((TextBox)sender).Text))
-                { ((TextBox)sender).Text = "0"; }
-                int newValue = Int32.Parse(((TextBox)sender).Text, System.Globalization.NumberStyles.HexNumber) + 1;
-                ((TextBox)sender).Text = newValue.ToString("X").PadLeft(2, '0');
-            }
-            else if (e.Key == Key.Down)
-            {
-                if (string.IsNullOrEmpty(((TextBox)sender).Text))
-                { ((TextBox)sender).Text = "0"; }
-                int newValue = Int32.Parse(((TextBox)sender).Text,System.Globalization.NumberStyles.HexNumber) - 1;
-                ((TextBox)sender).Text = newValue.ToString("X").PadLeft(2, '0');
-            }
-        }
         #endregion
 
         #region KeyDown
@@ -244,29 +206,8 @@ namespace WPF_LED_Controller.UserControls
             catch 
             { }
         }
-
-        private void txtRHex_KeyDown(object sender, KeyEventArgs e)
-        {
-            HexKeyValidation(e);
-            string rsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
-        }
-
-        private void txtGHex_KeyDown(object sender, KeyEventArgs e)
-        {
-            HexKeyValidation(e);
-            string gsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
-        }
-
-        private void txtBHex_KeyDown(object sender, KeyEventArgs e)
-        {
-            HexKeyValidation(e);
-            string bsValue = string.IsNullOrEmpty(((TextBox)sender).Text) ? "0" : ((TextBox)sender).Text;
-
-        }
         #endregion
 
-        #endregion
-
-      
+        #endregion     
     }
 }

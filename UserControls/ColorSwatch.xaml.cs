@@ -201,7 +201,7 @@ namespace WPF_LED_Controller.UserControls
             canColor.InvalidateVisual();
         }
 
-        private void Reposition()
+        public void Reposition()
         {
             myUnsafeBitmap.LockBitmap();
 
@@ -259,7 +259,7 @@ namespace WPF_LED_Controller.UserControls
             }
             catch
             {
-                //probably not needed but better safe than sorry
+                return;
             }
         }
         #endregion
