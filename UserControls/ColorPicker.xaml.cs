@@ -14,46 +14,14 @@ namespace WPF_LED_Controller.UserControls
     {
         public event EventHandler<EventArgs> TextChanged;
 
-        /// <summary>
-        /// Color that the mouse is current hovered over.
-        /// </summary>
-        public Color HoverColor { get; private set; }
         public ColorPicker()
         {
             InitializeComponent();
-            canColor.ColorChanged += canColor_ColorChanged;
-        }
-
-        void canColor_ColorChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<Color> e)
-        { // txtRed.Text = canColor.Red();
-               // txtRHex.Text = canColor.Red(true);
-                //txtGreen.Text = canColor.Green();
-                //txtGHex.Text = canColor.Green(true);
-               // txtBlue.Text = canColor.Blue();
-                //txtBHex.Text = canColor.Blue(true);
-              //  txtHAll.Text = String.Format("#{0}{1}{2}", txtRHex.Text, txtGHex.Text, txtBHex.Text);
-              //  canColor.Reposition();
-           
         }
 
         #region Validation
-        /// <summary>
-        /// Check to see if the user inputed keys 0-9, including the numpad keys, but nothing else
-        /// </summary>
-        /// <param name="e">KeyEventArgs</param>
-        private void RGBKeyValidation(KeyEventArgs e)
-        {
-            //not the most elegant way, but was having issues with the +-./*` keys sneaking in the usual way so took different route
-            if (e.Key == Key.D || e.Key == Key.N || e.Key == Key.U || e.Key == Key.M || e.Key == Key.P || e.Key == Key.A)
-            {
-                e.Handled = true;
-            }
-            else
-            {
-                //wanted to have the ability to use numpad too.
-                e.Handled = !("D1D2D3D4D5D6D7D8D9D0NumPad0NumPad1NumPad2NumPad3NumPad4NumPad5NumPad6NumPad7NumPad8NumPad9".Contains(e.Key.ToString()));
-            }
-        }
+      
+       
 
         private void HexKeyValidation(KeyEventArgs e)
         {
@@ -66,34 +34,18 @@ namespace WPF_LED_Controller.UserControls
                 e.Handled = true;
             }
         }
-        private string OverUnderValidation(string ValueToCheck, string valType = "Int")
+        private string OverUnderValidation(string ValueToCheck)
         {
             if (!string.IsNullOrEmpty(ValueToCheck))
             {
-                if (valType == "Int")
-                {
-                    int checkVal = Int32.Parse(ValueToCheck);
-                    if (checkVal >= 255)
-                    { return "255"; }
-                    else if (checkVal < 0)
-                    { return "0"; }
-                }
-                else if(valType == "Hex")
-                {
-                    int checkVal = Int32.Parse(ValueToCheck, System.Globalization.NumberStyles.HexNumber);
-                    if (checkVal >= 255)
-                    { return (255).ToString("X").PadLeft(2, '0').ToUpper(); }
-                    else if (checkVal < 0)
-                    { return (0).ToString("X").PadLeft(2, '0').ToUpper(); }
-                }
+                int checkVal = Int32.Parse(ValueToCheck);
+                if (checkVal >= 255)
+                { return "255"; }
+                else if (checkVal < 0)
+                { return "0"; }
             }
             else
-            {
-                if(valType == "Int")
-                { return "0";}
-                else
-                { return (0).ToString("X").PadLeft(2, '0').ToUpper(); }
-            }
+            { return "0"; }
             return ValueToCheck.ToUpper();
         }
         #endregion
@@ -154,6 +106,11 @@ namespace WPF_LED_Controller.UserControls
         #endregion
 
         #region PreviewKeyDown
+        /// <summary>
+        /// Checks whether the Up or Down key has been pressed, or if spacebar pressed (causes error later in code if not caught)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up)
@@ -172,20 +129,15 @@ namespace WPF_LED_Controller.UserControls
                 int newValue = (oldValue - 1 < 0) ? 0 : oldValue - 1;
                 ((TextBox)sender).Text = newValue.ToString();
             }
+            else if(e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || (e.Key >= Key.D0 && e.Key <= Key.D9))
+            { e.Handled = false; }
+            else
+            { e.Handled = true; }
         }
 
         #endregion
 
         #region KeyDown
-        /// <summary>
-        /// KeyDown for all the RGB textboxes
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtRGB_KeyDown(object sender, KeyEventArgs e)
-        {
-            RGBKeyValidation(e);
-        }
 
         /// <summary>
         /// KeyDown for the AllHex textbox

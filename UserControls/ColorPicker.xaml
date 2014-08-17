@@ -21,7 +21,7 @@
             <StackPanel Orientation="Horizontal" x:Name="Outer">
                 <StackPanel Orientation="Vertical" x:Name="Red" >
                     <Label Content="R" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="txtRed"  HorizontalAlignment="Center" Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Red, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="txtRGB_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                    <TextBox x:Name="txtRed"  HorizontalAlignment="Center" Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Red, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
                     <Slider Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Width="22" Height="100" Maximum="255" Value="{Binding ElementName=canColor, Path=Red}">
                         <Slider.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
@@ -34,7 +34,7 @@
 
                 <StackPanel Orientation="Vertical" x:Name="Green">
                     <Label Content="G" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="txtGreen" HorizontalAlignment="Center"  Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Green, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="txtRGB_KeyDown" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                    <TextBox x:Name="txtGreen" HorizontalAlignment="Center"  Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Green, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
                     <Slider Orientation="Vertical" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="22" Height="100" Maximum="255" Value="{Binding ElementName=canColor, Path=Green}">
                         <Slider.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
@@ -47,7 +47,7 @@
 
                 <StackPanel Orientation="Vertical" x:Name="Blue" >
                     <Label Content="B" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="txtBlue" HorizontalAlignment="Center"  Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Blue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="txtRGB_KeyDown" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                    <TextBox x:Name="txtBlue" HorizontalAlignment="Center"  Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Blue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
                     <Slider Orientation="Vertical" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="22" Height="100" Maximum="255" Value="{Binding ElementName=canColor, Path=Blue}">
                         <Slider.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
