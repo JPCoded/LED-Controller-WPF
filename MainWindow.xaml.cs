@@ -15,30 +15,10 @@ namespace WPF_LED_Controller
         public MainWindow()
         {
             InitializeComponent();
-            cpColor.txtRed.TextChanged += txtRed_TextChanged;
-            cpColor.txtGreen.TextChanged += txtGreen_TextChanged;
-            cpColor.txtBlue.TextChanged += txtBlue_TextChanged;
-            pwlSaved.SetTitle = "Saved";
-            pwlHover.SetTitle = "Hover";
+
             ArduinoSerial.BaudRate = 115200;
             plPorts.Refresh();
            
-        }
-
-        void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           pwlSaved.setBackground(cpColor.canColor.SavedColor);
-        }
-
-        void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-             pwlSaved.setBackground(cpColor.canColor.SavedColor);
-        }
-
-        void txtRed_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            pwlSaved.setBackground(cpColor.canColor.SavedColor);
         }
 
         private void miOpen_Click(object sender, RoutedEventArgs e)
@@ -49,11 +29,6 @@ namespace WPF_LED_Controller
         private void miSave_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void cpColor_MouseMove(object sender, MouseEventArgs e)
-        {
-            pwlHover.setBackground(cpColor.canColor.HoverColor);
         }
 
         private void btnSet_Click(object sender, RoutedEventArgs e)

@@ -6,67 +6,85 @@
              xmlns:local="clr-namespace:WPF_LED_Controller.UserControls"  x:Name="cpcColor" x:Class="WPF_LED_Controller.UserControls.ColorPicker"
             
              
-             mc:Ignorable="d" Width="301.403" Height="223">
+             mc:Ignorable="d" Width="301.403" Height="285.687">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/BorderedTextBox.xaml"/>
+                <ResourceDictionary Source="/Dictionaries/PreviewLabelDict.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
     </UserControl.Resources>
-    <Grid Margin="0,0,0,0">
+    <Grid>
         <StackPanel HorizontalAlignment="Left" Margin="205,0,0,0" VerticalAlignment="Top" Height="184">
-            <StackPanel Height="25" Orientation="Horizontal" x:Name="spBlue">
-               <Separator Width="7" Background="{x:Null}"/>
-                <Label Content="R" Foreground="White"/>
-                <Separator Width="13" Background="{x:Null}"/>
-                <Label Content="G" Foreground="White"/>
-                <Separator Width="13" Background="{x:Null}"/>
-                <Label Content="B" Foreground="White"/>
-                <Separator Width="2" Background="{x:Null}"/>
-            </StackPanel>
-            <StackPanel Height="25" Orientation="Horizontal">
-       
-                <TextBox x:Name="txtRed"  Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Red, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="txtRGB_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
-                <TextBox x:Name="txtGreen" Style="{StaticResource BorderedText}" KeyDown="txtRGB_KeyDown" Text="{Binding ElementName=canColor, Path=Green,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Width="30" Height="23"/>
-                <TextBox x:Name="txtBlue" Style="{StaticResource BorderedText}" KeyDown="txtRGB_KeyDown" Text="{Binding ElementName=canColor, Path=Blue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Width="30" Height="23"/>
+            <StackPanel Orientation="Horizontal" x:Name="Outer">
+                <StackPanel Orientation="Vertical" x:Name="Red" >
+                    <Label Content="R" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtRed"  HorizontalAlignment="Center" Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Red, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="txtRGB_KeyDown" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                    <Slider Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Width="22" Height="100" Maximum="255" Value="{Binding ElementName=canColor, Path=Red}">
+                        <Slider.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
+                                <GradientStop Color="Red" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Slider.Background>
+                    </Slider>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" x:Name="Green">
+                    <Label Content="G" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtGreen" HorizontalAlignment="Center"  Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Green, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="txtRGB_KeyDown" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                    <Slider Orientation="Vertical" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="22" Height="100" Maximum="255" Value="{Binding ElementName=canColor, Path=Green}">
+                        <Slider.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
+                                <GradientStop Color="Green" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Slider.Background>
+                    </Slider>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" x:Name="Blue" >
+                    <Label Content="B" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtBlue" HorizontalAlignment="Center"  Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Blue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="txtRGB_KeyDown" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                    <Slider Orientation="Vertical" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="22" Height="100" Maximum="255" Value="{Binding ElementName=canColor, Path=Blue}">
+                        <Slider.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
+                                <GradientStop Color="Blue" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Slider.Background>
+                    </Slider>
+                </StackPanel>
             </StackPanel>
 
-            <StackPanel Height="100" Orientation="Horizontal" Width="104">
-                <Slider Orientation="Vertical" HorizontalAlignment="Left" Margin="5,2,0,0" VerticalAlignment="Top" Width="22" Height="100" Maximum="255" Value="{Binding ElementName=canColor, Path=Red}">
-                    <Slider.Background>
-                        <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
-                            <GradientStop Color="Red" Offset="0"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Slider.Background>
-                </Slider>
-                <Slider Orientation="Vertical" HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="22" Height="100" Maximum="255" Value="{Binding ElementName=canColor, Path=Green}">
-                    <Slider.Background>
-                        <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
-                            <GradientStop Color="Green" Offset="0"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Slider.Background>
-                </Slider>
-                <Slider Orientation="Vertical" HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="22" Height="100" Maximum="255" Value="{Binding ElementName=canColor, Path=Blue}">
-                    <Slider.Background>
-                        <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
-                            <GradientStop Color="Blue" Offset="0"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Slider.Background>
-                </Slider>
-            </StackPanel>
+            <StackPanel Height="10"/>
 
-            <StackPanel Height="10"></StackPanel>
             <StackPanel Height="25" Orientation="Horizontal">
                 <Label Content="H" Foreground="White"/>
-                <TextBox x:Name="txtHAll" Style="{StaticResource BorderedText}" KeyDown="txtHAll_KeyDown" Width="60" Height="23" />
+                <TextBox x:Name="txtHAll" Style="{StaticResource BorderedText}" MaxLength="9" Text="{Binding ElementName=canColor, Path=SavedColor, Mode=TwoWay}" KeyDown="txtHAll_KeyDown" Width="70" Height="23" Margin="0,1" />
             </StackPanel>
         </StackPanel>
         <local:ColorSwatch x:Name="canColor" HorizontalAlignment="Left" Height="223" VerticalAlignment="Top" Width="201"/>
+        <StackPanel Style="{StaticResource SavedHoverPanel}" Margin="0,228,0,0">
+            <Label x:Name="lblSaved" Style="{StaticResource Title}" Content="Saved"/>
+            <Rectangle x:Name="recSaved" Style="{StaticResource Rect}" >
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding ElementName=canColor, Path=SavedColor}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+
+        </StackPanel>
+        <StackPanel Style="{StaticResource SavedHoverPanel}" Margin="111,228,0,0">
+            <Label x:Name="lblHovered" Style="{StaticResource Title}" Content="Hover"/>
+            <Rectangle x:Name="recHover" Style="{StaticResource Rect}">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding ElementName=canColor, Path=HoverColor}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+
+        </StackPanel>
 
     </Grid>
 </UserControl>

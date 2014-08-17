@@ -76,9 +76,6 @@
     <Compile Include="UserControls\PortList.xaml.cs">
       <DependentUpon>PortList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PreviewLabel.xaml.cs">
-      <DependentUpon>PreviewLabel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UnsafeBitmap.cs" />
     <Page Include="Resources\BorderedTextBox.xaml">
       <SubType>Designer</SubType>
@@ -110,6 +107,7 @@
     </Compile>
     <Compile Include="UserControls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
+      <Generator>MSBuild:Compile</Generator>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -122,10 +120,6 @@
     <Page Include="UserControls\PortList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\PreviewLabel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\GlassButtons.xaml">
       <SubType>Designer</SubType>

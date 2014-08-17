@@ -17,8 +17,10 @@ namespace WPF_LED_Controller.UserControls
         public static DependencyProperty RedProperty;
         public static DependencyProperty GreenProperty;
         public static DependencyProperty BlueProperty;
-        public static DependencyProperty ColorProperty;
+        public static DependencyProperty SavedColorProperty;
+        public static DependencyProperty HoverColorProperty;
         public static readonly RoutedEvent ColorChangedEvent;
+        public static readonly RoutedEvent HoverChangedEvent;
        //not best idea, but might as well make array of them so i don't have to constanlty make new unsafebitmaps
         private UnsafeBitmap[] unsafeBitmaps = { new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch2), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch3) };
         //unsafe bitmap used for functions to find color
@@ -32,9 +34,11 @@ namespace WPF_LED_Controller.UserControls
         private List<BitmapImage> images
         { get { return _images; } }
         static ColorSwatch()
-        {
-            ColorProperty = DependencyProperty.Register("Color", typeof(Color), typeof(ColorSwatch), new FrameworkPropertyMetadata(Colors.Black, new PropertyChangedCallback(OnColorChanged)));
-
+        { 
+            SavedColorProperty = DependencyProperty.Register("SavedColor", typeof(Color), typeof(ColorSwatch), new FrameworkPropertyMetadata(Colors.Black, new PropertyChangedCallback(OnColorChanged)));
+           
+            HoverColorProperty = DependencyProperty.Register("HoverColor", typeof(Color), typeof(ColorSwatch), new FrameworkPropertyMetadata(Colors.Black, new PropertyChangedCallback(OnHoverChanged)));
+          
             RedProperty = DependencyProperty.Register("Red", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
 
            GreenProperty = DependencyProperty.Register("Green", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
@@ -42,12 +46,20 @@ namespace WPF_LED_Controller.UserControls
             BlueProperty = DependencyProperty.Register("Blue", typeof(byte), typeof(ColorSwatch), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
 
             ColorChangedEvent = EventManager.RegisterRoutedEvent("ColorChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<Color>), typeof(ColorSwatch));
+           
+            HoverChangedEvent = EventManager.RegisterRoutedEvent("HoverChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<Color>), typeof(ColorSwatch));
 
         }
         public Color SavedColor
         {
-            get { return (Color)GetValue(ColorProperty); }
-            set { SetValue(ColorProperty, value); }
+            get { return (Color)GetValue(SavedColorProperty); }
+            set { SetValue(SavedColorProperty, value); }
+        }
+
+        public Color HoverColor
+        {
+            get { return (Color)GetValue(HoverColorProperty); }
+            set { SetValue(HoverColorProperty, value); }
         }
         
         public byte Red
@@ -73,6 +85,12 @@ namespace WPF_LED_Controller.UserControls
             add { AddHandler(ColorChangedEvent, value); }
             remove { RemoveHandler(ColorChangedEvent, value); }
         }
+
+        public event RoutedPropertyChangedEventHandler<Color> HoverChanged
+        {
+            add { AddHandler(HoverChangedEvent, value); }
+            remove { RemoveHandler(HoverChangedEvent, value); }
+        }
        public static void OnColorRGBChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             ColorSwatch colorSwatch = (ColorSwatch)sender;
@@ -83,11 +101,19 @@ namespace WPF_LED_Controller.UserControls
                 color.G = (byte)e.NewValue;
             else if (e.Property == BlueProperty)
                 color.B = (byte)e.NewValue;
-
-            colorSwatch.SavedColor = color;
-           
+            colorSwatch.SavedColor = color;    
         }
 
+        public static void OnHoverChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+       {
+           Color newColor = (Color)e.NewValue;
+           Color oldColor = (Color)e.OldValue;
+           ColorSwatch hoverSwatch = (ColorSwatch)sender;
+           hoverSwatch.HoverColor = newColor;
+           RoutedPropertyChangedEventArgs<Color> args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
+           args.RoutedEvent = ColorSwatch.HoverChangedEvent;
+                hoverSwatch.RaiseEvent(args);
+       }
         public static void OnColorChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
        {
            Color newColor = (Color)e.NewValue;
@@ -102,22 +128,8 @@ namespace WPF_LED_Controller.UserControls
            args.RoutedEvent = ColorSwatch.ColorChangedEvent;
            colorSwatch.RaiseEvent(args);
            colorSwatch.Reposition();
-           
        }
         
-        public Color HoverColor
-        {
-            get
-            { return _hoverColor; }
-            private set
-            {
-                if (_hoverColor != value)
-                {
-                    _hoverColor = value;
-                }
-            }
-        }
-
         public void doTrack(char pm)
         {
             if(pm == '-')

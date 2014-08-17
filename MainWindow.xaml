@@ -8,6 +8,7 @@
         Height="381"
         ResizeMode="CanMinimize"
         SizeToContent="WidthAndHeight">
+
     <Grid Margin="0,0,0,0" UseLayoutRounding="True">
 
         <Grid.Background>
@@ -48,25 +49,10 @@
                                VerticalAlignment="Top" />
         <UserControls:ColorPicker x:Name="cpColor"
                                   Width="299"
-                                  Height="225"
+                                  Height="287"
                                   Margin="0,33,0,0"
                                   HorizontalAlignment="Left"
-                                  VerticalAlignment="Top"
-                                  MouseMove="cpColor_MouseMove" />
-
-
-        <UserControls:PreviewLabel x:Name="pwlSaved"
-                                   Width="91"
-                                   Height="57"
-                                   Margin="2,263,0,0"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Top" />
-        <UserControls:PreviewLabel x:Name="pwlHover"
-                                   Width="91"
-                                   Height="57"
-                                   Margin="112,263,0,0"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Top" />
+                                  VerticalAlignment="Top" />
 
 
 
