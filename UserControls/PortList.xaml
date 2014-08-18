@@ -3,17 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="75" DataContext="{Binding RelativeSource={RelativeSource Self}}" Height="99">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/GlassButtons.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
+             mc:Ignorable="d" d:DesignWidth="75" DataContext="{Binding RelativeSource={RelativeSource Self}}" Height="73">
     <Grid>
 
-        <ListView x:Name="lsPorts" HorizontalAlignment="Left" ItemsSource="{Binding MyPorts}" Height="75" Margin="0,24,0,0" VerticalAlignment="Top" Width="75"
+        <ListView x:Name="lsPorts" HorizontalAlignment="Left" ItemsSource="{Binding MyPorts}" Height="50" Margin="0,24,0,0" VerticalAlignment="Top" Width="75"
                   >
         </ListView>
 

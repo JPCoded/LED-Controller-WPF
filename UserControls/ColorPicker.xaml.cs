@@ -150,9 +150,9 @@ namespace WPF_LED_Controller.UserControls
             try
             {
                 string strHex = ((TextBox)sender).Text;
-                if (strHex.Length == 7 && strHex[0] == '#')
+                if ((strHex.Length == 7 || strHex.Length == 9) && strHex[0] == '#')
                 {
-                    canColor.SavedColor = (Color)ColorConverter.ConvertFromString(txtHAll.Text); 
+                    canColor.SavedColor = (Color)ColorConverter.ConvertFromString(strHex); 
                 }
             }
             catch 
