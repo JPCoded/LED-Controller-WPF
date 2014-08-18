@@ -1,6 +1,5 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+
 using System.IO.Ports;
 
 namespace WPF_LED_Controller
@@ -17,8 +16,7 @@ namespace WPF_LED_Controller
             InitializeComponent();
 
             ArduinoSerial.BaudRate = 115200;
-            plPorts.Refresh();
-           
+            plPorts.Refresh(); 
         }
 
         private void miOpen_Click(object sender, RoutedEventArgs e)
@@ -33,7 +31,7 @@ namespace WPF_LED_Controller
 
         private void btnSet_Click(object sender, RoutedEventArgs e)
         {
-           if(!string.IsNullOrEmpty(plPorts.getPort))
+           if(!string.IsNullOrEmpty(plPorts.GetPort))
            {
                //try and catch any issues that pop up when using the arduino.
                try
@@ -41,7 +39,7 @@ namespace WPF_LED_Controller
                    if (ArduinoSerial.IsOpen)
                    { ArduinoSerial.Close(); }
                   
-                   ArduinoSerial.PortName = plPorts.getPort;
+                   ArduinoSerial.PortName = plPorts.GetPort;
                    
                    ArduinoSerial.Open();
                    byte[] colorBytes = { cpColor.canColor.Red, cpColor.canColor.Green, cpColor.canColor.Blue, 0x0A };
@@ -56,7 +54,7 @@ namespace WPF_LED_Controller
                }
                catch (System.IO.IOException)
                {
-                   MessageBox.Show("Error connecting to port " + plPorts.getPort + ". Make sure the Aruduino is connected or correct port selected.", "IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                   MessageBox.Show("Error connecting to port " + plPorts.GetPort + ". Make sure the Aruduino is connected or correct port selected.", "IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
                }
                catch(System.UnauthorizedAccessException)
                {

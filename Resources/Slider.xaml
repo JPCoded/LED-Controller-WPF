@@ -33,17 +33,17 @@
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="false" />
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Height" Value="5" />
+        <Setter Property="Height" Value="7" />
         <Setter Property="Width" Value="20" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
                     <Rectangle Name="Ellipse"
-                             Fill="Gray"
-                             Stroke="Black"
+                             Fill="Silver"
+                             Stroke="Gray"
                              StrokeThickness="1" 
-                             
-                               RadiusY="30" />
+                               RadiusX="5"
+                               RadiusY="5"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Ellipse" Property="Fill" Value="Orange" />

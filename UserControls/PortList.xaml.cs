@@ -18,14 +18,13 @@ namespace WPF_LED_Controller.UserControls
             //needed because otherwise the output of text into listview isn't correct.
             public override string ToString()
             {
-                return this.Name;
+                return Name;
             }
         }
-        public string getPort
+        public string GetPort
         {get {
-            string portname = string.Empty;
-            portname = (lsPorts.SelectedValue == null)? string.Empty : lsPorts.SelectedValue.ToString();
-            return portname;
+            
+            return (lsPorts.SelectedValue == null)? string.Empty : lsPorts.SelectedValue.ToString();
         } 
         }
 

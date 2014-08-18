@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WPF_LED_Controller.UserControls"  x:Name="cpcColor" x:Class="WPF_LED_Controller.UserControls.ColorPicker"
+             xmlns:local="clr-namespace:WPF_LED_Controller.UserControls" 
+             x:Name="cpcColor" 
+             x:Class="WPF_LED_Controller.UserControls.ColorPicker"
              mc:Ignorable="d" Width="301.403" Height="285.687">
     <Grid>
         <StackPanel HorizontalAlignment="Left" Margin="205,0,0,0" VerticalAlignment="Top" Height="184">

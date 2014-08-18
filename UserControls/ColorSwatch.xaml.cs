@@ -22,9 +22,9 @@ namespace WPF_LED_Controller.UserControls
         public static readonly RoutedEvent ColorChangedEvent;
         public static readonly RoutedEvent HoverChangedEvent;
        //not best idea, but might as well make array of them so i don't have to constanlty make new unsafebitmaps
-        private UnsafeBitmap[] unsafeBitmaps = { new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch2), new UnsafeBitmap(WPF_LED_Controller.Properties.Resources.ColorSwatch3) };
+        private readonly UnsafeBitmap[] _unsafeBitmaps = { new UnsafeBitmap(Properties.Resources.ColorSwatch), new UnsafeBitmap(Properties.Resources.ColorSwatch2), new UnsafeBitmap(Properties.Resources.ColorSwatch3) };
         //unsafe bitmap used for functions to find color
-        private UnsafeBitmap myUnsafeBitmap;
+        private UnsafeBitmap _myUnsafeBitmap;
         //private colors
         private Color _hoverColor = Colors.Transparent;
         //used to track current bitmap
@@ -162,7 +162,7 @@ namespace WPF_LED_Controller.UserControls
             }
 
             imgColor.Source = images[Tracker];
-            myUnsafeBitmap = unsafeBitmaps[Tracker];
+            _myUnsafeBitmap = _unsafeBitmaps[Tracker];
             Reposition();
             lblTrack.Content = "[" + Tracker.ToString() + "/2]";
         }
@@ -176,32 +176,32 @@ namespace WPF_LED_Controller.UserControls
             //set background.
             imgColor.Source = images[Tracker];
             //set unsafebitmap
-            myUnsafeBitmap = unsafeBitmaps[0];
+            _myUnsafeBitmap = _unsafeBitmaps[0];
             lblTrack.Content = "[" + Tracker.ToString() + "/2]";
         }
 
         #region Bitmap functions
-        private bool SimmilarColor(Color pointColor, Color selectedColor)
+        private static bool SimmilarColor(Color pointColor, Color selectedColor)
         {
             int diff = Math.Abs(pointColor.R - selectedColor.R) + Math.Abs(pointColor.G - selectedColor.G) + Math.Abs(pointColor.B - selectedColor.B);
             if (diff < 20) return true;
-            else
+            
                 return false;
         }
 
         private Color GetColorFromImage(int i, int j)
         {
-            myUnsafeBitmap.LockBitmap();
-            PixelData pixel = myUnsafeBitmap.GetPixel(i, j);
+            _myUnsafeBitmap.LockBitmap();
+            PixelData pixel = _myUnsafeBitmap.GetPixel(i, j);
             Color Colorfromimagepoint = Color.FromRgb(pixel.red, pixel.green, pixel.blue);
-            myUnsafeBitmap.UnlockBitmap();
+            _myUnsafeBitmap.UnlockBitmap();
             return Colorfromimagepoint;
         }
 
         private void MovePointer()
         {
-            EpPointer.SetValue(Canvas.LeftProperty, (double)(Mouse.GetPosition(canColor).X - 5));
-            EpPointer.SetValue(Canvas.TopProperty, (double)(Mouse.GetPosition(canColor).Y - 5));
+            EpPointer.SetValue(Canvas.LeftProperty, (Mouse.GetPosition(canColor).X - 5));
+            EpPointer.SetValue(Canvas.TopProperty, (Mouse.GetPosition(canColor).Y - 5));
             canColor.InvalidateVisual();
         }
 
@@ -215,7 +215,7 @@ namespace WPF_LED_Controller.UserControls
 
         public void Reposition()
         {
-            myUnsafeBitmap.LockBitmap();
+            _myUnsafeBitmap.LockBitmap();
 
             for (int i = 0; i < canColor.ActualWidth; i++)
             {
@@ -224,7 +224,7 @@ namespace WPF_LED_Controller.UserControls
                 {
                     try
                     {
-                        PixelData pixel = myUnsafeBitmap.GetPixel(i, j);
+                        PixelData pixel = _myUnsafeBitmap.GetPixel(i, j);
 
                         Color Colorfromimagepoint = Color.FromRgb(pixel.red, pixel.green, pixel.blue);
                         if (SimmilarColor(Colorfromimagepoint, SavedColor))
@@ -242,7 +242,7 @@ namespace WPF_LED_Controller.UserControls
                 }
                 if (flag) break;
             }
-            myUnsafeBitmap.UnlockBitmap();
+            _myUnsafeBitmap.UnlockBitmap();
         }
 
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -41,7 +40,7 @@ namespace WPF_LED_Controller.UserControls
                 int checkVal = Int32.Parse(ValueToCheck);
                 if (checkVal >= 255)
                 { return "255"; }
-                else if (checkVal < 0)
+                if (checkVal < 0)
                 { return "0"; }
             }
             else
@@ -150,6 +149,7 @@ namespace WPF_LED_Controller.UserControls
             try
             {
                 string strHex = ((TextBox)sender).Text;
+                //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #
                 if ((strHex.Length == 7 || strHex.Length == 9) && strHex[0] == '#')
                 {
                     canColor.SavedColor = (Color)ColorConverter.ConvertFromString(strHex); 
