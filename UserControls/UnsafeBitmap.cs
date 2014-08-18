@@ -8,9 +8,9 @@ namespace WPF_LED_Controller.UserControls
     unsafe class UnsafeBitmap
     {
         System.Drawing.Bitmap bitmap;
-        int width = 201;
-        BitmapData bitmapData = null;
-        Byte* pBase = null;
+        int _width = 201;
+        BitmapData _bitmapData = null;
+        Byte* _pBase = null;
 
         public UnsafeBitmap(System.Drawing.Bitmap bitmap)
         {
@@ -42,13 +42,13 @@ namespace WPF_LED_Controller.UserControls
             System.Drawing.RectangleF boundsF = bitmap.GetBounds(ref unit);
             System.Drawing.Rectangle bounds = new System.Drawing.Rectangle((int)boundsF.X, (int)boundsF.Y, (int)boundsF.Width, (int)boundsF.Height);
 
-            width = (int)boundsF.Width * sizeof(PixelData);
-            if (width % 4 != 0)
+            _width = (int)boundsF.Width * sizeof(PixelData);
+            if (_width % 4 != 0)
             {
-                width = 4 * (width / 4 + 1);
+                _width = 4 * (_width / 4 + 1);
             }
-            bitmapData = bitmap.LockBits(bounds, ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-            pBase = (Byte*)bitmapData.Scan0.ToPointer();
+            _bitmapData = bitmap.LockBits(bounds, ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            _pBase = (Byte*)_bitmapData.Scan0.ToPointer();
         }
 
         public PixelData GetPixel(int x, int y)
@@ -59,14 +59,14 @@ namespace WPF_LED_Controller.UserControls
 
         private PixelData* PixelAt(int x, int y)
         {
-            return (PixelData*)(pBase + y * width + x * sizeof(PixelData));
+            return (PixelData*)(_pBase + y * _width + x * sizeof(PixelData));
         }
 
         public void UnlockBitmap()
         {
-            bitmap.UnlockBits(bitmapData);
-            bitmapData = null;
-            pBase = null;
+            bitmap.UnlockBits(_bitmapData);
+            _bitmapData = null;
+            _pBase = null;
         }
     }
     public struct PixelData

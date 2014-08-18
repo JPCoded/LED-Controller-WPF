@@ -9,13 +9,13 @@ namespace WPF_LED_Controller
     /// </summary>
     public partial class MainWindow : Window
     {
-        SerialPort ArduinoSerial = new SerialPort();
+        readonly SerialPort  _arduinoSerial = new SerialPort();
         
         public MainWindow()
         {
             InitializeComponent();
 
-            ArduinoSerial.BaudRate = 115200;
+            _arduinoSerial.BaudRate = 115200;
             plPorts.Refresh(); 
         }
 
@@ -36,16 +36,16 @@ namespace WPF_LED_Controller
                //try and catch any issues that pop up when using the arduino.
                try
                {
-                   if (ArduinoSerial.IsOpen)
-                   { ArduinoSerial.Close(); }
+                   if (_arduinoSerial.IsOpen)
+                   { _arduinoSerial.Close(); }
                   
-                   ArduinoSerial.PortName = plPorts.GetPort;
+                   _arduinoSerial.PortName = plPorts.GetPort;
                    
-                   ArduinoSerial.Open();
+                   _arduinoSerial.Open();
                    byte[] colorBytes = { cpColor.canColor.Red, cpColor.canColor.Green, cpColor.canColor.Blue, 0x0A };
                    try
                    {
-                       ArduinoSerial.Write(colorBytes, 0, 3);
+                       _arduinoSerial.Write(colorBytes, 0, 3);
                    }
                    catch (System.IO.IOException)
                    {

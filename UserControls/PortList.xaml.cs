@@ -29,9 +29,9 @@ namespace WPF_LED_Controller.UserControls
         }
 
         public ObservableCollection<Ports> MyPorts
-        { get { return _Ports; } }
+        { get { return _ports; } }
 
-        private ObservableCollection<Ports> _Ports = new ObservableCollection<Ports>();
+        private readonly ObservableCollection<Ports> _ports = new ObservableCollection<Ports>();
         public PortList()
         {
             InitializeComponent();

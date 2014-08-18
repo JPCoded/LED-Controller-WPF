@@ -146,17 +146,21 @@ namespace WPF_LED_Controller.UserControls
         private void txtHAll_KeyDown(object sender, KeyEventArgs e)
         {
             HexKeyValidation(e);
-            try
-            {
-                string strHex = ((TextBox)sender).Text;
+          
+                string strHex = ((TextBox) sender).Text;
                 //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #
                 if ((strHex.Length == 7 || strHex.Length == 9) && strHex[0] == '#')
                 {
-                    canColor.SavedColor = (Color)ColorConverter.ConvertFromString(strHex); 
+                    try
+                    {
+                        canColor.SavedColor = (Color) ColorConverter.ConvertFromString(strHex);
+                    }
+                    catch (NullReferenceException)
+                    {
+                        return;
+                    }
                 }
-            }
-            catch 
-            { }
+            
         }
         #endregion
 

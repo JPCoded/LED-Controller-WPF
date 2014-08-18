@@ -30,7 +30,7 @@ namespace WPF_LED_Controller.UserControls
         //used to track current bitmap
         private int Tracker = 0;
         //list for the bitmap images
-        private List<BitmapImage> _images = new List<BitmapImage>();
+        private readonly List<BitmapImage> _images = new List<BitmapImage>();
         private List<BitmapImage> images
         { get { return _images; } }
         static ColorSwatch()
@@ -111,7 +111,7 @@ namespace WPF_LED_Controller.UserControls
            ColorSwatch hoverSwatch = (ColorSwatch)sender;
            hoverSwatch.HoverColor = newColor;
            RoutedPropertyChangedEventArgs<Color> args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
-           args.RoutedEvent = ColorSwatch.HoverChangedEvent;
+           args.RoutedEvent = HoverChangedEvent;
                 hoverSwatch.RaiseEvent(args);
        }
         public static void OnColorChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -125,7 +125,7 @@ namespace WPF_LED_Controller.UserControls
            colorSwatch.Green = newColor.G;
 
            RoutedPropertyChangedEventArgs<Color> args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
-           args.RoutedEvent = ColorSwatch.ColorChangedEvent;
+           args.RoutedEvent = ColorChangedEvent;
            colorSwatch.RaiseEvent(args);
            colorSwatch.Reposition();
        }
