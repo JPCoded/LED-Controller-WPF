@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -33,11 +34,11 @@ namespace WPF_LED_Controller.UserControls
                 e.Handled = true;
             }
         }
-        private string OverUnderValidation(string ValueToCheck)
+        private string OverUnderValidation(string valueToCheck)
         {
-            if (!string.IsNullOrEmpty(ValueToCheck))
+            if (!string.IsNullOrEmpty(valueToCheck))
             {
-                int checkVal = Int32.Parse(ValueToCheck);
+                int checkVal = Int32.Parse(valueToCheck);
                 if (checkVal >= 255)
                 { return "255"; }
                 if (checkVal < 0)
@@ -45,7 +46,7 @@ namespace WPF_LED_Controller.UserControls
             }
             else
             { return "0"; }
-            return ValueToCheck.ToUpper();
+            return valueToCheck.ToUpper();
         }
         #endregion
 
@@ -56,7 +57,7 @@ namespace WPF_LED_Controller.UserControls
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox)sender).Text != canColor.Red.ToString())
+            if (((TextBox)sender).Text != canColor.Red.ToString(CultureInfo.InvariantCulture))
             {
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
                 byte rbyteValue = Convert.ToByte(((TextBox)sender).Text);
@@ -73,7 +74,7 @@ namespace WPF_LED_Controller.UserControls
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox)sender).Text != canColor.Green.ToString())
+            if (((TextBox)sender).Text != canColor.Green.ToString(CultureInfo.InvariantCulture))
             {
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
                 byte gbyteValue = Convert.ToByte(((TextBox)sender).Text);
@@ -91,7 +92,7 @@ namespace WPF_LED_Controller.UserControls
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox)sender).Text != canColor.Blue.ToString())
+            if (((TextBox)sender).Text != canColor.Blue.ToString(CultureInfo.InvariantCulture))
             {
                 //Convert textbox to byte, but check to see if it's empty, if so send 0
                 byte bbyteValue = Convert.ToByte(((TextBox)sender).Text);
@@ -118,7 +119,7 @@ namespace WPF_LED_Controller.UserControls
                 { ((TextBox)sender).Text = "0"; }
                 int oldValue = Convert.ToInt32(((TextBox)sender).Text);
                 int newValue = (oldValue + 1 > 255) ? 255 : oldValue + 1;
-                ((TextBox)sender).Text = newValue.ToString();
+                ((TextBox)sender).Text = newValue.ToString(CultureInfo.InvariantCulture);
             }
             else if (e.Key == Key.Down)
             {
@@ -126,7 +127,7 @@ namespace WPF_LED_Controller.UserControls
                 { ((TextBox)sender).Text = "255"; }
                 int oldValue = Convert.ToInt32(((TextBox)sender).Text);
                 int newValue = (oldValue - 1 < 0) ? 0 : oldValue - 1;
-                ((TextBox)sender).Text = newValue.ToString();
+                ((TextBox)sender).Text = newValue.ToString(CultureInfo.InvariantCulture);
             }
             else if(e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || (e.Key >= Key.D0 && e.Key <= Key.D9))
             { e.Handled = false; }
@@ -151,14 +152,10 @@ namespace WPF_LED_Controller.UserControls
                 //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #
                 if ((strHex.Length == 7 || strHex.Length == 9) && strHex[0] == '#')
                 {
-                    try
-                    {
-                        canColor.SavedColor = (Color) ColorConverter.ConvertFromString(strHex);
-                    }
-                    catch (NullReferenceException)
-                    {
-                        return;
-                    }
+                    
+                        var convertFromString = ColorConverter.ConvertFromString(strHex);
+                        if (convertFromString != null)
+                            canColor.SavedColor = (Color) convertFromString;
                 }
             
         }

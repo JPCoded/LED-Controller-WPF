@@ -12,20 +12,20 @@
             <StackPanel Orientation="Horizontal" x:Name="Outer">
                 <StackPanel Orientation="Vertical" x:Name="Red" >
                     <Label Content="R" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="txtRed"  HorizontalAlignment="Center" Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Red, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                    <TextBox x:Name="txtRed" Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Red, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
                     <Slider Style="{StaticResource RGBSlider}"  Value="{Binding ElementName=canColor, Path=Red}" Background="{StaticResource Red}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" x:Name="Green">
                     <Label Content="G" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="txtGreen" HorizontalAlignment="Center"  Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Green, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                    <TextBox x:Name="txtGreen" Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Green, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtGreen_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
                     <Slider Style="{StaticResource RGBSlider}" Value="{Binding ElementName=canColor, Path=Green}" Background="{StaticResource Green}" />
 
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" x:Name="Blue" >
                     <Label Content="B" Foreground="White" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="txtBlue" HorizontalAlignment="Center"  Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Blue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
+                    <TextBox x:Name="txtBlue" Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Blue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtBlue_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />
                     <Slider Style="{StaticResource RGBSlider}" Value="{Binding ElementName=canColor, Path=Blue}"  Background="{StaticResource Blue}" />
                 </StackPanel>
             </StackPanel>

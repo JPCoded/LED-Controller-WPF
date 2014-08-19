@@ -4,12 +4,12 @@
         <GradientStop Color="Red" Offset="0"/>
         <GradientStop Color="White" Offset="1"/>
     </LinearGradientBrush>
-    
+
     <LinearGradientBrush x:Key="Green" EndPoint="0,1" StartPoint="1,0">
         <GradientStop Color="Green" Offset="0"/>
         <GradientStop Color="White" Offset="1"/>
     </LinearGradientBrush>
-    
+
     <LinearGradientBrush x:Key="Blue" EndPoint="0,1" StartPoint="1,0">
         <GradientStop Color="Blue" Offset="0"/>
         <GradientStop Color="White" Offset="1"/>
@@ -28,35 +28,53 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="SliderThumbStyle" TargetType="Thumb">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="false" />
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Height" Value="7" />
-        <Setter Property="Width" Value="20" />
+        <Setter Property="Width" Value="18" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
                     <Rectangle Name="Ellipse"
-                             Fill="Silver"
-                             Stroke="Gray"
-                             StrokeThickness="1" 
+                             Stroke="{x:Null}"
+                             StrokeThickness="0" 
                                RadiusX="5"
-                               RadiusY="5"/>
+                               RadiusY="5">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF7A7A7A"/>
+                                <GradientStop Color="#FFBBBBBB" Offset="0.2"/>
+                                <GradientStop Color="White" Offset="0.5"/>
+                                <GradientStop Color="#FFBBBBBB" Offset="0.8"/>
+                                <GradientStop Color="#FF7A7A7A" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Ellipse" Property="Fill" Value="Orange" />
+                            <Setter TargetName="Ellipse" Property="Fill" >
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF783C00" Offset="0"/>
+                                        <GradientStop Color="#FF783C00" Offset="1"/>
+                                        <GradientStop Color="#FFFF8000" Offset="0.51"/>
+                                        <GradientStop Color="#FFB47300" Offset="0.2"/>
+                                        <GradientStop Color="#FFB47300" Offset="0.8"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+
+                            </Setter>
                         </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="Ellipse" Property="Fill" Value="Gray" />
-                        </Trigger>
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="RGBSlider" TargetType="{x:Type Slider}" >
         <Setter Property="Orientation" Value="Vertical"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
