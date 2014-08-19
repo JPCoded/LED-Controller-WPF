@@ -11,7 +11,7 @@ namespace WPF_LED_Controller.UserControls
     /// <summary>
     /// Interaction logic for ColorSwatch.xaml
     /// </summary>
-    public partial class ColorSwatch : UserControl
+    public partial class ColorSwatch 
     {
 
         public static DependencyProperty RedProperty;
@@ -25,13 +25,11 @@ namespace WPF_LED_Controller.UserControls
         private readonly UnsafeBitmap[] _unsafeBitmaps = { new UnsafeBitmap(Properties.Resources.ColorSwatch), new UnsafeBitmap(Properties.Resources.ColorSwatch2), new UnsafeBitmap(Properties.Resources.ColorSwatch3) };
         //unsafe bitmap used for functions to find color
         private UnsafeBitmap _myUnsafeBitmap;
-        //private colors
-        private Color _hoverColor = Colors.Transparent;
         //used to track current bitmap
-        private int Tracker = 0;
+        private int _tracker = 0;
         //list for the bitmap images
         private readonly List<BitmapImage> _images = new List<BitmapImage>();
-        private List<BitmapImage> images
+        private List<BitmapImage> Images
         { get { return _images; } }
         static ColorSwatch()
         { 
@@ -93,7 +91,7 @@ namespace WPF_LED_Controller.UserControls
         }
        public static void OnColorRGBChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            ColorSwatch colorSwatch = (ColorSwatch)sender;
+            var colorSwatch = (ColorSwatch)sender;
             Color color = colorSwatch.SavedColor;
             if (e.Property == RedProperty)
                 color.R = (byte)e.NewValue;
@@ -106,25 +104,25 @@ namespace WPF_LED_Controller.UserControls
 
         public static void OnHoverChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
        {
-           Color newColor = (Color)e.NewValue;
-           Color oldColor = (Color)e.OldValue;
-           ColorSwatch hoverSwatch = (ColorSwatch)sender;
+           var newColor = (Color)e.NewValue;
+           var oldColor = (Color)e.OldValue;
+           var hoverSwatch = (ColorSwatch)sender;
            hoverSwatch.HoverColor = newColor;
-           RoutedPropertyChangedEventArgs<Color> args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
+           var args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
            args.RoutedEvent = HoverChangedEvent;
                 hoverSwatch.RaiseEvent(args);
        }
         public static void OnColorChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
        {
-           Color newColor = (Color)e.NewValue;
-           Color oldColor = (Color)e.OldValue;
+           var newColor = (Color)e.NewValue;
+           var oldColor = (Color)e.OldValue;
 
-           ColorSwatch colorSwatch = (ColorSwatch)sender;
+           var colorSwatch = (ColorSwatch)sender;
            colorSwatch.Red = newColor.R;
            colorSwatch.Blue = newColor.B;
            colorSwatch.Green = newColor.G;
 
-           RoutedPropertyChangedEventArgs<Color> args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
+           var args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor);
            args.RoutedEvent = ColorChangedEvent;
            colorSwatch.RaiseEvent(args);
            colorSwatch.Reposition();
@@ -134,10 +132,10 @@ namespace WPF_LED_Controller.UserControls
         {
             if(pm == '-')
             {
-                if (Tracker > 0)
+                if (_tracker > 0)
                 {
-                    Tracker--;
-                    btnPrevious.IsEnabled = (Tracker == 0) ? false : true;
+                    _tracker--;
+                    btnPrevious.IsEnabled = (_tracker == 0) ? false : true;
                     btnNext.IsEnabled = true;
                 }
                 else 
@@ -148,10 +146,10 @@ namespace WPF_LED_Controller.UserControls
             }
             else if(pm == '+')
             {
-                if (Tracker < 2)
+                if (_tracker < 2)
                 {
-                    Tracker++;
-                    btnNext.IsEnabled = (Tracker == 2) ? false : true;
+                    _tracker++;
+                    btnNext.IsEnabled = (_tracker == 2) ? false : true;
                     btnPrevious.IsEnabled = true;
                 }
                 else
@@ -161,23 +159,23 @@ namespace WPF_LED_Controller.UserControls
                 }
             }
 
-            imgColor.Source = images[Tracker];
-            _myUnsafeBitmap = _unsafeBitmaps[Tracker];
+            imgColor.Source = Images[_tracker];
+            _myUnsafeBitmap = _unsafeBitmaps[_tracker];
             Reposition();
-            lblTrack.Content = "[" + Tracker.ToString() + "/2]";
+            lblTrack.Content = "[" + _tracker.ToString() + "/2]";
         }
    
         public ColorSwatch()
         {
             InitializeComponent();
-            images.Add(new BitmapImage(new Uri(@"/Images/Swatch.png", UriKind.RelativeOrAbsolute)));
-            images.Add(new BitmapImage(new Uri(@"/Images/Swatch2.png", UriKind.RelativeOrAbsolute)));
-            images.Add(new BitmapImage(new Uri(@"/Images/Swatch3.png", UriKind.RelativeOrAbsolute)));
+            Images.Add(new BitmapImage(new Uri(@"/Images/Swatch.png", UriKind.RelativeOrAbsolute)));
+            Images.Add(new BitmapImage(new Uri(@"/Images/Swatch2.png", UriKind.RelativeOrAbsolute)));
+            Images.Add(new BitmapImage(new Uri(@"/Images/Swatch3.png", UriKind.RelativeOrAbsolute)));
             //set background.
-            imgColor.Source = images[Tracker];
+            imgColor.Source = Images[_tracker];
             //set unsafebitmap
             _myUnsafeBitmap = _unsafeBitmaps[0];
-            lblTrack.Content = "[" + Tracker.ToString() + "/2]";
+            lblTrack.Content = "[" + _tracker.ToString() + "/2]";
         }
 
         #region Bitmap functions
@@ -193,7 +191,7 @@ namespace WPF_LED_Controller.UserControls
         {
             _myUnsafeBitmap.LockBitmap();
             PixelData pixel = _myUnsafeBitmap.GetPixel(i, j);
-            Color Colorfromimagepoint = Color.FromRgb(pixel.red, pixel.green, pixel.blue);
+            Color Colorfromimagepoint = Color.FromRgb(pixel.Red, pixel.Green, pixel.Blue);
             _myUnsafeBitmap.UnlockBitmap();
             return Colorfromimagepoint;
         }
@@ -226,7 +224,7 @@ namespace WPF_LED_Controller.UserControls
                     {
                         PixelData pixel = _myUnsafeBitmap.GetPixel(i, j);
 
-                        Color Colorfromimagepoint = Color.FromRgb(pixel.red, pixel.green, pixel.blue);
+                        Color Colorfromimagepoint = Color.FromRgb(pixel.Red, pixel.Green, pixel.Blue);
                         if (SimmilarColor(Colorfromimagepoint, SavedColor))
                         {
 
