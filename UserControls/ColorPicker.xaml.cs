@@ -12,7 +12,6 @@ namespace WPF_LED_Controller.UserControls
     /// </summary>
     public partial class ColorPicker : UserControl
     {
-        public event EventHandler<EventArgs> TextChanged;
 
         public ColorPicker()
         {
@@ -20,9 +19,6 @@ namespace WPF_LED_Controller.UserControls
         }
 
         #region Validation
-      
-       
-
         private void HexKeyValidation(KeyEventArgs e)
         {
             //for some reason, this way works here, but won't work for the NumericValidation. 
@@ -57,50 +53,33 @@ namespace WPF_LED_Controller.UserControls
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox)sender).Text != canColor.Red.ToString(CultureInfo.InvariantCulture))
-            {
-                //Convert textbox to byte, but check to see if it's empty, if so send 0
-                byte rbyteValue = Convert.ToByte(((TextBox)sender).Text);
-                //change red vaule of main color
-                canColor.ChangeColor(Color.FromRgb(rbyteValue, canColor.Green, canColor.Blue));
-            }
-            if (TextChanged != null)
-            {
-                TextChanged(this, EventArgs.Empty);
-            }
+            if (((TextBox) sender).Text == canColor.Red.ToString(CultureInfo.InvariantCulture)) return;
+            //Convert textbox to byte, but check to see if it's empty, if so send 0
+            byte rbyteValue = Convert.ToByte(((TextBox)sender).Text);
+            //change red vaule of main color
+            canColor.SavedColor = Color.FromRgb(rbyteValue, canColor.Green, canColor.Blue);
         }
 
         private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox)sender).Text != canColor.Green.ToString(CultureInfo.InvariantCulture))
-            {
-                //Convert textbox to byte, but check to see if it's empty, if so send 0
-                byte gbyteValue = Convert.ToByte(((TextBox)sender).Text);
-                //change green vaule of main color
-                canColor.ChangeColor(Color.FromRgb(canColor.Red, gbyteValue, canColor.Blue));
-            }
-           
-            if (TextChanged != null)
-            {
-                TextChanged(this, EventArgs.Empty);
-            }
+            if (((TextBox) sender).Text == canColor.Green.ToString(CultureInfo.InvariantCulture)) return;
+            //Convert textbox to byte, but check to see if it's empty, if so send 0
+            byte gbyteValue = Convert.ToByte(((TextBox)sender).Text);
+            //change green vaule of main color
+            canColor.SavedColor = Color.FromRgb(canColor.Red, gbyteValue, canColor.Blue);
         }
 
         private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox)sender).Text != canColor.Blue.ToString(CultureInfo.InvariantCulture))
-            {
-                //Convert textbox to byte, but check to see if it's empty, if so send 0
-                byte bbyteValue = Convert.ToByte(((TextBox)sender).Text);
-                //change blue vaule of main color
-                canColor.ChangeColor(Color.FromRgb(canColor.Red, canColor.Green, bbyteValue));
-            }
-            if (TextChanged != null)
-            { TextChanged(this, EventArgs.Empty); }
+            if (((TextBox) sender).Text == canColor.Blue.ToString(CultureInfo.InvariantCulture)) return;
+            //Convert textbox to byte, but check to see if it's empty, if so send 0
+            byte bbyteValue = Convert.ToByte(((TextBox)sender).Text);
+            //change blue vaule of main color
+            canColor.SavedColor = Color.FromRgb(canColor.Red, canColor.Green, bbyteValue);
         }
 
         #endregion

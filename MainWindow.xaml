@@ -4,7 +4,7 @@
         xmlns:UserControls="clr-namespace:WPF_LED_Controller.UserControls"
         Title="LED Controller"
         Width="305"
-        Height="381"
+        Height="345"
         ResizeMode="CanMinimize"
         SizeToContent="WidthAndHeight">
 
@@ -16,40 +16,20 @@
                 <GradientStop Offset="1" Color="White" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Menu x:Name="mnMain"
-              Width="299"
-              Height="32"
-              HorizontalAlignment="Left"
-              VerticalAlignment="Top"
-              ClipToBounds="True">
-            <MenuItem x:Name="miFile"
-                      Width="47"
-                      Height="32"
-                      FontWeight="Bold"
-                      Header="File">
-                <MenuItem x:Name="miSave"
-                          Click="miSave_Click"
-                          Header="Save" />
-                <MenuItem x:Name="miOpen"
-                          Click="miOpen_Click"
-                          Header="Open" />
-            </MenuItem>
-        </Menu>
         <Button x:Name="btnSet"
                 Width="75"
-                Margin="7,327,0,0"
+                Margin="7,295,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="btnSet_Click"
                 Content="Set" />
         <UserControls:PortList x:Name="plPorts"
-                               Margin="213,221,0,0"
+                               Margin="218,210,0,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
         <UserControls:ColorPicker x:Name="cpColor"
                                   Width="299"
                                   Height="287"
-                                  Margin="0,33,0,0"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Top" />
 

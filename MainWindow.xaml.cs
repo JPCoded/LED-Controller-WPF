@@ -19,16 +19,6 @@ namespace WPF_LED_Controller
             plPorts.Refresh(); 
         }
 
-        private void miOpen_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void miSave_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnSet_Click(object sender, RoutedEventArgs e)
         {
            if(!string.IsNullOrEmpty(plPorts.GetPort))

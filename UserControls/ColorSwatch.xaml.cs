@@ -77,9 +77,7 @@ namespace WPF_LED_Controller.UserControls
         {
             int diff = Math.Abs(pointColor.R - selectedColor.R) + Math.Abs(pointColor.G - selectedColor.G) +
                        Math.Abs(pointColor.B - selectedColor.B);
-            if (diff < 20) return true;
-
-            return false;
+            return diff < 20;
         }
 
         private Color GetColorFromImage(int i, int j)
@@ -110,10 +108,10 @@ namespace WPF_LED_Controller.UserControls
         {
             _myUnsafeBitmap.LockBitmap();
 
-            for (int i = 0; i < canColor.ActualWidth; i++)
+            for (var i = 0; i < canColor.ActualWidth; i++)
             {
-                bool flag = false;
-                for (int j = 0; j < canColor.ActualHeight; j++)
+                var flag = false;
+                for (var j = 0; j < canColor.ActualHeight; j++)
                 {
                     try
                     {
@@ -143,21 +141,6 @@ namespace WPF_LED_Controller.UserControls
             {
                 SavedColor = GetColorFromImage((int) Mouse.GetPosition(canColor).X, (int) Mouse.GetPosition(canColor).Y);
                 MovePointer();
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        public void ChangeColor(Color newColor)
-        {
-            try
-            {
-                if (SavedColor != newColor)
-                {
-                    SavedColor = newColor;
-                    Reposition();
-                }
             }
             catch (Exception)
             {
@@ -253,33 +236,18 @@ namespace WPF_LED_Controller.UserControls
 
         public void DoTrack(char pm)
         {
-            if (pm == '-')
+            switch (pm)
             {
-                if (_tracker > 0)
-                {
-                    _tracker--;
-                    btnPrevious.IsEnabled = (_tracker != 0);
-                    btnNext.IsEnabled = true;
-                }
-                else
-                {
-                    btnNext.IsEnabled = true;
-                    btnPrevious.IsEnabled = false;
-                }
-            }
-            else if (pm == '+')
-            {
-                if (_tracker < 2)
-                {
-                    _tracker++;
-                    btnNext.IsEnabled = (_tracker != 2);
-                    btnPrevious.IsEnabled = true;
-                }
-                else
-                {
-                    btnNext.IsEnabled = false;
-                    btnPrevious.IsEnabled = true;
-                }
+                case '-':
+                        _tracker = (_tracker > 0) ? _tracker-1:_tracker;
+                        btnPrevious.IsEnabled = (_tracker != 0);
+                        btnNext.IsEnabled = true;
+                    break;
+                case '+':
+                        _tracker = (_tracker < 2) ? _tracker+1 : _tracker;
+                        btnNext.IsEnabled = (_tracker != 2);
+                        btnPrevious.IsEnabled = true;
+                    break;
             }
 
             imgColor.Source = Images[_tracker];

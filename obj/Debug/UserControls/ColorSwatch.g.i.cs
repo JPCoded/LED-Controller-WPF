@@ -9,9 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Microsoft.Expression.Controls;
-using Microsoft.Expression.Media;
-using Microsoft.Expression.Shapes;
 using System;
 using System.Diagnostics;
 using System.Windows;
