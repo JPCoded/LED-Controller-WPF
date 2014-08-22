@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
+   
+    <!-- Linear b Brushes -->
     <LinearGradientBrush x:Key="Red" EndPoint="0,1" StartPoint="1,0">
         <GradientStop Color="Red" Offset="0"/>
         <GradientStop Color="White" Offset="1"/>
@@ -15,6 +16,23 @@
         <GradientStop Color="White" Offset="1"/>
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="RectBrush" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+        <GradientStop Color="#FF7A7A7A"/>
+        <GradientStop Color="#FFBBBBBB" Offset="0.2"/>
+        <GradientStop Color="White" Offset="0.5"/>
+        <GradientStop Color="#FFBBBBBB" Offset="0.8"/>
+        <GradientStop Color="#FF7A7A7A" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="RectBrushOver" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF783C00" Offset="0"/>
+        <GradientStop Color="#FF783C00" Offset="1"/>
+        <GradientStop Color="#FFFF8000" Offset="0.51"/>
+        <GradientStop Color="#FFB47300" Offset="0.2"/>
+        <GradientStop Color="#FFB47300" Offset="0.8"/>
+    </LinearGradientBrush>
+    <!-- End of Linear Burshes -->
+    
     <Style x:Key="SliderButtonStyle" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
@@ -33,42 +51,23 @@
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="false" />
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Height" Value="7" />
+        <Setter Property="Height" Value="8" />
         <Setter Property="Width" Value="18" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Rectangle Name="Ellipse"
+               
+                   
+                    <Rectangle Name="Rectangle"
                              Stroke="{x:Null}"
                              StrokeThickness="0" 
                                RadiusX="5"
-                               RadiusY="5">
-                        <Rectangle.Fill>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#FF7A7A7A"/>
-                                <GradientStop Color="#FFBBBBBB" Offset="0.2"/>
-                                <GradientStop Color="White" Offset="0.5"/>
-                                <GradientStop Color="#FFBBBBBB" Offset="0.8"/>
-                                <GradientStop Color="#FF7A7A7A" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    <ControlTemplate.Triggers>
+                               RadiusY="5" 
+                               Fill="{StaticResource RectBrush}"/>
+                                        <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Ellipse" Property="Fill" >
-                                <Setter.Value>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF783C00" Offset="0"/>
-                                        <GradientStop Color="#FF783C00" Offset="1"/>
-                                        <GradientStop Color="#FFFF8000" Offset="0.51"/>
-                                        <GradientStop Color="#FFB47300" Offset="0.2"/>
-                                        <GradientStop Color="#FFB47300" Offset="0.8"/>
-                                    </LinearGradientBrush>
-                                </Setter.Value>
-
-                            </Setter>
+                            <Setter TargetName="Rectangle" Property="Fill" Value="{StaticResource RectBrushOver}" />
                         </Trigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -79,7 +78,7 @@
         <Setter Property="Orientation" Value="Vertical"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Width" Value="20"/>
+        <Setter Property="Width" Value="18"/>
         <Setter Property="Height" Value="100"/>
         <Setter Property="Maximum" Value="255"/>
         <Setter Property="Minimum" Value="0"/>
@@ -105,8 +104,8 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
                                 Background="{TemplateBinding Background}"
-                                BorderBrush="Black"
-                                BorderThickness="1"
+                                BorderBrush="DarkGray"
+                                BorderThickness="2,0,2,0"
                                 CornerRadius="5"
                                 Padding="0" />
 

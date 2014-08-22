@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="UserControls\ColorSwatch.xaml.cs">
       <DependentUpon>ColorSwatch.xaml</DependentUpon>
     </Compile>
@@ -161,9 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Swatch2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Swatch3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 
 
-
+//class that uses unsafe to handle bitmaps because default image processing is to slow for what I need it to do.cx
 namespace WPF_LED_Controller.UserControls
 {
     unsafe class UnsafeBitmap
@@ -21,11 +21,6 @@ namespace WPF_LED_Controller.UserControls
         public void Dispose()
         {
             _bitmap.Dispose();
-        }
-
-        public Bitmap Bitmap
-        {
-            get { return (_bitmap); }
         }
 
         public void LockBitmap()

@@ -32,6 +32,7 @@
                                   Height="287"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Top" />
+        <CheckBox x:Name="cbDisco" Content="Disco Mode" HorizontalAlignment="Left" Margin="218,298,0,0" VerticalAlignment="Top"/>
 
 
 

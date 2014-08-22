@@ -32,10 +32,12 @@ namespace WPF_LED_Controller
                    _arduinoSerial.PortName = plPorts.GetPort;
                    
                    _arduinoSerial.Open();
+                   byte[] discoBytes = {1, 1, 1, 0x0A};
                    byte[] colorBytes = { cpColor.canColor.Red, cpColor.canColor.Green, cpColor.canColor.Blue, 0x0A };
+                 
                    try
                    {
-                       _arduinoSerial.Write(colorBytes, 0, 3);
+                       _arduinoSerial.Write(cbDisco.IsChecked == true ? discoBytes : colorBytes, 0, 3);
                    }
                    catch (System.IO.IOException)
                    {

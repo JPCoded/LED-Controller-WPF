@@ -13,7 +13,7 @@
         <StackPanel HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="75" Orientation="Horizontal">
             <Label Content="Ports" Width="46" Margin="0,1,0,0" Foreground="White" FontWeight="Bold"/>
             <Separator Margin="0" Width="13" Background="{x:Null}"/>
-            <Button x:Name="btnRefresh" Click="btnRefresh_Click" Style="{StaticResource GlassButton}" Width="15" Height="15" Background="#FFF50808" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="btnRefresh" Style="{StaticResource GlassButton}" Width="15" Height="15" Background="#FFF50808" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Image Source="/Images/Refresh.png" Width="10" Height="10"></Image>
             </Button>
         </StackPanel>

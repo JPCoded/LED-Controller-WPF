@@ -12,17 +12,15 @@ namespace WPF_LED_Controller.UserControls
     /// </summary>
     public partial class ColorPicker : UserControl
     {
-
         public ColorPicker()
         {
             InitializeComponent();
         }
 
         #region Validation
-        private void HexKeyValidation(KeyEventArgs e)
+        private static void HexKeyValidation(KeyEventArgs e)
         {
-            //for some reason, this way works here, but won't work for the NumericValidation. 
-            string input = e.Key.ToString();
+            var input = e.Key.ToString();
             if (e.Key == Key.D3 && (e.Key == Key.LeftShift || e.Key == Key.RightShift))
             { input = "#"; }
             if (!(input == "#" || (input[0] >= 'A' && input[0] <= 'F') || (input[0] >= 'a' && input[0] <= 'F') || (input[0] >= '0' && input[0] <= '9')))
@@ -30,7 +28,7 @@ namespace WPF_LED_Controller.UserControls
                 e.Handled = true;
             }
         }
-        private string OverUnderValidation(string valueToCheck)
+        private static string OverUnderValidation(string valueToCheck)
         {
             if (!string.IsNullOrEmpty(valueToCheck))
             {
@@ -55,7 +53,7 @@ namespace WPF_LED_Controller.UserControls
 
             if (((TextBox) sender).Text == canColor.Red.ToString(CultureInfo.InvariantCulture)) return;
             //Convert textbox to byte, but check to see if it's empty, if so send 0
-            byte rbyteValue = Convert.ToByte(((TextBox)sender).Text);
+            var rbyteValue = Convert.ToByte(((TextBox)sender).Text);
             //change red vaule of main color
             canColor.SavedColor = Color.FromRgb(rbyteValue, canColor.Green, canColor.Blue);
         }
@@ -66,7 +64,7 @@ namespace WPF_LED_Controller.UserControls
 
             if (((TextBox) sender).Text == canColor.Green.ToString(CultureInfo.InvariantCulture)) return;
             //Convert textbox to byte, but check to see if it's empty, if so send 0
-            byte gbyteValue = Convert.ToByte(((TextBox)sender).Text);
+            var gbyteValue = Convert.ToByte(((TextBox)sender).Text);
             //change green vaule of main color
             canColor.SavedColor = Color.FromRgb(canColor.Red, gbyteValue, canColor.Blue);
         }
@@ -77,7 +75,7 @@ namespace WPF_LED_Controller.UserControls
 
             if (((TextBox) sender).Text == canColor.Blue.ToString(CultureInfo.InvariantCulture)) return;
             //Convert textbox to byte, but check to see if it's empty, if so send 0
-            byte bbyteValue = Convert.ToByte(((TextBox)sender).Text);
+            var bbyteValue = Convert.ToByte(((TextBox)sender).Text);
             //change blue vaule of main color
             canColor.SavedColor = Color.FromRgb(canColor.Red, canColor.Green, bbyteValue);
         }
@@ -96,16 +94,16 @@ namespace WPF_LED_Controller.UserControls
             {
                 if (string.IsNullOrEmpty(((TextBox)sender).Text))
                 { ((TextBox)sender).Text = "0"; }
-                int oldValue = Convert.ToInt32(((TextBox)sender).Text);
-                int newValue = (oldValue + 1 > 255) ? 255 : oldValue + 1;
+                var oldValue = Convert.ToInt32(((TextBox)sender).Text);
+                var newValue = (oldValue + 1 > 255) ? 255 : oldValue + 1;
                 ((TextBox)sender).Text = newValue.ToString(CultureInfo.InvariantCulture);
             }
             else if (e.Key == Key.Down)
             {
                 if (string.IsNullOrEmpty(((TextBox)sender).Text))
                 { ((TextBox)sender).Text = "255"; }
-                int oldValue = Convert.ToInt32(((TextBox)sender).Text);
-                int newValue = (oldValue - 1 < 0) ? 0 : oldValue - 1;
+                var oldValue = Convert.ToInt32(((TextBox)sender).Text);
+                var newValue = (oldValue - 1 < 0) ? 0 : oldValue - 1;
                 ((TextBox)sender).Text = newValue.ToString(CultureInfo.InvariantCulture);
             }
             else if(e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || (e.Key >= Key.D0 && e.Key <= Key.D9))
@@ -127,16 +125,13 @@ namespace WPF_LED_Controller.UserControls
         {
             HexKeyValidation(e);
           
-                string strHex = ((TextBox) sender).Text;
-                //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #
-                if ((strHex.Length == 7 || strHex.Length == 9) && strHex[0] == '#')
-                {
-                    
-                        var convertFromString = ColorConverter.ConvertFromString(strHex);
-                        if (convertFromString != null)
-                            canColor.SavedColor = (Color) convertFromString;
-                }
-            
+                var strHex = ((TextBox) sender).Text;
+                //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #, if they arent, we go no farther in code.
+            if ((strHex.Length != 7 && strHex.Length != 9) || strHex[0] != '#') return;
+           
+            var convertFromString = ColorConverter.ConvertFromString(strHex);
+            if (convertFromString != null)
+                canColor.SavedColor = (Color) convertFromString;
         }
         #endregion
 
