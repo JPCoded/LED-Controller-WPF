@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-
 using System.IO.Ports;
+using MessageBox = System.Windows.MessageBox;
 
 namespace WPF_LED_Controller
 {
@@ -32,12 +32,22 @@ namespace WPF_LED_Controller
                    _arduinoSerial.PortName = plPorts.GetPort;
                    
                    _arduinoSerial.Open();
-                   byte[] discoBytes = {1, 1, 1, 0x0A};
+                  
+                   byte[] discoBytes = {1, 1, 1,(byte)slDiscoSlider.Value, 0x0A};
                    byte[] colorBytes = { cpColor.canColor.Red, cpColor.canColor.Green, cpColor.canColor.Blue, 0x0A };
                  
                    try
                    {
-                       _arduinoSerial.Write(cbDisco.IsChecked == true ? discoBytes : colorBytes, 0, 3);
+                       if (cbDisco.IsChecked == true)
+                       {
+                           
+                           _arduinoSerial.Write(discoBytes, 0, 4);
+                       }
+                       else
+                       {
+                          _arduinoSerial.Write(colorBytes, 0, 3); 
+                       }
+                       
                    }
                    catch (System.IO.IOException)
                    {
@@ -65,6 +75,11 @@ namespace WPF_LED_Controller
            {
                MessageBox.Show("I can't allow you to do that Dave.\nPlease select a port first.", "Hal9000",MessageBoxButton.OK,MessageBoxImage.Error);
            }
+        }
+
+        private void btnDisoButton_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
     }
 

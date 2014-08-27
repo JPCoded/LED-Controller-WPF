@@ -10,6 +10,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Left" Margin="205,0,0,0" VerticalAlignment="Top" Height="184">
             <StackPanel Orientation="Horizontal" x:Name="Outer">
+
                 <StackPanel Orientation="Vertical" x:Name="Red" >
                     <Label Content="R" Foreground="White" HorizontalAlignment="Center"/>
                     <TextBox x:Name="txtRed" Style="{StaticResource BorderedText}" Text="{Binding ElementName=canColor, Path=Red, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtRed_TextChanged" PreviewKeyDown="txtRGB_PreviewKeyDown" Height="23" Width="30" />

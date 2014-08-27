@@ -15,6 +15,16 @@ namespace WPF_LED_Controller.UserControls
         public ColorPicker()
         {
             InitializeComponent();
+            txtGreen.TextChanged += txtGreen_TextBoxChanged;
+        }
+
+        void txtGreen_TextBoxChanged(object sender, TextChangedEventArgs e)
+        {
+            if (((TextBox)sender).Text == canColor.Green.ToString(CultureInfo.InvariantCulture)) return;
+            //Convert textbox to byte, but check to see if it's empty, if so send 0
+            var gbyteValue = Convert.ToByte(((TextBox)sender).Text);
+            //change green vaule of main color
+            canColor.SavedColor = Color.FromRgb(canColor.Red, gbyteValue, canColor.Blue);
         }
 
         #region Validation
@@ -50,7 +60,7 @@ namespace WPF_LED_Controller.UserControls
         private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
             ((TextBox)sender).Text = OverUnderValidation(((TextBox)sender).Text);
-
+            
             if (((TextBox) sender).Text == canColor.Red.ToString(CultureInfo.InvariantCulture)) return;
             //Convert textbox to byte, but check to see if it's empty, if so send 0
             var rbyteValue = Convert.ToByte(((TextBox)sender).Text);

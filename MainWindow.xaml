@@ -24,7 +24,7 @@
                 Click="btnSet_Click"
                 Content="Set" />
         <UserControls:PortList x:Name="plPorts"
-                               Margin="218,210,0,0"
+                               Margin="218,190,0,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
         <UserControls:ColorPicker x:Name="cpColor"
@@ -32,12 +32,12 @@
                                   Height="287"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Top" />
-        <CheckBox x:Name="cbDisco" Content="Disco Mode" HorizontalAlignment="Left" Margin="218,298,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbDisco" Content="Disco Mode" HorizontalAlignment="Left" Margin="218,274,0,0" VerticalAlignment="Top"/>
 
-
-
-
-
+        <Popup Name="DiscoPopup">
+            <Slider x:Name="slDiscoSlider"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="71" TickPlacement="TopLeft" Minimum=".5" SmallChange=".5" Foreground="#FFD40000" Cursor="Hand" IsSnapToTickEnabled="True"/>
+        </Popup>
+        <UserControls:DiscoPopup x:Name="popDisco" HorizontalAlignment="Left" Height="19" Margin="223,295,0,0" VerticalAlignment="Top" Width="76"/>
     </Grid>
 </Window>
 
