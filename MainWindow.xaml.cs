@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.IO.Ports;
-using MessageBox = System.Windows.MessageBox;
+using WPF_LED_Controller.UserControls;
+using System;
 
 namespace WPF_LED_Controller
 {
@@ -10,13 +11,14 @@ namespace WPF_LED_Controller
     public partial class MainWindow : Window
     {
         readonly SerialPort  _arduinoSerial = new SerialPort();
-        
+        private readonly Disco discoWindow = new Disco();
         public MainWindow()
         {
             InitializeComponent();
 
             _arduinoSerial.BaudRate = 115200;
-            plPorts.Refresh(); 
+            plPorts.Refresh();
+            
         }
 
         private void btnSet_Click(object sender, RoutedEventArgs e)
@@ -32,19 +34,18 @@ namespace WPF_LED_Controller
                    _arduinoSerial.PortName = plPorts.GetPort;
                    
                    _arduinoSerial.Open();
-                  
-                   byte[] discoBytes = {1, 1, 1,(byte)slDiscoSlider.Value, 0x0A};
-                   byte[] colorBytes = { cpColor.canColor.Red, cpColor.canColor.Green, cpColor.canColor.Blue, 0x0A };
-                 
+
                    try
                    {
                        if (cbDisco.IsChecked == true)
                        {
-                           
-                           _arduinoSerial.Write(discoBytes, 0, 4);
+                          
+                            byte[] discoBytes = { discoWindow.RedMin, discoWindow.RedMax, discoWindow.GreenMin, discoWindow.GreenMax, discoWindow.BlueMin, discoWindow.BlueMax, Convert.ToByte(discoWindow.slDiscoSlider.Value), 0x0A };
+                           _arduinoSerial.Write(discoBytes, 0, 7);
                        }
                        else
-                       {
+                       { 
+                           byte[] colorBytes = { cpColor.canColor.Red, cpColor.canColor.Green, cpColor.canColor.Blue, 0x0A };
                           _arduinoSerial.Write(colorBytes, 0, 3); 
                        }
                        
@@ -58,15 +59,15 @@ namespace WPF_LED_Controller
                {
                    MessageBox.Show("Error connecting to port " + plPorts.GetPort + ". Make sure the Aruduino is connected or correct port selected.", "IO Error", MessageBoxButton.OK, MessageBoxImage.Error);
                }
-               catch(System.UnauthorizedAccessException)
+               catch(UnauthorizedAccessException)
                {
                    MessageBox.Show("Unauthorized Access to this port.", "Unauthorized Access", MessageBoxButton.OK, MessageBoxImage.Error);
                }
-               catch(System.ArgumentException ae)
+               catch(ArgumentException ae)
                {
                    MessageBox.Show("Message: " + ae.Message, "ArgumentExecption", MessageBoxButton.OK, MessageBoxImage.Error);
                }
-               catch(System.InvalidOperationException io)
+               catch(InvalidOperationException io)
                {
                    MessageBox.Show("Message: " + io.Message, "InvalidOperationExecption", MessageBoxButton.OK, MessageBoxImage.Error);
                }
@@ -77,10 +78,13 @@ namespace WPF_LED_Controller
            }
         }
 
-        private void btnDisoButton_Click(object sender, RoutedEventArgs e)
+        private void btnDiso_Click(object sender, RoutedEventArgs e)
         {
-           
+            discoWindow.Show();
+            
         }
+
+  
     }
 
 }

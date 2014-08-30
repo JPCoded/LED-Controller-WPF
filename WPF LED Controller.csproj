@@ -74,16 +74,14 @@
     <Compile Include="UserControls\ColorSwatch.xaml.cs">
       <DependentUpon>ColorSwatch.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\DiscoPopup.xaml.cs">
-      <DependentUpon>DiscoPopup.xaml</DependentUpon>
+    <Compile Include="UserControls\Disco.xaml.cs">
+      <DependentUpon>Disco.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PortList.xaml.cs">
       <DependentUpon>PortList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\RgbTextBox.xaml.cs">
-      <DependentUpon>RgbTextBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UnsafeBitmap.cs" />
+    <Compile Include="UserControls\ValueFun.cs" />
     <Page Include="Resources\BorderedTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,7 +122,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\DiscoPopup.xaml">
+    <Page Include="UserControls\Disco.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,10 +131,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\GlassButtons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\RgbTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
