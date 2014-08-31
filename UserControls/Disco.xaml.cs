@@ -19,7 +19,7 @@ namespace WPF_LED_Controller.UserControls
            txtGMax.Text = "255";
             txtRMax.Text = "255";
             txtBMax.Text = "255";
-            Closing += Disco_Closing;
+           
         }
 
 
@@ -50,13 +50,6 @@ namespace WPF_LED_Controller.UserControls
         }
 
 
-        private void Disco_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true;
-            
-            Visibility = Visibility.Hidden;
-
-        }
 
         private void txtMinMax_OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -140,7 +133,7 @@ namespace WPF_LED_Controller.UserControls
 
         private void btnSet_Click(object sender, RoutedEventArgs e)
         {
-           Close();
+            Visibility = Visibility.Hidden;
         }
     }
 }

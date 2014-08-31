@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.IO.Ports;
 using WPF_LED_Controller.UserControls;
 using System;
@@ -11,7 +12,7 @@ namespace WPF_LED_Controller
     public partial class MainWindow : Window
     {
         readonly SerialPort  _arduinoSerial = new SerialPort();
-        private readonly Disco discoWindow = new Disco();
+        private readonly Disco _discoWindow = new Disco();
         public MainWindow()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace WPF_LED_Controller
                        if (cbDisco.IsChecked == true)
                        {
                           
-                            byte[] discoBytes = { discoWindow.RedMin, discoWindow.RedMax, discoWindow.GreenMin, discoWindow.GreenMax, discoWindow.BlueMin, discoWindow.BlueMax, Convert.ToByte(discoWindow.slDiscoSlider.Value), 0x0A };
+                            byte[] discoBytes = { _discoWindow.RedMin, _discoWindow.RedMax, _discoWindow.GreenMin, _discoWindow.GreenMax, _discoWindow.BlueMin, _discoWindow.BlueMax, Convert.ToByte(_discoWindow.slDiscoSlider.Value), 0x0A };
                            _arduinoSerial.Write(discoBytes, 0, 7);
                        }
                        else
@@ -80,11 +81,13 @@ namespace WPF_LED_Controller
 
         private void btnDiso_Click(object sender, RoutedEventArgs e)
         {
-            discoWindow.Show();
-            
+            _discoWindow.Visibility = _discoWindow.IsVisible ? Visibility.Hidden : Visibility.Visible;
         }
 
-  
+        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            _discoWindow.Close();
+        }
     }
 
 }
