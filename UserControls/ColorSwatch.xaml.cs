@@ -71,7 +71,8 @@ namespace WPF_LED_Controller.UserControls
 
             btnNext.Click += (sender, e) => DoTrack('+');
             btnPrevious.Click += (sender, e) => DoTrack('-');
-
+            canColor.MouseMove += (sender, e) => HoverColor = GetColorFromImage((int)Mouse.GetPosition(canColor).X, (int)Mouse.GetPosition(canColor).Y);
+            
             Images.Add(new BitmapImage(new Uri(@"/Images/Swatch.png", UriKind.RelativeOrAbsolute)));
             Images.Add(new BitmapImage(new Uri(@"/Images/Swatch2.png", UriKind.RelativeOrAbsolute)));
             //set background.
@@ -123,13 +124,11 @@ namespace WPF_LED_Controller.UserControls
                 for (var j = 0; j < canColor.ActualHeight; j++)
                 {
                     PixelData pixel = _myUnsafeBitmap.GetPixel(i, j);
-                        var colorfromimagepoint = Color.FromRgb(pixel.Red, pixel.Green, pixel.Blue);
-                        if (SimmilarColor(colorfromimagepoint, SavedColor))
-                        {
-                            MovePointerDuringReposition(i, j);
-                            flag = true;
-                            break;
-                        }
+                    var colorfromimagepoint = Color.FromRgb(pixel.Red, pixel.Green, pixel.Blue);
+                    if (!SimmilarColor(colorfromimagepoint, SavedColor)) continue;
+                    MovePointerDuringReposition(i, j);
+                    flag = true;
+                    break;
                 }
                 if (flag) break;
             }
@@ -220,6 +219,7 @@ namespace WPF_LED_Controller.UserControls
                     btnNext.IsEnabled = true;
                     break;
                 case '+':
+                    
                     _tracker = (_tracker != 1) ? _tracker + 1 : _tracker;
                     btnNext.IsEnabled = (_tracker != 1);
                     btnPrevious.IsEnabled = true;
@@ -237,11 +237,6 @@ namespace WPF_LED_Controller.UserControls
             SavedColor = GetColorFromImage((int)Mouse.GetPosition(canColor).X, (int)Mouse.GetPosition(canColor).Y);
             MovePointer();
             e.Handled = true;
-        }
-
-        private void canColor_MouseMove(object sender, MouseEventArgs e)
-        {
-            HoverColor = GetColorFromImage((int) Mouse.GetPosition(canColor).X, (int) Mouse.GetPosition(canColor).Y);
         }
     }
 }

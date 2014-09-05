@@ -6,7 +6,7 @@
         Width="305"
         Height="345"
         ResizeMode="CanMinimize"
-        SizeToContent="WidthAndHeight"  Closing="MainWindow_OnClosing">
+        SizeToContent="WidthAndHeight" Icon="Images/LED.ico">
 
     <Grid Margin="0,0,0,0" UseLayoutRounding="True">
 

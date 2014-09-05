@@ -19,7 +19,9 @@ namespace WPF_LED_Controller.UserControls
            txtGMax.Text = "255";
             txtRMax.Text = "255";
             txtBMax.Text = "255";
-           
+
+            btnSet.Click += (sender, e) => Visibility = Visibility.Hidden;
+
         }
 
 
@@ -129,11 +131,6 @@ namespace WPF_LED_Controller.UserControls
             {
                 txtRMax.Text = (min + 1).ToString(CultureInfo.InvariantCulture);
             }
-        }
-
-        private void btnSet_Click(object sender, RoutedEventArgs e)
-        {
-            Visibility = Visibility.Hidden;
         }
     }
 }

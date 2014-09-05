@@ -39,7 +39,7 @@
                 <Slider Grid.Row="5" Grid.Column="0"  x:Name="slDiscoSlider"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="90" TickPlacement="TopLeft" Minimum=".5" SmallChange=".5" Foreground="#FFD40000" Cursor="Hand" IsSnapToTickEnabled="True" Grid.ColumnSpan="3" Margin="0,0,-1,0" />
 
             </Grid>
-            <Button x:Name="btnSet" Content="Close" Click="btnSet_Click"/>
+            <Button x:Name="btnSet" Content="Close"/>
 
         </StackPanel>
     </Border>

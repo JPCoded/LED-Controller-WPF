@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="201" Height="223">
     <Grid>
 
-        <Canvas x:Name="canColor" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="201" MouseLeftButtonDown="canColor_MouseLeftButtonDown" MouseMove="canColor_MouseMove">
+        <Canvas x:Name="canColor" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="201" MouseLeftButtonDown="canColor_MouseLeftButtonDown">
             <Image x:Name="imgColor" />
             <Ellipse x:Name="EpPointer" Width="8" Height="8" Stroke="Black" Fill="White" />
         </Canvas>

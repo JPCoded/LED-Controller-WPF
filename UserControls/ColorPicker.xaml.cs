@@ -17,19 +17,6 @@ namespace WPF_LED_Controller.UserControls
             InitializeComponent();
         }
 
-        #region Validation
-        private static void HexKeyValidation(KeyEventArgs e)
-        {
-            var input = e.Key.ToString();
-            if (e.Key == Key.D3 && (e.Key == Key.LeftShift || e.Key == Key.RightShift))
-            { input = "#"; }
-            if (!(input == "#" || (input[0] >= 'A' && input[0] <= 'F') || (input[0] >= 'a' && input[0] <= 'F') || (input[0] >= '0' && input[0] <= '9')))
-            {
-                e.Handled = true;
-            }
-        }
-        #endregion
-
         #region TextBoxes
 
         #region TextChanged
@@ -86,7 +73,7 @@ namespace WPF_LED_Controller.UserControls
         /// <param name="e"></param>
         private void txtHAll_KeyDown(object sender, KeyEventArgs e)
         {
-            HexKeyValidation(e);
+            ValueFun.HexKeyValidation(e);
           
                 var strHex = ((TextBox) sender).Text;
                 //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #, if they arent, we go no farther in code.

@@ -16,9 +16,9 @@ namespace WPF_LED_Controller
         public MainWindow()
         {
             InitializeComponent();
-
             _arduinoSerial.BaudRate = 115200;
             plPorts.Refresh();
+           Closing += (sender, e) => _discoWindow.Close(); ;
             
         }
 
@@ -82,11 +82,6 @@ namespace WPF_LED_Controller
         private void btnDiso_Click(object sender, RoutedEventArgs e)
         {
             _discoWindow.Visibility = _discoWindow.IsVisible ? Visibility.Hidden : Visibility.Visible;
-        }
-
-        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
-        {
-            _discoWindow.Close();
         }
     }
 

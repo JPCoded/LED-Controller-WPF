@@ -12,3 +12,16 @@ C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\GeneratedInternalTypeHelper.g.cs
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\WPF LED Controller_MarkupCompile.cache
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\WPF LED Controller_MarkupCompile.lref
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\bin\Release\WPF LED Controller.exe.config
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\WPF LED Controller.csprojResolveAssemblyReference.cache
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\Resources\BorderedTextBox.baml
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\Resources\NavButton.baml
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\Resources\Slider.baml
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\UserControls\ColorSwatch.baml
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\UserControls\Disco.baml
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\UserControls\PortList.baml
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\App.baml
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\UserControls\ColorPicker.g.cs
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\UserControls\ColorSwatch.g.cs
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\UserControls\Disco.g.cs
+C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Release\UserControls\PortList.g.cs

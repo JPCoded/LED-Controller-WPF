@@ -46,5 +46,16 @@ namespace WPF_LED_Controller.UserControls
             else
             { e.Handled = true; }
         }
+
+        public static void HexKeyValidation(KeyEventArgs e)
+        {
+            var input = e.Key.ToString();
+            if (e.Key == Key.D3 && (e.Key == Key.LeftShift || e.Key == Key.RightShift))
+            { input = "#"; }
+            if (!(input == "#" || (input[0] >= 'A' && input[0] <= 'F') || (input[0] >= 'a' && input[0] <= 'F') || (input[0] >= '0' && input[0] <= '9')))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
