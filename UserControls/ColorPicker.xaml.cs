@@ -19,7 +19,7 @@ namespace WPF_LED_Controller.UserControls
             InitializeComponent();
         }
 
-  private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
             ((TextBox) sender).Text = ValueFun.OverUnderValidation(((TextBox) sender).Text);
 
@@ -52,18 +52,10 @@ namespace WPF_LED_Controller.UserControls
             canColor.SavedColor = Color.FromRgb(canColor.Red, canColor.Green, bbyteValue);
         }
 
-   
-
-   
-
         private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             ValueFun.KeyPreview(sender, e);
         }
-
-
-
-       
 
         /// <summary>
         ///     KeyDown for the AllHex textbox
@@ -75,16 +67,13 @@ namespace WPF_LED_Controller.UserControls
             ValueFun.HexKeyValidation(e);
 
             var strHex = ((TextBox) sender).Text;
-            //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #, if they arent, we go no farther in code.
+            //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #, if they aren't, we go no farther in code.
             if ((strHex.Length != 7 && strHex.Length != 9) || strHex[0] != '#') return;
 
             var convertFromString = ColorConverter.ConvertFromString(strHex);
+           
             if (convertFromString != null)
                 canColor.SavedColor = (Color) convertFromString;
         }
-
-   
-
-       
     }
 }

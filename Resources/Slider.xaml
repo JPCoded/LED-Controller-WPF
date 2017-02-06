@@ -1,38 +1,38 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-   
-    <!-- Linear b Brushes -->
-    <LinearGradientBrush x:Key="Red" EndPoint="0,1" StartPoint="1,0">
-        <GradientStop Color="Red" Offset="0"/>
-        <GradientStop Color="White" Offset="1"/>
+
+    <!--  Linear b Brushes  -->
+    <LinearGradientBrush x:Key="Red" StartPoint="1,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="Red" />
+        <GradientStop Offset="1" Color="White" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="Green" EndPoint="0,1" StartPoint="1,0">
-        <GradientStop Color="Green" Offset="0"/>
-        <GradientStop Color="White" Offset="1"/>
+    <LinearGradientBrush x:Key="Green" StartPoint="1,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="Green" />
+        <GradientStop Offset="1" Color="White" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="Blue" EndPoint="0,1" StartPoint="1,0">
-        <GradientStop Color="Blue" Offset="0"/>
-        <GradientStop Color="White" Offset="1"/>
+    <LinearGradientBrush x:Key="Blue" StartPoint="1,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="Blue" />
+        <GradientStop Offset="1" Color="White" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="RectBrush" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-        <GradientStop Color="#FF7A7A7A"/>
-        <GradientStop Color="#FFBBBBBB" Offset="0.2"/>
-        <GradientStop Color="White" Offset="0.5"/>
-        <GradientStop Color="#FFBBBBBB" Offset="0.8"/>
-        <GradientStop Color="#FF7A7A7A" Offset="1"/>
+    <LinearGradientBrush x:Key="RectBrush" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#FF7A7A7A" />
+        <GradientStop Offset="0.2" Color="#FFBBBBBB" />
+        <GradientStop Offset="0.5" Color="White" />
+        <GradientStop Offset="0.8" Color="#FFBBBBBB" />
+        <GradientStop Offset="1" Color="#FF7A7A7A" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="RectBrushOver" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FF783C00" Offset="0"/>
-        <GradientStop Color="#FF783C00" Offset="1"/>
-        <GradientStop Color="#FFFF8000" Offset="0.51"/>
-        <GradientStop Color="#FFB47300" Offset="0.2"/>
-        <GradientStop Color="#FFB47300" Offset="0.8"/>
+    <LinearGradientBrush x:Key="RectBrushOver" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#FF783C00" />
+        <GradientStop Offset="1" Color="#FF783C00" />
+        <GradientStop Offset="0.51" Color="#FFFF8000" />
+        <GradientStop Offset="0.2" Color="#FFB47300" />
+        <GradientStop Offset="0.8" Color="#FFB47300" />
     </LinearGradientBrush>
-    <!-- End of Linear Burshes -->
-    
+    <!--  End of Linear Burshes  -->
+
     <Style x:Key="SliderButtonStyle" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
@@ -50,21 +50,21 @@
     <Style x:Key="SliderThumbStyle" TargetType="Thumb">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="false" />
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Height" Value="8" />
         <Setter Property="Width" Value="18" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-               
-                   
+
+
                     <Rectangle Name="Rectangle"
-                             Stroke="{x:Null}"
-                             StrokeThickness="0" 
+                               Fill="{StaticResource RectBrush}"
                                RadiusX="5"
-                               RadiusY="5" 
-                               Fill="{StaticResource RectBrush}"/>
-                                        <ControlTemplate.Triggers>
+                               RadiusY="5"
+                               Stroke="{x:Null}"
+                               StrokeThickness="0" />
+                    <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Rectangle" Property="Fill" Value="{StaticResource RectBrushOver}" />
                         </Trigger>
@@ -74,14 +74,14 @@
         </Setter>
     </Style>
 
-    <Style x:Key="RGBSlider" TargetType="{x:Type Slider}" >
-        <Setter Property="Orientation" Value="Vertical"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Width" Value="18"/>
-        <Setter Property="Height" Value="100"/>
-        <Setter Property="Maximum" Value="255"/>
-        <Setter Property="Minimum" Value="0"/>
+    <Style x:Key="RGBSlider" TargetType="{x:Type Slider}">
+        <Setter Property="Orientation" Value="Vertical" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Width" Value="18" />
+        <Setter Property="Height" Value="100" />
+        <Setter Property="Maximum" Value="255" />
+        <Setter Property="Minimum" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Slider">
