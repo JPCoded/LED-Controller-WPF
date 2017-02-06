@@ -19,13 +19,14 @@ namespace WPF_LED_Controller
         private readonly Disco _discoWindow = new Disco();
         private const int Offset = 0;
         private const byte EndingByte = 0x0A;
+        private const int BaudRate = 115200;
         public MainWindow()
         {
             InitializeComponent();
-            _arduinoSerial.BaudRate = 115200;
+            _arduinoSerial.BaudRate = BaudRate;
             plPorts.Refresh();
             Closing += (sender, e) => _discoWindow.Close();
-            ;
+            
         }
 
         private void btnSet_Click(object sender, RoutedEventArgs e)
@@ -104,7 +105,7 @@ namespace WPF_LED_Controller
 
         private void btnDiso_Click(object sender, RoutedEventArgs e)
         {
-            _discoWindow.Visibility = _discoWindow.IsVisible ? Visibility.Hidden : Visibility.Visible;
+            _discoWindow.Visibility =_discoWindow.IsVisible? Visibility.Hidden:Visibility.Visible;
         }
     }
 }
