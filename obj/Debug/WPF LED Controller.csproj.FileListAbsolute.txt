@@ -42,3 +42,6 @@ C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.csproj.GenerateResource.Cache
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.exe
 C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\WPF LED Controller.pdb
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\WPF LED Controller.exe.config
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF LED Controller.exe
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF LED Controller.pdb
