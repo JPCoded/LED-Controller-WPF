@@ -133,6 +133,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IPorts.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="UserControls\ColorSwatch.xaml.cs">
       <DependentUpon>ColorSwatch.xaml</DependentUpon>
@@ -143,6 +144,7 @@
     <Compile Include="UserControls\PortList.xaml.cs">
       <DependentUpon>PortList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Ports.cs" />
     <Compile Include="UserControls\UnsafeBitmap.cs" />
     <Compile Include="UserControls\ValueFun.cs" />
     <Page Include="Resources\BorderedTextBox.xaml">
@@ -257,9 +259,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaced\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
