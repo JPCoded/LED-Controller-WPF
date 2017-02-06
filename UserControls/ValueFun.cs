@@ -18,7 +18,7 @@ namespace WPF_LED_Controller.UserControls
                 var checkVal = int.Parse(valueToCheck);
                 if (checkVal >= max)
                 {
-                    return max.ToString(CultureInfo.InvariantCulture);
+                    return max.ToString();
                 }
                 if (checkVal < 0)
                 {

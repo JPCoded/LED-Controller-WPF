@@ -24,7 +24,7 @@ namespace WPF_LED_Controller.UserControls
         {
             ((TextBox)sender).Text = ValueFun.OverUnderValidation(((TextBox)sender).Text);
             
-            if (((TextBox) sender).Text == canColor.Red.ToString(CultureInfo.InvariantCulture)) return;
+            if (((TextBox) sender).Text == canColor.Red.ToString()) return;
             //Convert textbox to byte, but check to see if it's empty, if so send 0
             var rbyteValue = Convert.ToByte(((TextBox)sender).Text);
             //change red vaule of main color
@@ -35,10 +35,10 @@ namespace WPF_LED_Controller.UserControls
         {
             ((TextBox)sender).Text = ValueFun.OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox) sender).Text == canColor.Green.ToString(CultureInfo.InvariantCulture)) return;
+            if (((TextBox) sender).Text == canColor.Green.ToString()) return;
             //Convert textbox to byte, but check to see if it's empty, if so send 0
             var gbyteValue = Convert.ToByte(((TextBox)sender).Text);
-            //change green vaule of main color
+            //change green value of main color
             canColor.SavedColor = Color.FromRgb(canColor.Red, gbyteValue, canColor.Blue);
         }
 
@@ -46,7 +46,7 @@ namespace WPF_LED_Controller.UserControls
         {
             ((TextBox)sender).Text = ValueFun.OverUnderValidation(((TextBox)sender).Text);
 
-            if (((TextBox) sender).Text == canColor.Blue.ToString(CultureInfo.InvariantCulture)) return;
+            if (((TextBox) sender).Text == canColor.Blue.ToString()) return;
             //Convert textbox to byte, but check to see if it's empty, if so send 0
             var bbyteValue = Convert.ToByte(((TextBox)sender).Text);
             //change blue vaule of main color

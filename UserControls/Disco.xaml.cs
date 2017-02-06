@@ -25,32 +25,17 @@ namespace WPF_LED_Controller.UserControls
         }
 
 
-        public byte RedMin
-        {
-            get { return Convert.ToByte(txtRMin.Text); }
-        }
-        public byte RedMax
-        {
-            get { return Convert.ToByte(txtRMax.Text); }
-        }
+        public byte RedMin => Convert.ToByte(txtRMin.Text);
 
-        public byte GreenMin
-        {
-            get { return Convert.ToByte(txtGMin.Text); }
-        }
-        public byte GreenMax
-        {
-            get { return Convert.ToByte(txtGMax.Text); }
-        }
-        public byte BlueMin
-        {
-            get { return Convert.ToByte(txtBMin.Text); }
-        }
-        public byte BlueMax
-        {
-            get { return Convert.ToByte(txtBMax.Text); }
-        }
+        public byte RedMax => Convert.ToByte(txtRMax.Text);
 
+        public byte GreenMin => Convert.ToByte(txtGMin.Text);
+
+        public byte GreenMax => Convert.ToByte(txtGMax.Text);
+
+        public byte BlueMin => Convert.ToByte(txtBMin.Text);
+
+        public byte BlueMax => Convert.ToByte(txtBMax.Text);
 
 
         private void txtMinMax_OnPreviewKeyDown(object sender, KeyEventArgs e)
@@ -67,7 +52,7 @@ namespace WPF_LED_Controller.UserControls
             var max = Convert.ToInt32(txtGMax.Text);
             if (min > max)
             {
-                txtGMax.Text = (min + 1).ToString(CultureInfo.InvariantCulture);
+                txtGMax.Text = (min + 1).ToString();
             }
         }
 
@@ -80,7 +65,7 @@ namespace WPF_LED_Controller.UserControls
             var max = Convert.ToInt32(txtGMax.Text);
             if (min > max)
             {
-               txtGMax.Text = (min + 1).ToString(CultureInfo.InvariantCulture);
+               txtGMax.Text = (min + 1).ToString();
             }
         }
 
@@ -92,7 +77,7 @@ namespace WPF_LED_Controller.UserControls
             var max = Convert.ToInt32(txtBMax.Text);
             if (min > max)
             {
-                txtBMax.Text = (min + 1).ToString(CultureInfo.InvariantCulture);
+                txtBMax.Text = (min + 1).ToString();
             }
         }
 
@@ -104,7 +89,7 @@ namespace WPF_LED_Controller.UserControls
             var max = Convert.ToInt32(txtBMax.Text);
             if (min > max)
             {
-                txtBMax.Text = (min + 1).ToString(CultureInfo.InvariantCulture);
+                txtBMax.Text = (min + 1).ToString();
             }
         }
 
@@ -117,7 +102,7 @@ namespace WPF_LED_Controller.UserControls
             var max = Convert.ToInt32(txtRMax.Text);
             if (min > max)
             {
-                txtRMax.Text = (min + 1).ToString(CultureInfo.InvariantCulture);
+                txtRMax.Text = (min + 1).ToString();
             }
         }
 
@@ -129,7 +114,7 @@ namespace WPF_LED_Controller.UserControls
             var max = Convert.ToInt32(txtRMax.Text);
             if (min > max)
             {
-                txtRMax.Text = (min + 1).ToString(CultureInfo.InvariantCulture);
+                txtRMax.Text = (min + 1).ToString();
             }
         }
     }
