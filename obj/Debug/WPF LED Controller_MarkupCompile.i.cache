@@ -8,13 +8,13 @@ C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\
 WPF_LED_Controller
 none
 false
-DEBUG;TRACE
+CODE_ANALYSIS;DEBUG;TRACE
 C:\Users\Heather\Source\Repos\LED-Controller-WPF2\App.xaml
 10-1617530094
 
-16-855706800
-21-539240808
+16-1994708151
+21534204481
 Resources\BorderedTextBox.xaml;Resources\NavButton.xaml;Resources\Slider.xaml;UserControls\ColorPicker.xaml;Dictionaries\PreviewLabelDict.xaml;MainWindow.xaml;UserControls\ColorSwatch.xaml;UserControls\Disco.xaml;UserControls\PortList.xaml;Resources\GlassButtons.xaml;
 
-True
+False
 

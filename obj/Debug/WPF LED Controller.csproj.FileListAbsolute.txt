@@ -45,3 +45,56 @@ C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF
 C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\WPF LED Controller.exe.config
 C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF LED Controller.exe
 C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF LED Controller.pdb
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF LED Controller.csprojResolveAssemblyReference.cache
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\Resources\BorderedTextBox.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\Resources\NavButton.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\Resources\Slider.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\Dictionaries\PreviewLabelDict.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\UserControls\ColorSwatch.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\UserControls\Disco.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\UserControls\PortList.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\Resources\GlassButtons.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\App.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\UserControls\ColorPicker.g.cs
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\MainWindow.g.cs
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\UserControls\ColorSwatch.g.cs
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\UserControls\Disco.g.cs
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\UserControls\PortList.g.cs
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\App.g.cs
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF LED Controller_MarkupCompile.cache
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF LED Controller_MarkupCompile.lref
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\UserControls\ColorPicker.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\MainWindow.baml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF LED Controller.g.resources
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF_LED_Controller.Properties.Resources.resources
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\WPF LED Controller.csproj.GenerateResource.Cache
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\WPF LED Controller.exe
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\WPF LED Controller.pdb
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\WPF LED Controller.exe.CodeAnalysisLog.xml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\WPF LED Controller.exe.lastcodeanalysissucceeded
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\Microsoft.Expression.Drawing.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\Microsoft.Windows.Design.Extensibility.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\Microsoft.Windows.Design.Interaction.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\Microsoft.Windows.Design.Extensibility.xml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\Microsoft.Windows.Design.Interaction.xml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\de\Microsoft.Expression.Drawing.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\es\Microsoft.Expression.Drawing.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\fr\Microsoft.Expression.Drawing.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\it\Microsoft.Expression.Drawing.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\ja\Microsoft.Expression.Drawing.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\ko\Microsoft.Expression.Drawing.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\ru\Microsoft.Expression.Drawing.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\zh-Hans\Microsoft.Expression.Drawing.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\zh-Hant\Microsoft.Expression.Drawing.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\de\System.Windows.Interactivity.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\en\System.Windows.Interactivity.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\es\System.Windows.Interactivity.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\it\System.Windows.Interactivity.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll

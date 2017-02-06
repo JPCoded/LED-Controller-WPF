@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\obj\Debug\
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\obj\Debug\
 WPF_LED_Controller
 none
 false
-DEBUG;TRACE
-C:\Users\cwarlord87\Documents\Visual Studio 2013\Projects\WPF LED Controller\WPF LED Controller\App.xaml
+CODE_ANALYSIS;DEBUG;TRACE
+C:\Users\Heather\Source\Repos\LED-Controller-WPF2\App.xaml
 10-1617530094
 
 12-785623282
-211066345210
+21534204481
 Resources\BorderedTextBox.xaml;Resources\NavButton.xaml;Resources\Slider.xaml;UserControls\ColorPicker.xaml;Dictionaries\PreviewLabelDict.xaml;MainWindow.xaml;UserControls\ColorSwatch.xaml;UserControls\Disco.xaml;UserControls\PortList.xaml;Resources\GlassButtons.xaml;
 
 False
