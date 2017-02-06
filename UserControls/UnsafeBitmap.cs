@@ -1,18 +1,22 @@
-﻿using System;
+﻿#region
+
 using System.Drawing;
 using System.Drawing.Imaging;
 
+#endregion
+
 //class that uses unsafe to handle bitmaps because default image processing is to slow for what I need it to do.
+
 namespace WPF_LED_Controller.UserControls
 {
-    unsafe class UnsafeBitmap
+    internal unsafe class UnsafeBitmap
     {
-        readonly Bitmap _bitmap;
-        int _width = 201;
-        BitmapData _bitmapData;
-        Byte* _pBase = null;
+        private BitmapData _bitmapData;
+        private byte* _pBase = null;
+        private int _width = 201;
+        private readonly Bitmap _bitmap;
 
-        public UnsafeBitmap(Bitmap bitmap)
+        public UnsafeBitmap(Image bitmap)
         {
             _bitmap = new Bitmap(bitmap);
         }
@@ -25,27 +29,27 @@ namespace WPF_LED_Controller.UserControls
         public void LockBitmap()
         {
             var unit = GraphicsUnit.Pixel;
-            RectangleF boundsF = _bitmap.GetBounds(ref unit);
-            var bounds = new Rectangle((int)boundsF.X, (int)boundsF.Y, (int)boundsF.Width, (int)boundsF.Height);
+            var boundsF = _bitmap.GetBounds(ref unit);
+            var bounds = new Rectangle((int) boundsF.X, (int) boundsF.Y, (int) boundsF.Width, (int) boundsF.Height);
 
-            _width = (int)boundsF.Width * sizeof(PixelData);
-            if (_width % 4 != 0)
+            _width = (int) boundsF.Width*sizeof (PixelData);
+            if (_width%4 != 0)
             {
-                _width = 4 * (_width / 4 + 1);
+                _width = 4*(_width/4 + 1);
             }
             _bitmapData = _bitmap.LockBits(bounds, ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-            _pBase = (Byte*)_bitmapData.Scan0.ToPointer();
+            _pBase = (byte*) _bitmapData.Scan0.ToPointer();
         }
 
         public PixelData GetPixel(int x, int y)
         {
-            PixelData returnValue = *PixelAt(x, y);
+            var returnValue = *PixelAt(x, y);
             return returnValue;
         }
 
         private PixelData* PixelAt(int x, int y)
         {
-            return (PixelData*)(_pBase + y * _width + x * sizeof(PixelData));
+            return (PixelData*) (_pBase + y*_width + x*sizeof (PixelData));
         }
 
         public void UnlockBitmap()
@@ -55,6 +59,7 @@ namespace WPF_LED_Controller.UserControls
             _pBase = null;
         }
     }
+
     public struct PixelData
     {
         public byte Blue;
