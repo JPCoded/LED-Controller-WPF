@@ -7,10 +7,11 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WPF_LED_Controller.UserControls;
 
 #endregion
 
-namespace WPF_LED_Controller.UserControls
+namespace WPF_LED_Controller
 {
     /// <summary>
     ///     Interaction logic for ColorSwatch.xaml

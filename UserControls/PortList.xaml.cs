@@ -2,16 +2,16 @@
 
 using System.Collections.ObjectModel;
 using System.IO.Ports;
-using System.Windows.Controls;
+using WPF_LED_Controller.UserControls;
 
 #endregion
 
-namespace WPF_LED_Controller.UserControls
+namespace WPF_LED_Controller
 {
     /// <summary>
     ///     Interaction logic for PortList.xaml
     /// </summary>
-    public partial class PortList : UserControl
+    public partial class PortList
     {
         public PortList()
         {

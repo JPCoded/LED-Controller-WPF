@@ -1,6 +1,4 @@
-﻿using WPF_LED_Controller.Interfaces;
-
-namespace WPF_LED_Controller.UserControls
+﻿namespace WPF_LED_Controller
 {
     public class Ports : IPorts
     {

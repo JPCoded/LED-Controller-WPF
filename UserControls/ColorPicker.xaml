@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WPF_LED_Controller.UserControls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:wpfLedController="clr-namespace:WPF_LED_Controller"
              x:Name="cpcColor"
              Width="301.403"
              Height="285.687"
@@ -93,11 +94,11 @@
                                         Mode=TwoWay}" />
             </StackPanel>
         </StackPanel>
-        <local:ColorSwatch x:Name="canColor"
-                           Width="201"
-                           Height="223"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top" />
+        <wpfLedController:ColorSwatch x:Name="canColor"
+                                      Width="201"
+                                      Height="223"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Top" />
         <StackPanel Margin="0,228,0,0" Style="{StaticResource SavedHoverPanel}">
             <Label x:Name="lblSaved"
                    Content="Saved"

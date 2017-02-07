@@ -1,4 +1,4 @@
-﻿namespace WPF_LED_Controller.Interfaces
+﻿namespace WPF_LED_Controller
 {
     interface IPorts
     {

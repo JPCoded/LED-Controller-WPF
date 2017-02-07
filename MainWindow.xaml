@@ -25,10 +25,10 @@
                 VerticalAlignment="Top"
                 Click="btnSet_Click"
                 Content="Set" />
-        <UserControls:PortList x:Name="plPorts"
-                               Margin="218,190,0,0"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Top" />
+        <wpfLedController:PortList x:Name="plPorts"
+                                   Margin="218,190,0,0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Top" />
         <wpfLedController:ColorPicker x:Name="cpColor"
                                       Width="299"
                                       Height="287"
