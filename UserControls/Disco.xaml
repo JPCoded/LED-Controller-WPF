@@ -1,45 +1,117 @@
-﻿<Window x:Class="WPF_LED_Controller.UserControls.Disco"
+﻿<Window x:Class="WPF_LED_Controller.Disco"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Disco" Height="180" Width="92" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True">
-    <Border BorderBrush="Black" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+        Title="Disco"
+        Width="92"
+        Height="180"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True"
+        WindowStyle="None">
+    <Border Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"
+            BorderBrush="Black"
+            BorderThickness="1">
         <StackPanel Orientation="Vertical">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition  Height="26"/>
                     <RowDefinition Height="26" />
-                    <RowDefinition Height="26"/>
                     <RowDefinition Height="26" />
-                    <RowDefinition Height="26"/>
-                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26" />
+                    <RowDefinition Height="26" />
+                    <RowDefinition Height="26" />
+                    <RowDefinition Height="26" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20"></ColumnDefinition>
-                    <ColumnDefinition Width="33"></ColumnDefinition>
-                    <ColumnDefinition Width="33"></ColumnDefinition>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="33" />
+                    <ColumnDefinition Width="33" />
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="1" Grid.Row="0" >Min</Label>
-                <Label Grid.Column="2" Grid.Row="0">Max</Label>
+                <Label Grid.Row="0" Grid.Column="1">Min</Label>
+                <Label Grid.Row="0" Grid.Column="2">Max</Label>
 
                 <Label Grid.Row="1" Grid.Column="0">R</Label>
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtRMin" Style="{StaticResource BorderedText}"   PreviewKeyDown="txtMinMax_OnPreviewKeyDown" Height="23" Width="30" TextWrapping="Wrap" TextChanged="txtRMin_TextChanged" />
-                <TextBox Grid.Row="1" Grid.Column="2" x:Name="txtRMax" Style="{StaticResource BorderedText}"   PreviewKeyDown="txtMinMax_OnPreviewKeyDown" Height="23" Width="30" TextWrapping="Wrap" TextChanged="txtRMax_TextChanged" />
+                <TextBox x:Name="txtRMin"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         Width="30"
+                         Height="23"
+                         PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
+                         Style="{StaticResource BorderedText}"
+                         TextChanged="txtRMin_TextChanged"
+                         TextWrapping="Wrap" />
+                <TextBox x:Name="txtRMax"
+                         Grid.Row="1"
+                         Grid.Column="2"
+                         Width="30"
+                         Height="23"
+                         PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
+                         Style="{StaticResource BorderedText}"
+                         TextChanged="txtRMax_TextChanged"
+                         TextWrapping="Wrap" />
 
                 <Label Grid.Row="2" Grid.Column="0">G</Label>
-                <TextBox  Grid.Row="2" Grid.Column="1" x:Name="txtGMin" Style="{StaticResource BorderedText}"   PreviewKeyDown="txtMinMax_OnPreviewKeyDown" Height="23" Width="30" TextChanged="txtGMin_TextChanged" />
-                <TextBox  Grid.Row="2" Grid.Column="2" x:Name="txtGMax" Style="{StaticResource BorderedText}"    PreviewKeyDown="txtMinMax_OnPreviewKeyDown" Height="23" Width="30" TextChanged="txtGMax_TextChanged" />
+                <TextBox x:Name="txtGMin"
+                         Grid.Row="2"
+                         Grid.Column="1"
+                         Width="30"
+                         Height="23"
+                         PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
+                         Style="{StaticResource BorderedText}"
+                         TextChanged="txtGMin_TextChanged" />
+                <TextBox x:Name="txtGMax"
+                         Grid.Row="2"
+                         Grid.Column="2"
+                         Width="30"
+                         Height="23"
+                         PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
+                         Style="{StaticResource BorderedText}"
+                         TextChanged="txtGMax_TextChanged" />
 
                 <Label Grid.Row="3" Grid.Column="0">B</Label>
-                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtBMin" Style="{StaticResource BorderedText}" PreviewKeyDown="txtMinMax_OnPreviewKeyDown" Height="23" Width="30" TextWrapping="Wrap" TextChanged="txtBMin_TextChanged" />
-                <TextBox Grid.Row="3" Grid.Column="2" x:Name="txtBMax" Style="{StaticResource BorderedText}"   PreviewKeyDown="txtMinMax_OnPreviewKeyDown" Height="23" Width="30" TextWrapping="Wrap" TextChanged="txtBMax_TextChanged" />
+                <TextBox x:Name="txtBMin"
+                         Grid.Row="3"
+                         Grid.Column="1"
+                         Width="30"
+                         Height="23"
+                         PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
+                         Style="{StaticResource BorderedText}"
+                         TextChanged="txtBMin_TextChanged"
+                         TextWrapping="Wrap" />
+                <TextBox x:Name="txtBMax"
+                         Grid.Row="3"
+                         Grid.Column="2"
+                         Width="30"
+                         Height="23"
+                         PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
+                         Style="{StaticResource BorderedText}"
+                         TextChanged="txtBMax_TextChanged"
+                         TextWrapping="Wrap" />
 
 
-                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">Interval (sec)</Label>
-                <Slider Grid.Row="5" Grid.Column="0"  x:Name="slDiscoSlider"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="90" TickPlacement="TopLeft" Minimum=".5" SmallChange=".5" Foreground="#FFD40000" Cursor="Hand" IsSnapToTickEnabled="True" Grid.ColumnSpan="3" Margin="0,0,-1,0" />
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3">
+                    Interval (sec)
+                </Label>
+                <Slider x:Name="slDiscoSlider"
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Width="90"
+                        Height="25"
+                        Margin="0,0,-1,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Cursor="Hand"
+                        Foreground="#FFD40000"
+                        IsSnapToTickEnabled="True"
+                        Minimum=".5"
+                        SmallChange=".5"
+                        TickPlacement="TopLeft" />
 
             </Grid>
-            <Button x:Name="btnSet" Content="Close"/>
+            <Button x:Name="btnSet" Content="Close" />
 
         </StackPanel>
     </Border>

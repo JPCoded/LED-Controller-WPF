@@ -117,6 +117,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Interfaces\IPorts.cs" />
+    <Compile Include="Interfaces\IValueFun.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="UserControls\ColorSwatch.xaml.cs">
       <DependentUpon>ColorSwatch.xaml</DependentUpon>

@@ -1,17 +1,17 @@
 ﻿#region
 
 using System;
-using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Input;
 
+
 #endregion
 
-namespace WPF_LED_Controller.UserControls
+namespace WPF_LED_Controller
 {
-    internal static class ValueFun
+    public class ValueFun : IValueFun
     {
-        public static string OverUnderValidation(string valueToCheck, int max = 255)
+        string IValueFun.OverUnderValidation(string valueToCheck, int max)
         {
             if (!string.IsNullOrEmpty(valueToCheck))
             {
@@ -32,31 +32,31 @@ namespace WPF_LED_Controller.UserControls
             return valueToCheck.ToUpper();
         }
 
-        public static void KeyPreview(object sender, KeyEventArgs e, int max = 255)
+        void IValueFun.KeyPreview(object sender, KeyEventArgs e, int max)
         {
             switch (e.Key)
             {
                 case Key.Up:
-                {
-                    if (string.IsNullOrEmpty(((TextBox) sender).Text))
                     {
-                        ((TextBox) sender).Text = "0";
+                        if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                        {
+                            ((TextBox)sender).Text = "0";
+                        }
+                        var oldValue = Convert.ToInt32(((TextBox)sender).Text);
+                        var newValue = (oldValue + 1 > max) ? max : oldValue + 1;
+                        ((TextBox)sender).Text = newValue.ToString();
                     }
-                    var oldValue = Convert.ToInt32(((TextBox) sender).Text);
-                    var newValue = (oldValue + 1 > max) ? max : oldValue + 1;
-                    ((TextBox) sender).Text = newValue.ToString();
-                }
                     break;
                 case Key.Down:
-                {
-                    if (string.IsNullOrEmpty(((TextBox) sender).Text))
                     {
-                        ((TextBox) sender).Text = max.ToString();
+                        if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                        {
+                            ((TextBox)sender).Text = max.ToString();
+                        }
+                        var oldValue = Convert.ToInt32(((TextBox)sender).Text);
+                        var newValue = (oldValue - 1 < 0) ? 0 : oldValue - 1;
+                        ((TextBox)sender).Text = newValue.ToString();
                     }
-                    var oldValue = Convert.ToInt32(((TextBox) sender).Text);
-                    var newValue = (oldValue - 1 < 0) ? 0 : oldValue - 1;
-                    ((TextBox) sender).Text = newValue.ToString();
-                }
                     break;
                 default:
                     if (e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right ||
@@ -72,7 +72,7 @@ namespace WPF_LED_Controller.UserControls
             }
         }
 
-        public static void HexKeyValidation(KeyEventArgs e)
+        void IValueFun.HexKeyValidation(KeyEventArgs e)
         {
             var input = e.Key.ToString();
             if (e.Key == Key.D3 && (e.Key == Key.LeftShift || e.Key == Key.RightShift))

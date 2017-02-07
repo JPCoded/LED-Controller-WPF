@@ -15,7 +15,7 @@ namespace WPF_LED_Controller.UserControls
     /// <summary>
     ///     Interaction logic for ColorSwatch.xaml
     /// </summary>
-    public partial class ColorSwatch : UserControl
+    public partial class ColorSwatch
     {
         public static readonly DependencyProperty RedProperty;
         public static readonly DependencyProperty GreenProperty;
@@ -29,7 +29,7 @@ namespace WPF_LED_Controller.UserControls
         //used to track current bitmap
         private int _tracker;
         //really don't like having 2 different bitmap callers but until i think of better way this is it for now.
-        //not best idea, but might as well make array of them so i don't have to constantly make new unsafebitmaps
+        //not best idea, but might as well make array of them so i don't have to constantly make new unsafe bitmaps
         private readonly UnsafeBitmap[] _unsafeBitmaps =
         {
             new UnsafeBitmap(Properties.Resources.ColorSwatch),
@@ -51,7 +51,7 @@ namespace WPF_LED_Controller.UserControls
             Images.Add(new BitmapImage(new Uri(@"/Images/Swatch2.png", UriKind.RelativeOrAbsolute)));
             //set background.
             imgColor.Source = Images[_tracker];
-            //set unsafebitmap
+            //set unsafe bitmap
             _myUnsafeBitmap = _unsafeBitmaps[0];
         }
 

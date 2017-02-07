@@ -7,13 +7,14 @@ using System.Windows.Input;
 
 #endregion
 
-namespace WPF_LED_Controller.UserControls
+namespace WPF_LED_Controller
 {
     /// <summary>
     ///     Interaction logic for Disco.xaml
     /// </summary>
-    public partial class Disco : Window
+    public partial class Disco
     {
+        private readonly IValueFun _valueFun = new ValueFun();
         public Disco()
         {
             InitializeComponent();
@@ -33,13 +34,13 @@ namespace WPF_LED_Controller.UserControls
 
         private void txtMinMax_OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            ValueFun.KeyPreview(sender, e);
+            _valueFun.KeyPreview(sender, e);
         }
 
         private void txtGMin_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtGMin.Text = ValueFun.OverUnderValidation(txtGMin.Text, 254);
-            txtGMax.Text = ValueFun.OverUnderValidation(txtGMax.Text);
+            txtGMin.Text = _valueFun.OverUnderValidation(txtGMin.Text, 254);
+            txtGMax.Text = _valueFun.OverUnderValidation(txtGMax.Text);
             var min = Convert.ToInt32(txtGMin.Text);
 
             var max = Convert.ToInt32(txtGMax.Text);
@@ -51,8 +52,8 @@ namespace WPF_LED_Controller.UserControls
 
         private void txtGMax_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtGMax.Text = ValueFun.OverUnderValidation(txtGMax.Text);
-            txtGMin.Text = ValueFun.OverUnderValidation(txtGMin.Text, 254);
+            txtGMax.Text = _valueFun.OverUnderValidation(txtGMax.Text);
+            txtGMin.Text = _valueFun.OverUnderValidation(txtGMin.Text, 254);
 
             var min = Convert.ToInt32(txtGMin.Text);
             var max = Convert.ToInt32(txtGMax.Text);
@@ -64,8 +65,8 @@ namespace WPF_LED_Controller.UserControls
 
         private void txtBMin_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtBMin.Text = ValueFun.OverUnderValidation(txtBMin.Text, 254);
-            txtBMax.Text = ValueFun.OverUnderValidation(txtBMax.Text);
+            txtBMin.Text = _valueFun.OverUnderValidation(txtBMin.Text, 254);
+            txtBMax.Text = _valueFun.OverUnderValidation(txtBMax.Text);
             var min = Convert.ToInt32(txtBMin.Text);
             var max = Convert.ToInt32(txtBMax.Text);
             if (min > max)
@@ -76,8 +77,8 @@ namespace WPF_LED_Controller.UserControls
 
         private void txtBMax_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtBMax.Text = ValueFun.OverUnderValidation(txtBMax.Text);
-            txtBMin.Text = ValueFun.OverUnderValidation(txtBMin.Text, 254);
+            txtBMax.Text = _valueFun.OverUnderValidation(txtBMax.Text);
+            txtBMin.Text = _valueFun.OverUnderValidation(txtBMin.Text, 254);
             var min = Convert.ToInt32(txtBMin.Text);
             var max = Convert.ToInt32(txtBMax.Text);
             if (min > max)
@@ -88,8 +89,8 @@ namespace WPF_LED_Controller.UserControls
 
         private void txtRMin_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtRMin.Text = ValueFun.OverUnderValidation(txtRMin.Text, 254);
-            txtRMax.Text = ValueFun.OverUnderValidation(txtRMax.Text);
+            txtRMin.Text = _valueFun.OverUnderValidation(txtRMin.Text, 254);
+            txtRMax.Text = _valueFun.OverUnderValidation(txtRMax.Text);
             var min = Convert.ToInt32(txtRMin.Text);
             var max = Convert.ToInt32(txtRMax.Text);
             if (min > max)
@@ -100,8 +101,8 @@ namespace WPF_LED_Controller.UserControls
 
         private void txtRMax_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtRMin.Text = ValueFun.OverUnderValidation(txtRMin.Text, 254);
-            txtRMax.Text = ValueFun.OverUnderValidation(txtRMax.Text);
+            txtRMin.Text = _valueFun.OverUnderValidation(txtRMin.Text, 254);
+            txtRMax.Text = _valueFun.OverUnderValidation(txtRMax.Text);
             var min = Convert.ToInt32(txtRMin.Text);
             var max = Convert.ToInt32(txtRMax.Text);
             if (min > max)

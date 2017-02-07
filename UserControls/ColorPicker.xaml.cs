@@ -7,13 +7,14 @@ using System.Windows.Media;
 
 #endregion
 
-namespace WPF_LED_Controller.UserControls
+namespace WPF_LED_Controller
 {
     /// <summary>
     ///     Interaction logic for ColorPicker.xaml
     /// </summary>
-    public partial class ColorPicker : UserControl
+    public partial class ColorPicker
     {
+        private readonly IValueFun _valueFun = new ValueFun();
         public ColorPicker()
         {
             InitializeComponent();
@@ -22,7 +23,8 @@ namespace WPF_LED_Controller.UserControls
         private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textbox = (TextBox) sender;
-            textbox.Text = ValueFun.OverUnderValidation(textbox.Text);
+           
+            textbox.Text =  _valueFun.OverUnderValidation(textbox.Text);
 
             if (textbox.Text == canColor.Red.ToString()) return;
             var rbyteValue = Convert.ToByte(textbox.Text);
@@ -33,7 +35,7 @@ namespace WPF_LED_Controller.UserControls
         private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textbox = (TextBox) sender;
-            textbox.Text = ValueFun.OverUnderValidation(textbox.Text);
+            textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
             if (textbox.Text == canColor.Green.ToString()) return;
             //Convert text box to byte, but check to see if it's empty, if so send 0
@@ -45,7 +47,7 @@ namespace WPF_LED_Controller.UserControls
         private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textbox = (TextBox) sender;
-            textbox.Text = ValueFun.OverUnderValidation(textbox.Text);
+            textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
             if (textbox.Text == canColor.Blue.ToString()) return;
             //Convert text box to byte, but check to see if it's empty, if so send 0
@@ -56,7 +58,7 @@ namespace WPF_LED_Controller.UserControls
 
         private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            ValueFun.KeyPreview(sender, e);
+            _valueFun.KeyPreview(sender, e);
         }
 
         /// <summary>
@@ -66,7 +68,7 @@ namespace WPF_LED_Controller.UserControls
         /// <param name="e"></param>
         private void txtHAll_KeyDown(object sender, KeyEventArgs e)
         {
-            ValueFun.HexKeyValidation(e);
+            _valueFun.HexKeyValidation(e);
 
             var strHex = ((TextBox) sender).Text;
             //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #, if they aren't, we go no farther in code.
