@@ -4,7 +4,6 @@ using System;
 using System.IO;
 using System.IO.Ports;
 using System.Windows;
-using WPF_LED_Controller.UserControls;
 
 #endregion
 
@@ -13,7 +12,7 @@ namespace WPF_LED_Controller
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private readonly SerialPort _arduinoSerial = new SerialPort();
         private readonly Disco _discoWindow = new Disco();

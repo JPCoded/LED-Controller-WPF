@@ -7,7 +7,7 @@ using System.Drawing.Imaging;
 
 //class that uses unsafe to handle bitmaps because default image processing is to slow for what I need it to do.
 
-namespace WPF_LED_Controller.UserControls
+namespace WPF_LED_Controller
 {
     internal unsafe class UnsafeBitmap
     {

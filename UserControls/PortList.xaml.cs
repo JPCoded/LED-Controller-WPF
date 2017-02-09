@@ -2,7 +2,6 @@
 
 using System.Collections.ObjectModel;
 using System.IO.Ports;
-using WPF_LED_Controller.UserControls;
 
 #endregion
 

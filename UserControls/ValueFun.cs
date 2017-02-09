@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace WPF_LED_Controller
 {
-    public class ValueFun : IValueFun
+    sealed class ValueFun : IValueFun
     {
         string IValueFun.OverUnderValidation(string valueToCheck, int max)
         {
