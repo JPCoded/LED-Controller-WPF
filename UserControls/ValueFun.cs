@@ -9,9 +9,9 @@ using System.Windows.Input;
 
 namespace WPF_LED_Controller
 {
-    sealed class ValueFun : IValueFun
+   sealed  class ValueFun : IValueFun
     {
-        string IValueFun.OverUnderValidation(string valueToCheck, int max)
+       public string OverUnderValidation(string valueToCheck, int max)
         {
             if (!string.IsNullOrEmpty(valueToCheck))
             {
@@ -32,7 +32,7 @@ namespace WPF_LED_Controller
             return valueToCheck.ToUpper();
         }
 
-        void IValueFun.KeyPreview(object sender, KeyEventArgs e, int max)
+       public void KeyPreview(object sender, KeyEventArgs e, int max)
         {
             switch (e.Key)
             {
@@ -72,7 +72,7 @@ namespace WPF_LED_Controller
             }
         }
 
-        void IValueFun.HexKeyValidation(KeyEventArgs e)
+     public void HexKeyValidation(KeyEventArgs e)
         {
             var input = e.Key.ToString();
             if (e.Key == Key.D3 && (e.Key == Key.LeftShift || e.Key == Key.RightShift))

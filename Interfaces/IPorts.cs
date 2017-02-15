@@ -2,7 +2,8 @@
 {
     interface IPorts
     {
-         string ToString();
+        string Name { get; }
+        string ToString();
 
     }
 }
