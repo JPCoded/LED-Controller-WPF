@@ -38,7 +38,7 @@
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
                          Style="{StaticResource BorderedText}"
-                         TextChanged="txtRMin_TextChanged"
+                         TextChanged="txtRed_TextChanged"
                          TextWrapping="Wrap" />
                 <TextBox x:Name="txtRMax"
                          Grid.Row="1"
@@ -47,7 +47,7 @@
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
                          Style="{StaticResource BorderedText}"
-                         TextChanged="txtRMax_TextChanged"
+                         TextChanged="txtRed_TextChanged"
                          TextWrapping="Wrap" />
 
                 <Label Grid.Row="2" Grid.Column="0">G</Label>
@@ -58,7 +58,7 @@
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
                          Style="{StaticResource BorderedText}"
-                         TextChanged="txtGMin_TextChanged" />
+                         TextChanged="txtGreen_TextChanged" />
                 <TextBox x:Name="txtGMax"
                          Grid.Row="2"
                          Grid.Column="2"
@@ -66,7 +66,7 @@
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
                          Style="{StaticResource BorderedText}"
-                         TextChanged="txtGMax_TextChanged" />
+                         TextChanged="txtGreen_TextChanged" />
 
                 <Label Grid.Row="3" Grid.Column="0">B</Label>
                 <TextBox x:Name="txtBMin"
@@ -76,7 +76,7 @@
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
                          Style="{StaticResource BorderedText}"
-                         TextChanged="txtBMin_TextChanged"
+                         TextChanged="txtBlue_TextChanged"
                          TextWrapping="Wrap" />
                 <TextBox x:Name="txtBMax"
                          Grid.Row="3"
@@ -85,7 +85,7 @@
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
                          Style="{StaticResource BorderedText}"
-                         TextChanged="txtBMax_TextChanged"
+                         TextChanged="txtBlue_TextChanged"
                          TextWrapping="Wrap" />
 
 

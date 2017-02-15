@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 
@@ -9,7 +10,7 @@ using System.Drawing.Imaging;
 
 namespace WPF_LED_Controller
 {
-    internal unsafe class UnsafeBitmap
+    internal unsafe class UnsafeBitmap:IDisposable
     {
         private BitmapData _bitmapData;
         private byte* _pBase = null;

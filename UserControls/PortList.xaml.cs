@@ -27,6 +27,7 @@ namespace WPF_LED_Controller
         {
             //clear list just to make sure we don't get duplicates
             MyPorts.Clear();
+
             for (var i = 0; i < MyPorts.Count; i++)
             {
                 MyPorts.RemoveAt(i);
