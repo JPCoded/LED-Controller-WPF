@@ -17,28 +17,28 @@
                 <GradientStop Offset="1" Color="White" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="btnSet"
+        <Button x:Name="BtnSet"
                 Width="75"
                 Margin="7,295,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="btnSet_Click"
                 Content="Set" />
-        <wpfLedController:PortList x:Name="plPorts"
+        <wpfLedController:PortList x:Name="PlPorts"
                                    Margin="218,190,0,0"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Top" />
-        <wpfLedController:ColorPicker x:Name="cpColor"
+        <wpfLedController:ColorPicker x:Name="CpColor"
                                       Width="299"
                                       Height="287"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Top" />
-        <CheckBox x:Name="cbDisco"
+        <CheckBox x:Name="CbDisco"
                   Margin="218,274,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   Content="Disco Mode" />
-        <Button x:Name="btnDiso"
+        <Button x:Name="BtnDiso"
                 Width="75"
                 Margin="223,295,0,0"
                 HorizontalAlignment="Left"

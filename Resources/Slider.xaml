@@ -74,7 +74,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="RGBSlider" TargetType="{x:Type Slider}">
+    <Style x:Key="RgbSlider" TargetType="{x:Type Slider}">
         <Setter Property="Orientation" Value="Vertical" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Top" />

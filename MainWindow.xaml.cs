@@ -19,18 +19,19 @@ namespace WPF_LED_Controller
         private const int Offset = 0;
         private const byte EndingByte = 0x0A;
         private const int BaudRate = 115200;
+
         public MainWindow()
         {
             InitializeComponent();
             _arduinoSerial.BaudRate = BaudRate;
-            plPorts.Refresh();
+            PlPorts.Refresh();
             Closing += (sender, e) => _discoWindow.Close();
             
         }
 
         private void btnSet_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(plPorts.GetPort))
+            if (!string.IsNullOrEmpty(PlPorts.GetPort))
             {
                 //try and catch any issues that pop up when using the arduino.
                 try
@@ -40,19 +41,19 @@ namespace WPF_LED_Controller
                         _arduinoSerial.Close();
                     }
 
-                    _arduinoSerial.PortName = plPorts.GetPort;
+                    _arduinoSerial.PortName = PlPorts.GetPort;
 
                     _arduinoSerial.Open();
 
                     try
                     {
-                        if (cbDisco.IsChecked == true)
+                        if (CbDisco.IsChecked == true)
                         {
                             byte[] discoBytes =
                             {
                                 _discoWindow.RedMin, _discoWindow.RedMax, _discoWindow.GreenMin,
                                 _discoWindow.GreenMax, _discoWindow.BlueMin, _discoWindow.BlueMax,
-                                Convert.ToByte(_discoWindow.slDiscoSlider.Value), EndingByte
+                                Convert.ToByte(_discoWindow.SlDiscoSlider.Value), EndingByte
                             };
                             _arduinoSerial.Write(discoBytes, Offset, 7);
                         }
@@ -60,7 +61,7 @@ namespace WPF_LED_Controller
                         {
                             byte[] colorBytes =
                             {
-                                cpColor.canColor.Red, cpColor.canColor.Green, cpColor.canColor.Blue,
+                                CpColor.CanColor.Red, CpColor.CanColor.Green, CpColor.CanColor.Blue,
                                 EndingByte
                             };
                             _arduinoSerial.Write(colorBytes, Offset, 3);
@@ -75,7 +76,7 @@ namespace WPF_LED_Controller
                 catch (IOException)
                 {
                     MessageBox.Show(
-                        "Error connecting to port " + plPorts.GetPort +
+                        "Error connecting to port " + PlPorts.GetPort +
                         ". Make sure the Arduino is connected or correct port selected.", "IO Error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }

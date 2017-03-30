@@ -8,27 +8,27 @@
              mc:Ignorable="d">
     <Grid>
 
-        <Canvas x:Name="canColor"
+        <Canvas x:Name="CanColor"
                 Width="201"
                 Height="201"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 MouseLeftButtonDown="canColor_MouseLeftButtonDown">
-            <Image x:Name="imgColor" />
+            <Image x:Name="ImgColor" />
             <Ellipse x:Name="EpPointer"
                      Width="8"
                      Height="8"
                      Fill="White"
                      Stroke="Black" />
         </Canvas>
-        <Button x:Name="btnPrevious"
+        <Button x:Name="BtnPrevious"
                 Width="33"
                 Margin="0,201,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 IsEnabled="False"
                 Style="{StaticResource NavButton}" />
-        <Button x:Name="btnNext"
+        <Button x:Name="BtnNext"
                 Width="33"
                 Margin="167,201,0,0"
                 HorizontalAlignment="Left"

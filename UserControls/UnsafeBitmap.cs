@@ -6,11 +6,9 @@ using System.Drawing.Imaging;
 
 #endregion
 
-//class that uses unsafe to handle bitmaps because default image processing is to slow for what I need it to do.
-
 namespace WPF_LED_Controller
 {
-    internal unsafe class UnsafeBitmap:IDisposable
+    unsafe class UnsafeBitmap : IDisposable
     {
         private BitmapData _bitmapData;
         private byte* _pBase = null;

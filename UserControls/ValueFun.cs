@@ -79,12 +79,9 @@ namespace WPF_LED_Controller
             {
                 input = "#";
             }
-            if (
-                !(input == "#" || (input[0] >= 'A' && input[0] <= 'F') || (input[0] >= 'a' && input[0] <= 'F') ||
-                  (input[0] >= '0' && input[0] <= '9')))
-            {
-                e.Handled = true;
-            }
+         e.Handled |= (!(input == "#" || (input[0] >= 'A' && input[0] <= 'F') || (input[0] >= 'a' && input[0] <= 'F') ||
+               (input[0] >= '0' && input[0] <= '9')));
+
         }
     }
 }

@@ -9,7 +9,7 @@
              mc:Ignorable="d">
     <Grid>
 
-        <ListView x:Name="lsPorts"
+        <ListView x:Name="LsPorts"
                   Width="75"
                   Height="50"
                   Margin="0,24,0,0"
@@ -30,7 +30,7 @@
             <Separator Width="13"
                        Margin="0"
                        Background="{x:Null}" />
-            <Button x:Name="btnRefresh"
+            <Button x:Name="BtnRefresh"
                     Width="15"
                     Height="15"
                     HorizontalAlignment="Center"

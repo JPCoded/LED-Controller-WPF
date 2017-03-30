@@ -40,17 +40,17 @@ namespace WPF_LED_Controller
         {
             InitializeComponent();
 
-            btnNext.Click += (sender, e) => DoTrack('+');
-            btnPrevious.Click += (sender, e) => DoTrack('-');
-            canColor.MouseMove +=
+            BtnNext.Click += (sender, e) => DoTrack('+');
+            BtnPrevious.Click += (sender, e) => DoTrack('-');
+            CanColor.MouseMove +=
                 (sender, e) =>
                     HoverColor =
-                        GetColorFromImage((int) Mouse.GetPosition(canColor).X, (int) Mouse.GetPosition(canColor).Y);
+                        GetColorFromImage((int) Mouse.GetPosition(CanColor).X, (int) Mouse.GetPosition(CanColor).Y);
 
             Images.Add(new BitmapImage(new Uri(@"/Images/Swatch.png", UriKind.RelativeOrAbsolute)));
             Images.Add(new BitmapImage(new Uri(@"/Images/Swatch2.png", UriKind.RelativeOrAbsolute)));
             //set background.
-            imgColor.Source = Images[_tracker];
+            ImgColor.Source = Images[_tracker];
             //set unsafe bitmap
             _myUnsafeBitmap = _unsafeBitmaps[0];
         }
@@ -88,25 +88,25 @@ namespace WPF_LED_Controller
             {
                 case '-':
                     _tracker = (_tracker != 0) ? _tracker - 1 : _tracker;
-                    btnPrevious.IsEnabled = (_tracker != 0);
-                    btnNext.IsEnabled = true;
+                    BtnPrevious.IsEnabled = (_tracker != 0);
+                    BtnNext.IsEnabled = true;
                     break;
                 case '+':
 
                     _tracker = (_tracker != 1) ? _tracker + 1 : _tracker;
-                    btnNext.IsEnabled = (_tracker != 1);
-                    btnPrevious.IsEnabled = true;
+                    BtnNext.IsEnabled = (_tracker != 1);
+                    BtnPrevious.IsEnabled = true;
                     break;
             }
 
-            imgColor.Source = Images[_tracker];
+            ImgColor.Source = Images[_tracker];
             _myUnsafeBitmap = _unsafeBitmaps[_tracker];
             Reposition();
         }
 
         private void canColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            SavedColor = GetColorFromImage((int) Mouse.GetPosition(canColor).X, (int) Mouse.GetPosition(canColor).Y);
+            SavedColor = GetColorFromImage((int) Mouse.GetPosition(CanColor).X, (int) Mouse.GetPosition(CanColor).Y);
             MovePointer();
             e.Handled = true;
         }
@@ -131,9 +131,9 @@ namespace WPF_LED_Controller
 
         private void MovePointer()
         {
-            EpPointer.SetValue(Canvas.LeftProperty, (Mouse.GetPosition(canColor).X - 5));
-            EpPointer.SetValue(Canvas.TopProperty, (Mouse.GetPosition(canColor).Y - 5));
-            canColor.InvalidateVisual();
+            EpPointer.SetValue(Canvas.LeftProperty, (Mouse.GetPosition(CanColor).X - 5));
+            EpPointer.SetValue(Canvas.TopProperty, (Mouse.GetPosition(CanColor).Y - 5));
+            CanColor.InvalidateVisual();
         }
 
         private void MovePointerDuringReposition(int i, int j)
@@ -141,17 +141,17 @@ namespace WPF_LED_Controller
             EpPointer.SetValue(Canvas.LeftProperty, (double) (i - 3));
             EpPointer.SetValue(Canvas.TopProperty, (double) (j - 3));
             EpPointer.InvalidateVisual();
-            canColor.InvalidateVisual();
+            CanColor.InvalidateVisual();
         }
 
         private void Reposition()
         {
             _myUnsafeBitmap.LockBitmap();
 
-            for (var i = 0; i < canColor.ActualWidth; i++)
+            for (var i = 0; i < CanColor.ActualWidth; i++)
             {
                 var flag = false;
-                for (var j = 0; j < canColor.ActualHeight; j++)
+                for (var j = 0; j < CanColor.ActualHeight; j++)
                 {
                     var pixel = _myUnsafeBitmap.GetPixel(i, j);
                     var colorfromimagepoint = Color.FromRgb(pixel.Red, pixel.Green, pixel.Blue);
