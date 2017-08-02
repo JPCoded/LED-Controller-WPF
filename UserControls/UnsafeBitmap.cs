@@ -8,7 +8,7 @@ using System.Drawing.Imaging;
 
 namespace WPF_LED_Controller
 {
-    unsafe class UnsafeBitmap : IDisposable
+    internal sealed unsafe class UnsafeBitmap : IDisposable
     {
         private BitmapData _bitmapData;
         private byte* _pBase = null;
@@ -46,10 +46,7 @@ namespace WPF_LED_Controller
             return returnValue;
         }
 
-        private PixelData* PixelAt(int x, int y)
-        {
-            return (PixelData*) (_pBase + y*_width + x*sizeof (PixelData));
-        }
+        private PixelData* PixelAt(int x, int y) => (PixelData*) (_pBase + y*_width + x*sizeof (PixelData));
 
         public void UnlockBitmap()
         {
@@ -59,7 +56,7 @@ namespace WPF_LED_Controller
         }
     }
 
-    public struct PixelData
+    internal struct PixelData
     {
         public byte Blue;
         public byte Green;

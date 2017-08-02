@@ -6,10 +6,10 @@
              Height="73"
              d:DesignWidth="75"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             mc:Ignorable="d">
+             mc:Ignorable="d" x:ClassModifier="internal">
     <Grid>
 
-        <ListView x:Name="LsPorts"
+        <ListView x:Name="lsPorts"
                   Width="75"
                   Height="50"
                   Margin="0,24,0,0"
@@ -30,13 +30,13 @@
             <Separator Width="13"
                        Margin="0"
                        Background="{x:Null}" />
-            <Button x:Name="BtnRefresh"
+            <Button x:Name="btnRefresh"
                     Width="15"
                     Height="15"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Background="#FFF50808"
-                    Style="{StaticResource GlassButton}">
+                    Style="{StaticResource glassButton}">
                 <Image Width="10"
                        Height="10"
                        Source="/Images/Refresh.png" />

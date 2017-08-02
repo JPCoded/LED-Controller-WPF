@@ -4,10 +4,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLedController="clr-namespace:WPF_LED_Controller"
-             x:Name="CpcColor"
+             x:Name="cpcColor"
              Width="301.403"
              Height="285.687"
-             mc:Ignorable="d">
+             mc:Ignorable="d" x:ClassModifier="internal">
     <Grid>
         <StackPanel Height="184"
                     Margin="205,0,0,0"
@@ -23,15 +23,15 @@
                              Width="30"
                              Height="23"
                              PreviewKeyDown="txtRGB_PreviewKeyDown"
-                             Style="{StaticResource BorderedText}"
-                             Text="{Binding ElementName=CanColor,
+                             Style="{StaticResource borderedText}"
+                             Text="{Binding ElementName=canColor,
                                             Path=Red,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged}"
                              TextChanged="txtRed_TextChanged" />
                     <Slider Background="{StaticResource Red}"
-                            Style="{StaticResource RgbSlider}"
-                            Value="{Binding ElementName=CanColor,
+                            Style="{StaticResource rgbSlider}"
+                            Value="{Binding ElementName=canColor,
                                             Path=Red}" />
                 </StackPanel>
 
@@ -39,19 +39,19 @@
                     <Label HorizontalAlignment="Center"
                            Content="G"
                            Foreground="White" />
-                    <TextBox x:Name="TxtGreen"
+                    <TextBox x:Name="txtGreen"
                              Width="30"
                              Height="23"
                              PreviewKeyDown="txtRGB_PreviewKeyDown"
-                             Style="{StaticResource BorderedText}"
-                             Text="{Binding ElementName=CanColor,
+                             Style="{StaticResource borderedText}"
+                             Text="{Binding ElementName=canColor,
                                             Path=Green,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged}"
                              TextChanged="txtGreen_TextChanged" />
                     <Slider Background="{StaticResource Green}"
-                            Style="{StaticResource RgbSlider}"
-                            Value="{Binding ElementName=CanColor,
+                            Style="{StaticResource rgbSlider}"
+                            Value="{Binding ElementName=canColor,
                                             Path=Green}" />
 
                 </StackPanel>
@@ -60,19 +60,19 @@
                     <Label HorizontalAlignment="Center"
                            Content="B"
                            Foreground="White" />
-                    <TextBox x:Name="TxtBlue"
+                    <TextBox x:Name="txtBlue"
                              Width="30"
                              Height="23"
                              PreviewKeyDown="txtRGB_PreviewKeyDown"
-                             Style="{StaticResource BorderedText}"
-                             Text="{Binding ElementName=CanColor,
+                             Style="{StaticResource borderedText}"
+                             Text="{Binding ElementName=canColor,
                                             Path=Blue,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged}"
                              TextChanged="txtBlue_TextChanged" />
                     <Slider Background="{StaticResource Blue}"
-                            Style="{StaticResource RgbSlider}"
-                            Value="{Binding ElementName=CanColor,
+                            Style="{StaticResource rgbSlider}"
+                            Value="{Binding ElementName=canColor,
                                             Path=Blue}" />
                 </StackPanel>
             </StackPanel>
@@ -81,41 +81,41 @@
 
             <StackPanel Height="25" Orientation="Horizontal">
                 <Label Content="H" Foreground="White" />
-                <TextBox x:Name="TxtHAll"
+                <TextBox x:Name="txtHAll"
                          Width="70"
                          Height="23"
                          Margin="0,1"
                          KeyDown="txtHAll_KeyDown"
                          MaxLength="9"
-                         Style="{StaticResource BorderedText}"
-                         Text="{Binding ElementName=CanColor,
+                         Style="{StaticResource borderedText}"
+                         Text="{Binding ElementName=canColor,
                                         Path=SavedColor,
                                         Mode=TwoWay}" />
             </StackPanel>
         </StackPanel>
-        <wpfLedController:ColorSwatch x:Name="CanColor"
+        <wpfLedController:ColorSwatch x:Name="canColor"
                                       Width="201"
                                       Height="223"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Top" />
-        <StackPanel Margin="0,228,0,0" Style="{StaticResource SavedHoverPanel}">
-            <Label x:Name="LblSaved"
+        <StackPanel Margin="0,228,0,0" Style="{StaticResource savedHoverPanel}">
+            <Label x:Name="lblSaved"
                    Content="Saved"
-                   Style="{StaticResource Title}" />
-            <Rectangle x:Name="RecSaved" Style="{StaticResource Rect}">
+                   Style="{StaticResource title}" />
+            <Rectangle x:Name="recSaved" Style="{StaticResource rect}">
                 <Rectangle.Fill>
-                    <SolidColorBrush Color="{Binding ElementName=CanColor, Path=SavedColor}" />
+                    <SolidColorBrush Color="{Binding ElementName=canColor, Path=SavedColor}" />
                 </Rectangle.Fill>
             </Rectangle>
 
         </StackPanel>
-        <StackPanel Margin="111,228,0,0" Style="{StaticResource SavedHoverPanel}">
-            <Label x:Name="LblHovered"
+        <StackPanel Margin="111,228,0,0" Style="{StaticResource savedHoverPanel}">
+            <Label x:Name="lblHovered"
                    Content="Hover"
-                   Style="{StaticResource Title}" />
-            <Rectangle x:Name="RecHover" Style="{StaticResource Rect}">
+                   Style="{StaticResource title}" />
+            <Rectangle x:Name="recHover" Style="{StaticResource rect}">
                 <Rectangle.Fill>
-                    <SolidColorBrush Color="{Binding ElementName=CanColor, Path=HoverColor}" />
+                    <SolidColorBrush Color="{Binding ElementName=canColor, Path=HoverColor}" />
                 </Rectangle.Fill>
             </Rectangle>
 

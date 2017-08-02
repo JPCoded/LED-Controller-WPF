@@ -4,7 +4,7 @@
 
 
     
-    <Style x:Key ="NavButton" TargetType ="{x:Type Button}">
+    <Style x:Key ="navButton" TargetType ="{x:Type Button}">
         <Setter Property ="Background" Value ="Black"/>
         <Setter Property ="FontWeight" Value ="Bold"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>

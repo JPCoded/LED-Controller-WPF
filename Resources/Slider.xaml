@@ -16,7 +16,7 @@
         <GradientStop Offset="1" Color="White" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="RectBrush" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
+    <LinearGradientBrush x:Key="rectBrush" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="#FF7A7A7A" />
         <GradientStop Offset="0.2" Color="#FFBBBBBB" />
         <GradientStop Offset="0.5" Color="White" />
@@ -24,7 +24,7 @@
         <GradientStop Offset="1" Color="#FF7A7A7A" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="RectBrushOver" StartPoint="0.5,0" EndPoint="0.5,1">
+    <LinearGradientBrush x:Key="rectBrushOver" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Offset="0" Color="#FF783C00" />
         <GradientStop Offset="1" Color="#FF783C00" />
         <GradientStop Offset="0.51" Color="#FFFF8000" />
@@ -33,7 +33,7 @@
     </LinearGradientBrush>
     <!--  End of Linear Burshes  -->
 
-    <Style x:Key="SliderButtonStyle" TargetType="{x:Type RepeatButton}">
+    <Style x:Key="sliderButtonStyle" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="IsTabStop" Value="false" />
@@ -47,7 +47,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SliderThumbStyle" TargetType="Thumb">
+    <Style x:Key="sliderThumbStyle" TargetType="Thumb">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="false" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -59,14 +59,14 @@
 
 
                     <Rectangle Name="Rectangle"
-                               Fill="{StaticResource RectBrush}"
+                               Fill="{StaticResource rectBrush}"
                                RadiusX="5"
                                RadiusY="5"
                                Stroke="{x:Null}"
                                StrokeThickness="0" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Rectangle" Property="Fill" Value="{StaticResource RectBrushOver}" />
+                            <Setter TargetName="Rectangle" Property="Fill" Value="{StaticResource rectBrushOver}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -74,7 +74,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="RgbSlider" TargetType="{x:Type Slider}">
+    <Style x:Key="rgbSlider" TargetType="{x:Type Slider}">
         <Setter Property="Orientation" Value="Vertical" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -117,13 +117,13 @@
                                HorizontalAlignment="Stretch"
                                VerticalAlignment="Center">
                             <Track.DecreaseRepeatButton>
-                                <RepeatButton Command="Slider.DecreaseLarge" Style="{StaticResource SliderButtonStyle}" />
+                                <RepeatButton Command="Slider.DecreaseLarge" Style="{StaticResource sliderButtonStyle}" />
                             </Track.DecreaseRepeatButton>
                             <Track.Thumb>
-                                <Thumb Style="{StaticResource SliderThumbStyle}" />
+                                <Thumb Style="{StaticResource sliderThumbStyle}" />
                             </Track.Thumb>
                             <Track.IncreaseRepeatButton>
-                                <RepeatButton Command="Slider.IncreaseLarge" Style="{StaticResource SliderButtonStyle}" />
+                                <RepeatButton Command="Slider.IncreaseLarge" Style="{StaticResource sliderButtonStyle}" />
                             </Track.IncreaseRepeatButton>
                         </Track>
                     </Grid>

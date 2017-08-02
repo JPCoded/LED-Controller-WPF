@@ -7,7 +7,7 @@
         Height="345"
         Icon="Images/LED.ico"
         ResizeMode="CanMinimize"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight" x:ClassModifier="internal">
 
     <Grid Margin="0,0,0,0" UseLayoutRounding="True">
 
@@ -17,28 +17,28 @@
                 <GradientStop Offset="1" Color="White" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="BtnSet"
+        <Button x:Name="btnSet"
                 Width="75"
                 Margin="7,295,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="btnSet_Click"
                 Content="Set" />
-        <wpfLedController:PortList x:Name="PlPorts"
+        <wpfLedController:PortList x:Name="plPorts"
                                    Margin="218,190,0,0"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Top" />
-        <wpfLedController:ColorPicker x:Name="CpColor"
+        <wpfLedController:ColorPicker x:Name="cpColor"
                                       Width="299"
                                       Height="287"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Top" />
-        <CheckBox x:Name="CbDisco"
+        <CheckBox x:Name="cbDisco"
                   Margin="218,274,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   Content="Disco Mode" />
-        <Button x:Name="BtnDiso"
+        <Button x:Name="btnDiso"
                 Width="75"
                 Margin="223,295,0,0"
                 HorizontalAlignment="Left"

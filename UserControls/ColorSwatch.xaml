@@ -5,36 +5,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              Height="223"
              d:DesignWidth="201"
-             mc:Ignorable="d">
+             mc:Ignorable="d" x:ClassModifier="internal">
     <Grid>
 
-        <Canvas x:Name="CanColor"
+        <Canvas x:Name="canColor"
                 Width="201"
                 Height="201"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 MouseLeftButtonDown="canColor_MouseLeftButtonDown">
-            <Image x:Name="ImgColor" />
-            <Ellipse x:Name="EpPointer"
+            <Image x:Name="imgColor" />
+            <Ellipse x:Name="epPointer"
                      Width="8"
                      Height="8"
                      Fill="White"
                      Stroke="Black" />
         </Canvas>
-        <Button x:Name="BtnPrevious"
+        <Button x:Name="btnPrevious"
                 Width="33"
                 Margin="0,201,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 IsEnabled="False"
-                Style="{StaticResource NavButton}" />
-        <Button x:Name="BtnNext"
+                Style="{StaticResource navButton}" />
+        <Button x:Name="btnNext"
                 Width="33"
                 Margin="167,201,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 RenderTransformOrigin="0.5,0.5"
-                Style="{StaticResource NavButton}">
+                Style="{StaticResource navButton}">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />

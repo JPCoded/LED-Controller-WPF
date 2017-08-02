@@ -12,9 +12,10 @@ namespace WPF_LED_Controller
     /// <summary>
     ///     Interaction logic for ColorPicker.xaml
     /// </summary>
-    public partial class ColorPicker
+    internal sealed partial class ColorPicker
     {
         private readonly IValueFun _valueFun = new ValueFun();
+
         public ColorPicker()
         {
             InitializeComponent();
@@ -23,13 +24,13 @@ namespace WPF_LED_Controller
         private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textbox = (TextBox) sender;
-           
-            textbox.Text =  _valueFun.OverUnderValidation(textbox.Text);
 
-            if (textbox.Text == CanColor.Red.ToString()) return;
+            textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
+
+            if (textbox.Text == canColor.Red.ToString()) return;
             var rbyteValue = Convert.ToByte(textbox.Text);
 
-            CanColor.SavedColor = Color.FromRgb(rbyteValue, CanColor.Green, CanColor.Blue);
+            canColor.SavedColor = Color.FromRgb(rbyteValue, canColor.Green, canColor.Blue);
         }
 
         private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
@@ -37,11 +38,11 @@ namespace WPF_LED_Controller
             var textbox = (TextBox) sender;
             textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
-            if (textbox.Text == CanColor.Green.ToString()) return;
+            if (textbox.Text == canColor.Green.ToString()) return;
             //Convert text box to byte, but check to see if it's empty, if so send 0
             var gbyteValue = Convert.ToByte(textbox.Text);
             //change green value of main color
-            CanColor.SavedColor = Color.FromRgb(CanColor.Red, gbyteValue, CanColor.Blue);
+            canColor.SavedColor = Color.FromRgb(canColor.Red, gbyteValue, canColor.Blue);
         }
 
         private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
@@ -49,11 +50,11 @@ namespace WPF_LED_Controller
             var textbox = (TextBox) sender;
             textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
-            if (textbox.Text == CanColor.Blue.ToString()) return;
+            if (textbox.Text == canColor.Blue.ToString()) return;
             //Convert text box to byte, but check to see if it's empty, if so send 0
             var bbyteValue = Convert.ToByte(textbox.Text);
             //change blue value of main color
-            CanColor.SavedColor = Color.FromRgb(CanColor.Red, CanColor.Green, bbyteValue);
+            canColor.SavedColor = Color.FromRgb(canColor.Red, canColor.Green, bbyteValue);
         }
 
         private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -72,12 +73,12 @@ namespace WPF_LED_Controller
 
             var strHex = ((TextBox) sender).Text;
             //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #, if they aren't, we go no farther in code.
-            if ((strHex.Length != 7 && strHex.Length != 9) || strHex[0] != '#') return;
+            if (strHex.Length != 7 && strHex.Length != 9 || strHex[0] != '#') return;
 
             var convertFromString = ColorConverter.ConvertFromString(strHex);
 
             if (convertFromString != null)
-                CanColor.SavedColor = (Color) convertFromString;
+                canColor.SavedColor = (Color) convertFromString;
         }
     }
 }

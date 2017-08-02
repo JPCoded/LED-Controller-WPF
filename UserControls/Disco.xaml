@@ -31,60 +31,60 @@
                 <Label Grid.Row="0" Grid.Column="2">Max</Label>
 
                 <Label Grid.Row="1" Grid.Column="0">R</Label>
-                <TextBox x:Name="TxtRMin"
+                <TextBox x:Name="txtRMin"
                          Grid.Row="1"
                          Grid.Column="1"
                          Width="30"
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
-                         Style="{StaticResource BorderedText}"
+                         Style="{StaticResource borderedText}"
                          TextChanged="txtRed_TextChanged"
                          TextWrapping="Wrap" />
-                <TextBox x:Name="TxtRMax"
+                <TextBox x:Name="txtRMax"
                          Grid.Row="1"
                          Grid.Column="2"
                          Width="30"
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
-                         Style="{StaticResource BorderedText}"
+                         Style="{StaticResource borderedText}"
                          TextChanged="txtRed_TextChanged"
                          TextWrapping="Wrap" />
 
                 <Label Grid.Row="2" Grid.Column="0">G</Label>
-                <TextBox x:Name="TxtGMin"
+                <TextBox x:Name="txtGMin"
                          Grid.Row="2"
                          Grid.Column="1"
                          Width="30"
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
-                         Style="{StaticResource BorderedText}"
+                         Style="{StaticResource borderedText}"
                          TextChanged="txtGreen_TextChanged" />
-                <TextBox x:Name="TxtGMax"
+                <TextBox x:Name="txtGMax"
                          Grid.Row="2"
                          Grid.Column="2"
                          Width="30"
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
-                         Style="{StaticResource BorderedText}"
+                         Style="{StaticResource borderedText}"
                          TextChanged="txtGreen_TextChanged" />
 
                 <Label Grid.Row="3" Grid.Column="0">B</Label>
-                <TextBox x:Name="TxtBMin"
+                <TextBox x:Name="txtBMin"
                          Grid.Row="3"
                          Grid.Column="1"
                          Width="30"
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
-                         Style="{StaticResource BorderedText}"
+                         Style="{StaticResource borderedText}"
                          TextChanged="txtBlue_TextChanged"
                          TextWrapping="Wrap" />
-                <TextBox x:Name="TxtBMax"
+                <TextBox x:Name="txtBMax"
                          Grid.Row="3"
                          Grid.Column="2"
                          Width="30"
                          Height="23"
                          PreviewKeyDown="txtMinMax_OnPreviewKeyDown"
-                         Style="{StaticResource BorderedText}"
+                         Style="{StaticResource borderedText}"
                          TextChanged="txtBlue_TextChanged"
                          TextWrapping="Wrap" />
 
@@ -94,7 +94,7 @@
                        Grid.ColumnSpan="3">
                     Interval (sec)
                 </Label>
-                <Slider x:Name="SlDiscoSlider"
+                <Slider x:Name="slDiscoSlider"
                         Grid.Row="5"
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
@@ -111,7 +111,7 @@
                         TickPlacement="TopLeft" />
 
             </Grid>
-            <Button x:Name="BtnSet" Content="Close" />
+            <Button x:Name="btnSet" Content="Close" />
 
         </StackPanel>
     </Border>

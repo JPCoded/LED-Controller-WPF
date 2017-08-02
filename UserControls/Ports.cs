@@ -1,6 +1,6 @@
 ﻿namespace WPF_LED_Controller
 {
-    public class Ports : IPorts
+    internal sealed class Ports : IPorts
     {
         public Ports(string name)
         {
@@ -9,9 +9,6 @@
 
         public string Name { get; }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+        public override string ToString() => Name;
     }
 }

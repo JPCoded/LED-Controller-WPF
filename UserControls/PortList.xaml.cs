@@ -11,21 +11,20 @@ namespace WPF_LED_Controller
     /// <summary>
     ///     Interaction logic for PortList.xaml
     /// </summary>
-    public partial class PortList
+    internal sealed partial class PortList
     {
         public PortList()
         {
             InitializeComponent();
-            LsPorts.ItemsSource = MyPorts;
-            BtnRefresh.Click += (sender, e) => Refresh();
+            lsPorts.ItemsSource = MyPorts;
+            btnRefresh.Click += (sender, e) => Refresh();
         }
 
-        public string GetPort => LsPorts.SelectedValue?.ToString() ?? string.Empty;
+        public string GetPort => lsPorts.SelectedValue?.ToString() ?? string.Empty;
         public ObservableCollection<Ports> MyPorts { get; } = new ObservableCollection<Ports>();
 
         public void Refresh()
         {
- 
             MyPorts.RemoveAll();
             MyPorts.AddArray(SerialPort.GetPortNames());
         }
@@ -33,23 +32,22 @@ namespace WPF_LED_Controller
 
     internal static class PortsExtension
     {
-        public static ObservableCollection<Ports> RemoveAll(this ObservableCollection<Ports> portCollection)
+        public static void RemoveAll(this ObservableCollection<Ports> portCollection)
         {
-            for (var i = 0; i < portCollection.Count; i++)
+            foreach (var port in portCollection)
             {
-                portCollection.RemoveAt(i);
+                portCollection.Remove(port);
             }
-            return portCollection;
+        
         }
 
-        public static ObservableCollection<Ports> AddArray(this ObservableCollection<Ports> portCollection,
-            IEnumerable<string> arrayToAdd)
+        public static void AddArray(this ObservableCollection<Ports> portCollection, IEnumerable<string> arrayToAdd)
         {
             foreach (var port in arrayToAdd)
             {
                 portCollection.Add(new Ports(port));
             }
-            return portCollection;
+           
         }
     }
 }

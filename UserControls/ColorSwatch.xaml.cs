@@ -15,7 +15,7 @@ namespace WPF_LED_Controller
     /// <summary>
     ///     Interaction logic for ColorSwatch.xaml
     /// </summary>
-    public partial class ColorSwatch
+    internal sealed partial class ColorSwatch
     {
         public static readonly DependencyProperty RedProperty;
         public static readonly DependencyProperty GreenProperty;
@@ -40,17 +40,17 @@ namespace WPF_LED_Controller
         {
             InitializeComponent();
 
-            BtnNext.Click += (sender, e) => DoTrack('+');
-            BtnPrevious.Click += (sender, e) => DoTrack('-');
-            CanColor.MouseMove +=
+            btnNext.Click += (sender, e) => DoTrack('+');
+            btnPrevious.Click += (sender, e) => DoTrack('-');
+            canColor.MouseMove +=
                 (sender, e) =>
                     HoverColor =
-                        GetColorFromImage((int) Mouse.GetPosition(CanColor).X, (int) Mouse.GetPosition(CanColor).Y);
+                        GetColorFromImage((int) Mouse.GetPosition(canColor).X, (int) Mouse.GetPosition(canColor).Y);
 
             Images.Add(new BitmapImage(new Uri(@"/Images/Swatch.png", UriKind.RelativeOrAbsolute)));
             Images.Add(new BitmapImage(new Uri(@"/Images/Swatch2.png", UriKind.RelativeOrAbsolute)));
             //set background.
-            ImgColor.Source = Images[_tracker];
+            imgColor.Source = Images[_tracker];
             //set unsafe bitmap
             _myUnsafeBitmap = _unsafeBitmaps[0];
         }
@@ -88,25 +88,27 @@ namespace WPF_LED_Controller
             {
                 case '-':
                     _tracker = (_tracker != 0) ? _tracker - 1 : _tracker;
-                    BtnPrevious.IsEnabled = (_tracker != 0);
-                    BtnNext.IsEnabled = true;
+                    btnPrevious.IsEnabled = (_tracker != 0);
+                    btnNext.IsEnabled = true;
                     break;
                 case '+':
 
                     _tracker = (_tracker != 1) ? _tracker + 1 : _tracker;
-                    BtnNext.IsEnabled = (_tracker != 1);
-                    BtnPrevious.IsEnabled = true;
+                    btnNext.IsEnabled = (_tracker != 1);
+                    btnPrevious.IsEnabled = true;
+                    break;
+                default:
                     break;
             }
 
-            ImgColor.Source = Images[_tracker];
+            imgColor.Source = Images[_tracker];
             _myUnsafeBitmap = _unsafeBitmaps[_tracker];
             Reposition();
         }
 
         private void canColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            SavedColor = GetColorFromImage((int) Mouse.GetPosition(CanColor).X, (int) Mouse.GetPosition(CanColor).Y);
+            SavedColor = GetColorFromImage((int) Mouse.GetPosition(canColor).X, (int) Mouse.GetPosition(canColor).Y);
             MovePointer();
             e.Handled = true;
         }
@@ -131,27 +133,27 @@ namespace WPF_LED_Controller
 
         private void MovePointer()
         {
-            EpPointer.SetValue(Canvas.LeftProperty, (Mouse.GetPosition(CanColor).X - 5));
-            EpPointer.SetValue(Canvas.TopProperty, (Mouse.GetPosition(CanColor).Y - 5));
-            CanColor.InvalidateVisual();
+            epPointer.SetValue(Canvas.LeftProperty, (Mouse.GetPosition(canColor).X - 5));
+            epPointer.SetValue(Canvas.TopProperty, (Mouse.GetPosition(canColor).Y - 5));
+            canColor.InvalidateVisual();
         }
 
         private void MovePointerDuringReposition(int i, int j)
         {
-            EpPointer.SetValue(Canvas.LeftProperty, (double) (i - 3));
-            EpPointer.SetValue(Canvas.TopProperty, (double) (j - 3));
-            EpPointer.InvalidateVisual();
-            CanColor.InvalidateVisual();
+            epPointer.SetValue(Canvas.LeftProperty, (double) (i - 3));
+            epPointer.SetValue(Canvas.TopProperty, (double) (j - 3));
+            epPointer.InvalidateVisual();
+            canColor.InvalidateVisual();
         }
 
         private void Reposition()
         {
             _myUnsafeBitmap.LockBitmap();
 
-            for (var i = 0; i < CanColor.ActualWidth; i++)
+            for (var i = 0; i < canColor.ActualWidth; i++)
             {
                 var flag = false;
-                for (var j = 0; j < CanColor.ActualHeight; j++)
+                for (var j = 0; j < canColor.ActualHeight; j++)
                 {
                     var pixel = _myUnsafeBitmap.GetPixel(i, j);
                     var colorfromimagepoint = Color.FromRgb(pixel.Red, pixel.Green, pixel.Blue);
@@ -171,32 +173,32 @@ namespace WPF_LED_Controller
 
         public Color SavedColor
         {
-            get { return (Color) GetValue(SavedColorProperty); }
-            set { SetValue(SavedColorProperty, value); }
+            get => (Color) GetValue(SavedColorProperty);
+            set => SetValue(SavedColorProperty, value);
         }
 
         public Color HoverColor
         {
-            get { return (Color) GetValue(HoverColorProperty); }
-            set { SetValue(HoverColorProperty, value); }
+            get => (Color) GetValue(HoverColorProperty);
+            set => SetValue(HoverColorProperty, value);
         }
 
         public byte Red
         {
-            get { return (byte) GetValue(RedProperty); }
-            set { SetValue(RedProperty, value); }
+            get => (byte)GetValue(RedProperty);
+            set => SetValue(RedProperty, value);
         }
 
         public byte Green
         {
-            get { return (byte) GetValue(GreenProperty); }
-            set { SetValue(GreenProperty, value); }
+            get => (byte)GetValue(GreenProperty);
+            set => SetValue(GreenProperty, value);
         }
 
         public byte Blue
         {
-            get { return (byte) GetValue(BlueProperty); }
-            set { SetValue(BlueProperty, value); }
+            get => (byte)GetValue(BlueProperty);
+            set => SetValue(BlueProperty, value);
         }
 
         private static void OnColorRgbChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -204,11 +206,18 @@ namespace WPF_LED_Controller
             var colorSwatch = (ColorSwatch) sender;
             var color = colorSwatch.SavedColor;
             if (e.Property == RedProperty)
+            {
                 color.R = (byte) e.NewValue;
+            }
             else if (e.Property == GreenProperty)
+            {
                 color.G = (byte) e.NewValue;
+            }
             else if (e.Property == BlueProperty)
+            {
                 color.B = (byte) e.NewValue;
+            }
+
             colorSwatch.SavedColor = color;
         }
 
