@@ -16,10 +16,7 @@ namespace WPF_LED_Controller
     {
         private readonly IValueFun _valueFun = new ValueFun();
 
-        public ColorPicker()
-        {
-            InitializeComponent();
-        }
+        public ColorPicker() => InitializeComponent();
 
         private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -57,10 +54,7 @@ namespace WPF_LED_Controller
             canColor.SavedColor = Color.FromRgb(canColor.Red, canColor.Green, bbyteValue);
         }
 
-        private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            _valueFun.KeyPreview(sender, e);
-        }
+        private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e) => _valueFun.KeyPreview(sender, e);
 
         /// <summary>
         ///     KeyDown for the AllHex textbox

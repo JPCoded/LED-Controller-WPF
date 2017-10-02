@@ -19,7 +19,7 @@
                     <Label HorizontalAlignment="Center"
                            Content="R"
                            Foreground="White" />
-                    <TextBox x:Name="TxtRed"
+                    <TextBox x:Name="txtRed"
                              Width="30"
                              Height="23"
                              PreviewKeyDown="txtRGB_PreviewKeyDown"

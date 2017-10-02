@@ -103,9 +103,6 @@ namespace WPF_LED_Controller
             }
         }
 
-        private void btnDiso_Click(object sender, RoutedEventArgs e)
-        {
-            _discoWindow.Visibility =_discoWindow.IsVisible? Visibility.Hidden:Visibility.Visible;
-        }
+        private void btnDiso_Click(object sender, RoutedEventArgs e) => _discoWindow.Visibility = _discoWindow.IsVisible ? Visibility.Hidden : Visibility.Visible;
     }
 }
