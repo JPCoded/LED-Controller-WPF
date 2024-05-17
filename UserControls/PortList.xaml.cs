@@ -38,7 +38,6 @@ namespace WPF_LED_Controller
             {
                 portCollection.Remove(port);
             }
-        
         }
 
         public static void AddArray(this ObservableCollection<Ports> portCollection, IEnumerable<string> arrayToAdd)
@@ -47,7 +46,6 @@ namespace WPF_LED_Controller
             {
                 portCollection.Add(new Ports(port));
             }
-           
         }
     }
 }

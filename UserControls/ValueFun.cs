@@ -4,14 +4,13 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-
 #endregion
 
 namespace WPF_LED_Controller
 {
-    internal sealed  class ValueFun : IValueFun
+    internal sealed class ValueFun : IValueFun
     {
-       public string OverUnderValidation(string valueToCheck, int max)
+        public string OverUnderValidation(string valueToCheck, int max)
         {
             if (!string.IsNullOrEmpty(valueToCheck))
             {
@@ -32,7 +31,7 @@ namespace WPF_LED_Controller
             return valueToCheck.ToUpper();
         }
 
-       public void KeyPreview(object sender, KeyEventArgs e, int max)
+        public void KeyPreview(object sender, KeyEventArgs e, int max)
         {
             switch (e.Key)
             {
@@ -54,34 +53,26 @@ namespace WPF_LED_Controller
                             ((TextBox)sender).Text = max.ToString();
                         }
                         var oldValue = Convert.ToInt32(((TextBox)sender).Text);
-                        var newValue = (oldValue - 1 < 0) ? 0 : oldValue - 1;
+                        var newValue = (oldValue < 1) ? 0 : oldValue - 1;
                         ((TextBox)sender).Text = newValue.ToString();
                     }
                     break;
                 default:
-                    if (e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right ||
-                        (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || (e.Key >= Key.D0 && e.Key <= Key.D9))
-                    {
-                        e.Handled = false;
-                    }
-                    else
-                    {
-                        e.Handled = true;
-                    }
+                    e.Handled = e.Key != Key.Back && e.Key != Key.Left && e.Key != Key.Right &&
+                        (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && (e.Key < Key.D0 || e.Key > Key.D9);
                     break;
             }
         }
 
-     public void HexKeyValidation(KeyEventArgs e)
+        public void HexKeyValidation(KeyEventArgs e)
         {
             var input = e.Key.ToString();
             if (e.Key == Key.D3 && (e.Key == Key.LeftShift || e.Key == Key.RightShift))
             {
                 input = "#";
             }
-         e.Handled |= (!(input == "#" || (input[0] >= 'A' && input[0] <= 'F') || (input[0] >= 'a' && input[0] <= 'F') ||
-               (input[0] >= '0' && input[0] <= '9')));
-
+            e.Handled |= (!(input == "#" || (input[0] >= 'A' && input[0] <= 'F') || (input[0] >= 'a' && input[0] <= 'F') ||
+                  (input[0] >= '0' && input[0] <= '9')));
         }
     }
 }

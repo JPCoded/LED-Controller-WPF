@@ -45,10 +45,10 @@ namespace WPF_LED_Controller
             canColor.MouseMove +=
                 (sender, e) =>
                     HoverColor =
-                        GetColorFromImage((int) Mouse.GetPosition(canColor).X, (int) Mouse.GetPosition(canColor).Y);
+                        GetColorFromImage((int)Mouse.GetPosition(canColor).X, (int)Mouse.GetPosition(canColor).Y);
 
-            Images.Add(new BitmapImage(new Uri(@"/Images/Swatch.png", UriKind.RelativeOrAbsolute)));
-            Images.Add(new BitmapImage(new Uri(@"/Images/Swatch2.png", UriKind.RelativeOrAbsolute)));
+            Images.Add(new BitmapImage(new Uri("/Images/Swatch.png", UriKind.RelativeOrAbsolute)));
+            Images.Add(new BitmapImage(new Uri("/Images/Swatch2.png", UriKind.RelativeOrAbsolute)));
             //set background.
             imgColor.Source = Images[_tracker];
             //set unsafe bitmap
@@ -58,26 +58,26 @@ namespace WPF_LED_Controller
         //DependencyProperty and EventManager 
         static ColorSwatch()
         {
-            SavedColorProperty = DependencyProperty.Register("SavedColor", typeof (Color), typeof (ColorSwatch),
+            SavedColorProperty = DependencyProperty.Register("SavedColor", typeof(Color), typeof(ColorSwatch),
                 new FrameworkPropertyMetadata(Colors.Black, OnColorChanged));
 
-            HoverColorProperty = DependencyProperty.Register("HoverColor", typeof (Color), typeof (ColorSwatch),
+            HoverColorProperty = DependencyProperty.Register("HoverColor", typeof(Color), typeof(ColorSwatch),
                 new FrameworkPropertyMetadata(Colors.Black, OnHoverChanged));
 
-            RedProperty = DependencyProperty.Register("Red", typeof (byte), typeof (ColorSwatch),
+            RedProperty = DependencyProperty.Register("Red", typeof(byte), typeof(ColorSwatch),
                 new FrameworkPropertyMetadata(OnColorRgbChanged));
 
-            GreenProperty = DependencyProperty.Register("Green", typeof (byte), typeof (ColorSwatch),
+            GreenProperty = DependencyProperty.Register("Green", typeof(byte), typeof(ColorSwatch),
                 new FrameworkPropertyMetadata(OnColorRgbChanged));
 
-            BlueProperty = DependencyProperty.Register("Blue", typeof (byte), typeof (ColorSwatch),
+            BlueProperty = DependencyProperty.Register("Blue", typeof(byte), typeof(ColorSwatch),
                 new FrameworkPropertyMetadata(OnColorRgbChanged));
 
             ColorChangedEvent = EventManager.RegisterRoutedEvent("ColorChanged", RoutingStrategy.Bubble,
-                typeof (RoutedPropertyChangedEventHandler<Color>), typeof (ColorSwatch));
+                typeof(RoutedPropertyChangedEventHandler<Color>), typeof(ColorSwatch));
 
             HoverChangedEvent = EventManager.RegisterRoutedEvent("HoverChanged", RoutingStrategy.Bubble,
-                typeof (RoutedPropertyChangedEventHandler<Color>), typeof (ColorSwatch));
+                typeof(RoutedPropertyChangedEventHandler<Color>), typeof(ColorSwatch));
         }
 
         private List<BitmapImage> Images { get; } = new List<BitmapImage>();
@@ -108,7 +108,7 @@ namespace WPF_LED_Controller
 
         private void canColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            SavedColor = GetColorFromImage((int) Mouse.GetPosition(canColor).X, (int) Mouse.GetPosition(canColor).Y);
+            SavedColor = GetColorFromImage((int)Mouse.GetPosition(canColor).X, (int)Mouse.GetPosition(canColor).Y);
             MovePointer();
             e.Handled = true;
         }
@@ -133,15 +133,15 @@ namespace WPF_LED_Controller
 
         private void MovePointer()
         {
-            epPointer.SetValue(Canvas.LeftProperty, (Mouse.GetPosition(canColor).X - 5));
-            epPointer.SetValue(Canvas.TopProperty, (Mouse.GetPosition(canColor).Y - 5));
+            epPointer.SetValue(Canvas.LeftProperty, Mouse.GetPosition(canColor).X - 5);
+            epPointer.SetValue(Canvas.TopProperty, Mouse.GetPosition(canColor).Y - 5);
             canColor.InvalidateVisual();
         }
 
         private void MovePointerDuringReposition(int i, int j)
         {
-            epPointer.SetValue(Canvas.LeftProperty, (double) (i - 3));
-            epPointer.SetValue(Canvas.TopProperty, (double) (j - 3));
+            epPointer.SetValue(Canvas.LeftProperty, (double)(i - 3));
+            epPointer.SetValue(Canvas.TopProperty, (double)(j - 3));
             epPointer.InvalidateVisual();
             canColor.InvalidateVisual();
         }
@@ -173,13 +173,13 @@ namespace WPF_LED_Controller
 
         public Color SavedColor
         {
-            get => (Color) GetValue(SavedColorProperty);
+            get => (Color)GetValue(SavedColorProperty);
             set => SetValue(SavedColorProperty, value);
         }
 
         public Color HoverColor
         {
-            get => (Color) GetValue(HoverColorProperty);
+            get => (Color)GetValue(HoverColorProperty);
             set => SetValue(HoverColorProperty, value);
         }
 
@@ -203,19 +203,19 @@ namespace WPF_LED_Controller
 
         private static void OnColorRgbChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var colorSwatch = (ColorSwatch) sender;
+            var colorSwatch = (ColorSwatch)sender;
             var color = colorSwatch.SavedColor;
             if (e.Property == RedProperty)
             {
-                color.R = (byte) e.NewValue;
+                color.R = (byte)e.NewValue;
             }
             else if (e.Property == GreenProperty)
             {
-                color.G = (byte) e.NewValue;
+                color.G = (byte)e.NewValue;
             }
             else if (e.Property == BlueProperty)
             {
-                color.B = (byte) e.NewValue;
+                color.B = (byte)e.NewValue;
             }
 
             colorSwatch.SavedColor = color;
@@ -223,25 +223,25 @@ namespace WPF_LED_Controller
 
         private static void OnHoverChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var newColor = (Color) e.NewValue;
-            var oldColor = (Color) e.OldValue;
-            var hoverSwatch = (ColorSwatch) sender;
+            var newColor = (Color)e.NewValue;
+            var oldColor = (Color)e.OldValue;
+            var hoverSwatch = (ColorSwatch)sender;
             hoverSwatch.HoverColor = newColor;
-            var args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor) {RoutedEvent = HoverChangedEvent};
+            var args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor) { RoutedEvent = HoverChangedEvent };
             hoverSwatch.RaiseEvent(args);
         }
 
         private static void OnColorChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var newColor = (Color) e.NewValue;
-            var oldColor = (Color) e.OldValue;
+            var newColor = (Color)e.NewValue;
+            var oldColor = (Color)e.OldValue;
 
-            var colorSwatch = (ColorSwatch) sender;
+            var colorSwatch = (ColorSwatch)sender;
             colorSwatch.Red = newColor.R;
             colorSwatch.Blue = newColor.B;
             colorSwatch.Green = newColor.G;
 
-            var args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor) {RoutedEvent = ColorChangedEvent};
+            var args = new RoutedPropertyChangedEventArgs<Color>(oldColor, newColor) { RoutedEvent = ColorChangedEvent };
             colorSwatch.RaiseEvent(args);
             colorSwatch.Reposition();
         }

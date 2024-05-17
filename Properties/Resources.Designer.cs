@@ -19,7 +19,7 @@ namespace WPF_LED_Controller.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,6 +61,15 @@ namespace WPF_LED_Controller.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 255.
+        /// </summary>
+        internal static string ColorMax {
+            get {
+                return ResourceManager.GetString("ColorMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ColorSwatch {
@@ -77,6 +86,51 @@ namespace WPF_LED_Controller.Properties {
             get {
                 object obj = ResourceManager.GetObject("ColorSwatch2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Communication Failure.
+        /// </summary>
+        internal static string strCommunicationFailure {
+            get {
+                return ResourceManager.GetString("strCommunicationFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to communicate with Arduino. Make sure you have port selected..
+        /// </summary>
+        internal static string strCommunicationFailureMsg {
+            get {
+                return ResourceManager.GetString("strCommunicationFailureMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hal9000.
+        /// </summary>
+        internal static string strHal9000 {
+            get {
+                return ResourceManager.GetString("strHal9000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I can&apos;t allow you to do that Dave.\nPlease select a port first..
+        /// </summary>
+        internal static string strHal9000Msg {
+            get {
+                return ResourceManager.GetString("strHal9000Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message:.
+        /// </summary>
+        internal static string strMessage {
+            get {
+                return ResourceManager.GetString("strMessage", resourceCulture);
             }
         }
     }

@@ -20,7 +20,7 @@ namespace WPF_LED_Controller
 
         private void txtRed_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var textbox = (TextBox) sender;
+            var textbox = (TextBox)sender;
 
             textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
@@ -32,7 +32,7 @@ namespace WPF_LED_Controller
 
         private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var textbox = (TextBox) sender;
+            var textbox = (TextBox)sender;
             textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
             if (textbox.Text == canColor.Green.ToString()) return;
@@ -44,7 +44,7 @@ namespace WPF_LED_Controller
 
         private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var textbox = (TextBox) sender;
+            var textbox = (TextBox)sender;
             textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
             if (textbox.Text == canColor.Blue.ToString()) return;
@@ -65,14 +65,14 @@ namespace WPF_LED_Controller
         {
             _valueFun.HexKeyValidation(e);
 
-            var strHex = ((TextBox) sender).Text;
+            var strHex = ((TextBox)sender).Text;
             //check to see if it's full hex with either 6 digits (no alpha) or 8 digits (with alpha) plus #, if they aren't, we go no farther in code.
-            if (strHex.Length != 7 && strHex.Length != 9 || strHex[0] != '#') return;
+            if ((strHex.Length != 7 && strHex.Length != 9) || strHex[0] != '#') return;
 
             var convertFromString = ColorConverter.ConvertFromString(strHex);
 
             if (convertFromString != null)
-                canColor.SavedColor = (Color) convertFromString;
+                canColor.SavedColor = (Color)convertFromString;
         }
     }
 }

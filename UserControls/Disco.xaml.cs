@@ -19,9 +19,9 @@ namespace WPF_LED_Controller
         public Disco()
         {
             InitializeComponent();
-            txtGMax.Text = "255";
-            txtRMax.Text = "255";
-            txtBMax.Text = "255";
+            txtGMax.Text = Properties.Resources.ColorMax;
+            txtRMax.Text = Properties.Resources.ColorMax;
+            txtBMax.Text = Properties.Resources.ColorMax;
 
             btnSet.Click += (sender, e) => Visibility = Visibility.Hidden;
         }

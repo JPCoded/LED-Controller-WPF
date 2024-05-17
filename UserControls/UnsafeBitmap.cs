@@ -29,24 +29,23 @@ namespace WPF_LED_Controller
         {
             var unit = GraphicsUnit.Pixel;
             var boundsF = _bitmap.GetBounds(ref unit);
-            var bounds = new Rectangle((int) boundsF.X, (int) boundsF.Y, (int) boundsF.Width, (int) boundsF.Height);
+            var bounds = new Rectangle((int)boundsF.X, (int)boundsF.Y, (int)boundsF.Width, (int)boundsF.Height);
 
-            _width = (int) boundsF.Width*sizeof (PixelData);
-            if (_width%4 != 0)
+            _width = (int)boundsF.Width * sizeof(PixelData);
+            if (_width % 4 != 0)
             {
-                _width = 4*(_width/4 + 1);
+                _width = 4 * ((_width / 4) + 1);
             }
             _bitmapData = _bitmap.LockBits(bounds, ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-            _pBase = (byte*) _bitmapData.Scan0.ToPointer();
+            _pBase = (byte*)_bitmapData.Scan0.ToPointer();
         }
 
         public PixelData GetPixel(int x, int y)
         {
-            var returnValue = *PixelAt(x, y);
-            return returnValue;
+            return *PixelAt(x, y);
         }
 
-        private PixelData* PixelAt(int x, int y) => (PixelData*) (_pBase + y*_width + x*sizeof (PixelData));
+        private PixelData* PixelAt(int x, int y) => (PixelData*)(_pBase + (y * _width) + (x * sizeof(PixelData)));
 
         public void UnlockBitmap()
         {

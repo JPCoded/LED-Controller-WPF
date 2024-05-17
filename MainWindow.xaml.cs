@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.IO.Ports;
 using System.Windows;
+using static WPF_LED_Controller.Properties.Resources;
 
 #endregion
 
@@ -26,7 +27,6 @@ namespace WPF_LED_Controller
             _arduinoSerial.BaudRate = BaudRate;
             plPorts.Refresh();
             Closing += (sender, e) => _discoWindow.Close();
-            
         }
 
         private void btnSet_Click(object sender, RoutedEventArgs e)
@@ -69,8 +69,7 @@ namespace WPF_LED_Controller
                     }
                     catch (IOException)
                     {
-                        MessageBox.Show("Failed to communicate with Arduino. Make sure you have port selected.",
-                            "Communication Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(strCommunicationFailureMsg, strCommunicationFailure, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 catch (IOException)
@@ -87,18 +86,18 @@ namespace WPF_LED_Controller
                 }
                 catch (ArgumentException ae)
                 {
-                    MessageBox.Show("Message: " + ae.Message, "ArgumentExecption", MessageBoxButton.OK,
+                    MessageBox.Show(strMessage + ae.Message, "ArgumentException", MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 }
                 catch (InvalidOperationException io)
                 {
-                    MessageBox.Show("Message: " + io.Message, "InvalidOperationExecption", MessageBoxButton.OK,
+                    MessageBox.Show(strMessage + io.Message, "InvalidOperationException", MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("I can't allow you to do that Dave.\nPlease select a port first.", "Hal9000",
+                MessageBox.Show(strHal9000Msg, strHal9000,
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
