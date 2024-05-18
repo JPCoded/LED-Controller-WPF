@@ -25,9 +25,9 @@ namespace WPF_LED_Controller
             textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
             if (string.Equals(textbox.Text, canColor.Red.ToString(), StringComparison.Ordinal)) return;
-            var rbyteValue = Convert.ToByte(textbox.Text);
+            var byteValue = Convert.ToByte(textbox.Text);
 
-            canColor.SavedColor = Color.FromRgb(rbyteValue, canColor.Green, canColor.Blue);
+            canColor.SavedColor = Color.FromRgb(byteValue, canColor.Green, canColor.Blue);
         }
 
         private void txtGreen_TextChanged(object sender, TextChangedEventArgs e)
@@ -37,9 +37,9 @@ namespace WPF_LED_Controller
 
             if (string.Equals(textbox.Text, canColor.Green.ToString(), StringComparison.Ordinal)) return;
             //Convert text box to byte, but check to see if it's empty, if so send 0
-            var gbyteValue = Convert.ToByte(textbox.Text);
+            var byteValue = Convert.ToByte(textbox.Text);
             //change green value of main color
-            canColor.SavedColor = Color.FromRgb(canColor.Red, gbyteValue, canColor.Blue);
+            canColor.SavedColor = Color.FromRgb(canColor.Red, byteValue, canColor.Blue);
         }
 
         private void txtBlue_TextChanged(object sender, TextChangedEventArgs e)
@@ -49,9 +49,9 @@ namespace WPF_LED_Controller
 
             if (string.Equals(textbox.Text, canColor.Blue.ToString(), StringComparison.Ordinal)) return;
             //Convert text box to byte, but check to see if it's empty, if so send 0
-            var bbyteValue = Convert.ToByte(textbox.Text);
+            var byteValue = Convert.ToByte(textbox.Text);
             //change blue value of main color
-            canColor.SavedColor = Color.FromRgb(canColor.Red, canColor.Green, bbyteValue);
+            canColor.SavedColor = Color.FromRgb(canColor.Red, canColor.Green, byteValue);
         }
 
         private void txtRGB_PreviewKeyDown(object sender, KeyEventArgs e) => _valueFun.KeyPreview(sender, e);

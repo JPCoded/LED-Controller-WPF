@@ -33,6 +33,11 @@ namespace WPF_LED_Controller
 
         public void KeyPreview(object sender, KeyEventArgs e, int max)
         {
+            if (e == null)
+            {
+                return;
+            }
+
             switch (e.Key)
             {
                 case Key.Up:
@@ -66,6 +71,11 @@ namespace WPF_LED_Controller
 
         public void HexKeyValidation(KeyEventArgs e)
         {
+            if (e == null)
+            {
+                return;
+            }
+
             var input = e.Key.ToString();
             if (e.Key == Key.D3 && (e.Key == Key.LeftShift || e.Key == Key.RightShift))
             {

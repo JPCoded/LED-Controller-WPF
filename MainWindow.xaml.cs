@@ -75,8 +75,7 @@ namespace WPF_LED_Controller
                 catch (IOException)
                 {
                     MessageBox.Show(
-                        "Error connecting to port " + plPorts.GetPort +
-                        ". Make sure the Arduino is connected or correct port selected.", "IO Error",
+                        $"Error connecting to port {plPorts.GetPort}. Make sure the Arduino is connected or correct port selected.", "IO Error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 catch (UnauthorizedAccessException)

@@ -7,7 +7,6 @@
              d:DesignWidth="201"
              mc:Ignorable="d" x:ClassModifier="internal">
     <Grid>
-
         <Canvas x:Name="canColor"
                 Width="201"
                 Height="201"
@@ -44,8 +43,5 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-
-
-
     </Grid>
 </UserControl>
