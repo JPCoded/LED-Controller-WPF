@@ -125,10 +125,12 @@
     <Compile Include="UserControls\Disco.xaml.cs">
       <DependentUpon>Disco.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PixelData.cs" />
     <Compile Include="UserControls\PortList.xaml.cs">
       <DependentUpon>PortList.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Ports.cs" />
+    <Compile Include="UserControls\PortsExtension.cs" />
     <Compile Include="UserControls\UnsafeBitmap.cs" />
     <Compile Include="UserControls\ValueFun.cs" />
     <Page Include="Resources\BorderedTextBox.xaml">

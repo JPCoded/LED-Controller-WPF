@@ -54,11 +54,4 @@ namespace WPF_LED_Controller
             _pBase = null;
         }
     }
-
-    internal struct PixelData
-    {
-        public byte Blue;
-        public byte Green;
-        public byte Red;
-    }
 }

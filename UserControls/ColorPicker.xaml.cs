@@ -24,7 +24,7 @@ namespace WPF_LED_Controller
 
             textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
-            if (textbox.Text == canColor.Red.ToString()) return;
+            if (string.Equals(textbox.Text, canColor.Red.ToString(), StringComparison.Ordinal)) return;
             var rbyteValue = Convert.ToByte(textbox.Text);
 
             canColor.SavedColor = Color.FromRgb(rbyteValue, canColor.Green, canColor.Blue);
@@ -35,7 +35,7 @@ namespace WPF_LED_Controller
             var textbox = (TextBox)sender;
             textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
-            if (textbox.Text == canColor.Green.ToString()) return;
+            if (string.Equals(textbox.Text, canColor.Green.ToString(), StringComparison.Ordinal)) return;
             //Convert text box to byte, but check to see if it's empty, if so send 0
             var gbyteValue = Convert.ToByte(textbox.Text);
             //change green value of main color
@@ -47,7 +47,7 @@ namespace WPF_LED_Controller
             var textbox = (TextBox)sender;
             textbox.Text = _valueFun.OverUnderValidation(textbox.Text);
 
-            if (textbox.Text == canColor.Blue.ToString()) return;
+            if (string.Equals(textbox.Text, canColor.Blue.ToString(), StringComparison.Ordinal)) return;
             //Convert text box to byte, but check to see if it's empty, if so send 0
             var bbyteValue = Convert.ToByte(textbox.Text);
             //change blue value of main color

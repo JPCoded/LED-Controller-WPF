@@ -29,23 +29,4 @@ namespace WPF_LED_Controller
             MyPorts.AddArray(SerialPort.GetPortNames());
         }
     }
-
-    internal static class PortsExtension
-    {
-        public static void RemoveAll(this ObservableCollection<Ports> portCollection)
-        {
-            foreach (var port in portCollection)
-            {
-                portCollection.Remove(port);
-            }
-        }
-
-        public static void AddArray(this ObservableCollection<Ports> portCollection, IEnumerable<string> arrayToAdd)
-        {
-            foreach (var port in arrayToAdd)
-            {
-                portCollection.Add(new Ports(port));
-            }
-        }
-    }
 }
