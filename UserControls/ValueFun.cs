@@ -33,33 +33,34 @@ namespace WPF_LED_Controller
 
         public void KeyPreview(object sender, KeyEventArgs e, int max)
         {
+          TextBox senderTextBox = sender as TextBox;
             if (e == null)
             {
                 return;
             }
-
+            
             switch (e.Key)
             {
                 case Key.Up:
                     {
-                        if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                        if (string.IsNullOrEmpty(senderTextBox.Text))
                         {
-                            ((TextBox)sender).Text = "0";
+                            senderTextBox.Text = "0";
                         }
-                        var oldValue = Convert.ToInt32(((TextBox)sender).Text);
+                        var oldValue = Convert.ToInt32(senderTextBox.Text);
                         var newValue = (oldValue + 1 > max) ? max : oldValue + 1;
-                        ((TextBox)sender).Text = newValue.ToString();
+                        senderTextBox.Text = newValue.ToString();
                     }
                     break;
                 case Key.Down:
                     {
-                        if (string.IsNullOrEmpty(((TextBox)sender).Text))
+                        if (string.IsNullOrEmpty(senderTextBox.Text))
                         {
-                            ((TextBox)sender).Text = max.ToString();
+                            senderTextBox.Text = max.ToString();
                         }
-                        var oldValue = Convert.ToInt32(((TextBox)sender).Text);
+                        var oldValue = Convert.ToInt32(senderTextBox.Text);
                         var newValue = (oldValue < 1) ? 0 : oldValue - 1;
-                        ((TextBox)sender).Text = newValue.ToString();
+                        senderTextBox.Text = newValue.ToString();
                     }
                     break;
                 default:
